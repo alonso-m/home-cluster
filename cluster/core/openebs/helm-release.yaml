@@ -20,5 +20,5 @@ spec:
         enabled: true
         openebsNDM:
           enabled: true
-      nfs-provisioner:
-        enabled: true
+#      nfs-provisioner:
+#        enabled: true
