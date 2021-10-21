@@ -14,11 +14,11 @@ spec:
         kind: HelmRepository
         name: openebs-charts
         namespace: flux-system
-#  values:
-#    configInline:
-#      localpv-provisioner:
-#        enabled: true
-#        openebsNDM:
-#          enabled: true
-#      nfs-provisioner:
-#        enabled: true
+  values:
+    configInline:
+      localpv-provisioner:
+        enabled: true
+        openebsNDM:
+          enabled: true
+      nfs-provisioner:
+        enabled: true
