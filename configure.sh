@@ -213,6 +213,7 @@ verify_ansible_hosts() {
     local node_username=
     local node_password=
     local node_control=
+    local node_hostname=
 
     for var in "${!BOOTSTRAP_ANSIBLE_HOST_ADDR_@}"; do
         node_id=$(echo "${var}" | awk -F"_" '{print $5}')
@@ -246,22 +247,25 @@ generate_ansible_host_secrets() {
     local node_id=
     local node_username=
     local node_password=
+    local node_hostname=
+
     for var in "${!BOOTSTRAP_ANSIBLE_HOST_ADDR_@}"; do
         node_id=$(echo "${var}" | awk -F"_" '{print $5}')
+        node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
         {
             node_username="BOOTSTRAP_ANSIBLE_SSH_USERNAME_${node_id}"
             node_password="BOOTSTRAP_ANSIBLE_SUDO_PASSWORD_${node_id}"
-            node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
             printf "kind: Secret\n"
             printf "ansible_user: %s\n" "${!node_username}"
             printf "ansible_become_pass: %s\n" "${!node_password}"
-        } > "${PROJECT_DIR}/provision/ansible/inventory/host_vars/${node_hostname}.sops.yml"
-        sops --encrypt --in-place "${PROJECT_DIR}/provision/ansible/inventory/host_vars/${node_hostname}.sops.yml"
+        } > "${PROJECT_DIR}/provision/ansible/inventory/host_vars/${!node_hostname}.sops.yml"
+        sops --encrypt --in-place "${PROJECT_DIR}/provision/ansible/inventory/host_vars/${!node_hostname}.sops.yml" 
     done
 }
 
 generate_ansible_hosts() {
     local worker_node_count=
+    local node_hostname=
     {
         printf "kubernetes:\n"
         printf "  children:\n"
@@ -272,9 +276,10 @@ generate_ansible_hosts() {
             node_id=$(echo "${var}" | awk -F"_" '{print $5}')
             node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
             node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
+            echo 
             if [[ "${!node_control}" == "true" ]]; then
-                printf "        ${node_hostname}:\n" "${node_id}"
-                printf "          ansible_host: %s\n" "${!var}"
+                printf "        %s:\n" "${!node_hostname}"
+                printf "          ansible_host: %s" "${!var}"
             else
                 worker_node_count=$((worker_node_count+1))
             fi
@@ -287,8 +292,8 @@ generate_ansible_hosts() {
                 node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
                 node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
                 if [[ "${!node_control}" == "false" ]]; then
-                    printf "        ${node_hostname}:\n" "${node_id}"
-                    printf "          ansible_host: %s\n" "${!var}"
+                    printf "        %s:\n" "${!node_hostname}"
+                    printf "          ansible_host: %s" "${!var}"
                 fi
             done
         fi
