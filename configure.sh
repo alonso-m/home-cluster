@@ -33,6 +33,7 @@ main() {
         verify_kubevip
         verify_gpg
         verify_git_repository
+        verify_cloudflare
         success
     else
         # sops configuration file
@@ -51,6 +52,10 @@ main() {
             > "${PROJECT_DIR}/cluster/core/cert-manager/secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/base/cluster-secrets.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/core/cert-manager/secret.sops.yaml"
+        # terraform
+        envsubst < "${PROJECT_DIR}/tmpl/terraform/secret.sops.yaml" \
+            > "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"
+        sops --encrypt --in-place "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"
         # ansible
         envsubst < "${PROJECT_DIR}/tmpl/ansible/kube-vip.yml" \
             > "${PROJECT_DIR}/provision/ansible/inventory/group_vars/kubernetes/kube-vip.yml"
@@ -178,6 +183,30 @@ verify_git_repository() {
     export GIT_TERMINAL_PROMPT=1
 }
 
+verify_cloudflare() {
+    local account_zone=
+    local errors=
+
+    _has_envar "BOOTSTRAP_CLOUDFLARE_APIKEY"
+    _has_envar "BOOTSTRAP_CLOUDFLARE_DOMAIN"
+    _has_envar "BOOTSTRAP_CLOUDFLARE_EMAIL"
+
+    # Try to retrieve zone information from Cloudflare's API
+    account_zone=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=${BOOTSTRAP_CLOUDFLARE_DOMAIN}&status=active" \
+        -H "X-Auth-Email: ${BOOTSTRAP_CLOUDFLARE_EMAIL}" \
+        -H "X-Auth-Key: ${BOOTSTRAP_CLOUDFLARE_APIKEY}" \
+        -H "Content-Type: application/json"
+    )
+
+    if [[ "$(echo "${account_zone}" | jq ".success")" == "true" ]]; then
+        _log "INFO" "Verified Cloudflare Account and Zone information"
+    else
+        errors=$(echo "${account_zone}" | jq -c ".errors")
+        _log "ERROR" "Unable to get Cloudflare Account and Zone information ${errors}"
+        exit 1
+    fi
+}
+
 verify_ansible_hosts() {
     local node_id=
     local node_addr=
@@ -191,11 +220,13 @@ verify_ansible_hosts() {
         node_username="BOOTSTRAP_ANSIBLE_SSH_USERNAME_${node_id}"
         node_password="BOOTSTRAP_ANSIBLE_SUDO_PASSWORD_${node_id}"
         node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
+        node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
 
         _has_envar "${node_addr}"
         _has_envar "${node_username}"
         _has_envar "${node_password}"
         _has_envar "${node_control}"
+        _has_envar "${node_hostname}"
 
         if ssh -q -o BatchMode=yes -o ConnectTimeout=5 "${!node_username}"@"${!var}" "true"; then
             _log "INFO" "Successfully SSH'ed into host '${!var}' with username '${!node_username}'"
@@ -220,11 +251,12 @@ generate_ansible_host_secrets() {
         {
             node_username="BOOTSTRAP_ANSIBLE_SSH_USERNAME_${node_id}"
             node_password="BOOTSTRAP_ANSIBLE_SUDO_PASSWORD_${node_id}"
+            node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
             printf "kind: Secret\n"
             printf "ansible_user: %s\n" "${!node_username}"
             printf "ansible_become_pass: %s\n" "${!node_password}"
-        } > "${PROJECT_DIR}/provision/ansible/inventory/host_vars/k8s-${node_id}.sops.yml"
-        sops --encrypt --in-place "${PROJECT_DIR}/provision/ansible/inventory/host_vars/k8s-${node_id}.sops.yml"
+        } > "${PROJECT_DIR}/provision/ansible/inventory/host_vars/${node_hostname}.sops.yml"
+        sops --encrypt --in-place "${PROJECT_DIR}/provision/ansible/inventory/host_vars/${node_hostname}.sops.yml"
     done
 }
 
@@ -239,8 +271,9 @@ generate_ansible_hosts() {
         for var in "${!BOOTSTRAP_ANSIBLE_HOST_ADDR_@}"; do
             node_id=$(echo "${var}" | awk -F"_" '{print $5}')
             node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
+            node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
             if [[ "${!node_control}" == "true" ]]; then
-                printf "        k8s-%s:\n" "${node_id}"
+                printf "        ${node_hostname}:\n" "${node_id}"
                 printf "          ansible_host: %s\n" "${!var}"
             else
                 worker_node_count=$((worker_node_count+1))
@@ -252,8 +285,9 @@ generate_ansible_hosts() {
             for var in "${!BOOTSTRAP_ANSIBLE_HOST_ADDR_@}"; do
                 node_id=$(echo "${var}" | awk -F"_" '{print $5}')
                 node_control="BOOTSTRAP_ANSIBLE_CONTROL_NODE_${node_id}"
+                node_hostname="BOOTSTRAP_ANSIBLE_HOSTNAME_${node_id}"
                 if [[ "${!node_control}" == "false" ]]; then
-                    printf "        k8s-%s:\n" "${node_id}"
+                    printf "        ${node_hostname}:\n" "${node_id}"
                     printf "          ansible_host: %s\n" "${!var}"
                 fi
             done
