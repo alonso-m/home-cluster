@@ -60,6 +60,7 @@ spec:
         tls:
           - hosts:
               - vault.${SECRET_DOMAIN}
+            secret-name: "vault-tls"
       admin:
         enabled: true
         ingressClassName: "traefik"
