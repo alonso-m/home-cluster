@@ -75,6 +75,8 @@ spec:
         tls:
           - hosts:
               - "vault.${SECRET_DOMAIN}"
+            secret-name: "vault-tls"
+
     persistence:
       config:
         enabled: true
