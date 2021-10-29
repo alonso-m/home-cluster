@@ -12,7 +12,7 @@ spec:
     solvers:
       - http01:
           ingress:
-#            class: traefik
+            class:
 
 #      - dns01:
 #          cloudflare:
