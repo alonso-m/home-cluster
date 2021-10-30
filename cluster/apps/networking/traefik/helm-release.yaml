@@ -57,7 +57,7 @@ spec:
       - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
       - "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory"
       - "--certificatesResolvers.letsencrypt.acme.tlsChallenge=true"
-      - "--providers.kubernetesingress.ingressclass=traefik-cert-manager"
+      - "--providers.kubernetesingress.ingressclass=traefik"
       - "--providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDR}"
       - "--providers.kubernetesingress.allowexternalnameservices=true"
       - "--providers.kubernetescrd.allowexternalnameservices=true"

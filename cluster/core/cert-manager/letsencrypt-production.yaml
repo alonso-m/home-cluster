@@ -12,7 +12,7 @@ spec:
     solvers:
       - http01:
           ingress:
-            class: traefik-cert-manager
+            class: traefik
 #      - dns01:
 #          cloudflare:
 #            email: "${SECRET_CLOUDFLARE_EMAIL}"
