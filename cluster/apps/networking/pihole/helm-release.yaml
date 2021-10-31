@@ -49,13 +49,21 @@ spec:
     #    hajimari.io/enable: "true"
     #    hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+#      hosts:
+#        - pihole.${SECRET_DOMAIN}
+#      path: /
+#      tls:
+#        - hosts:
+#            - pihole.${SECRET_DOMAIN}
+#          secretName: "pihole-tls"
       hosts:
-        - pihole.${SECRET_DOMAIN}
-      path: /
+        - host: "pihole.${SECRET_DOMAIN}"
+          paths:
+            - path: /admin
+              pathType: Prefix
       tls:
         - hosts:
-            - pihole.${SECRET_DOMAIN}
-          secretName: "pihole-tls"
+            - "pihole.${SECRET_DOMAIN}"
 
     persistentVolumeClaim:
       enabled: true
