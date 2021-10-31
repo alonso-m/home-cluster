@@ -68,13 +68,13 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 #          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
         hosts:
-          - host: "vault.${SECRET_DOMAIN}"
+          - host: vault.${SECRET_DOMAIN}
             paths:
               - path: /admin
                 pathType: Prefix
         tls:
           - hosts:
-              - "vault.${SECRET_DOMAIN}"
+              - vault.${SECRET_DOMAIN}
             secretName: "vault-tls"
 
     persistence:

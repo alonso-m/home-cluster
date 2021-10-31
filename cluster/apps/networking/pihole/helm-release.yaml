@@ -53,7 +53,7 @@ spec:
       path: /
       tls:
         - hosts:
-            - "pihole.${SECRET_DOMAIN}"
+            - pihole.${SECRET_DOMAIN}
           secretName: "pihole-tls"
 
     persistentVolumeClaim:
