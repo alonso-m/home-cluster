@@ -1,0 +1,71 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: networking
+
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: pihole
+      version: 2.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: pihole-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    replicaCount: 2
+
+    serviceDns:
+      mixedService: false
+      type: LoadBalancer
+      port: 53
+      externalTrafficPolicy: Local
+      loadBalancerIP: "192.168.188.231"
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+
+    serviceWeb:
+      http:
+        enabled: true
+        port: 80
+      https:
+        enabled: false
+      type: ClusterIP
+
+    virtualHost: pi.hole
+    ingress:
+      enabled: true
+    #        ingressClassName: "traefik"
+      annotations:
+    #          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    #          external-dns/is-public: "true"
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+    #          hajimari.io/enable: "true"
+    #          hajimari.io/icon: "shield-key"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      hosts:
+        - host: pihole.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - pihole.${SECRET_DOMAIN}
+          secretName: "pihole-tls"
+
+    persistentVolumeClaim:
+      enabled: true
+      existingClaim: "pihole-storage"
+      accessModes:
+        - ReadWriteOnce
+      size: "500Mi"
+
+    admin:
+      existingSecret: "pihole"
+      passwordKey: "ADMIN_PASSWORD"

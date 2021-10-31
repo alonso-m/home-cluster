@@ -18,6 +18,7 @@ resources:
   - nfs-subdir-external-provisioner-charts.yaml
   - node-feature-discovery-charts.yaml
   - openebs-charts.yaml
+  - pihole-charts.yaml
   - prometheus-community-charts.yaml
   - rook-ceph-charts.yaml
   - stakater-charts.yaml
