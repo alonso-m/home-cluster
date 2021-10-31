@@ -34,7 +34,8 @@ spec:
         enabled: true
         port: 80
       https:
-        enabled: false
+        enabled: true
+        port: 443
       type: ClusterIP
 
     ingress:
