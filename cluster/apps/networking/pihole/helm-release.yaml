@@ -18,7 +18,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    replicaCount: 2
+    replicaCount: 1
 
     serviceDns:
       mixedService: false
@@ -26,8 +26,8 @@ spec:
       port: 53
       externalTrafficPolicy: Local
       loadBalancerIP: "192.168.188.231"
-      annotations:
-        metallb.universe.tf/allow-shared-ip: pihole-svc
+#      annotations:
+#        metallb.universe.tf/allow-shared-ip: pihole-svc
 
     serviceWeb:
       http:
@@ -48,10 +48,10 @@ spec:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
     #    hajimari.io/enable: "true"
     #    hajimari.io/icon: "shield-key"
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+#        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
         - pihole.${SECRET_DOMAIN}
-      path: /
+      path: /admin/
       tls:
         - hosts:
             - pihole.${SECRET_DOMAIN}
