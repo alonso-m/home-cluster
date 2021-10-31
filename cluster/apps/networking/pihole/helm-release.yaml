@@ -41,18 +41,16 @@ spec:
       enabled: true
       ingressClassName: "traefik"
       annotations:
-    #          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-    #          external-dns/is-public: "true"
-        kubernetes.io/ingress.class: traefik
+    #    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    #    external-dns/is-public: "true"
+    #    kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-production"
-    #          hajimari.io/enable: "true"
-    #          hajimari.io/icon: "shield-key"
+    #    hajimari.io/enable: "true"
+    #    hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
-        - host: "pihole.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
+        - pihole.${SECRET_DOMAIN}
+      path: /
       tls:
         - hosts:
             - "pihole.${SECRET_DOMAIN}"
