@@ -51,7 +51,7 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
         - pihole.${SECRET_DOMAIN}
-      path: /admin
+      path: /
       tls:
         - hosts:
             - pihole.${SECRET_DOMAIN}
