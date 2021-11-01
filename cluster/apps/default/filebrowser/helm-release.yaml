@@ -20,10 +20,10 @@ spec:
       tag: v2.17.2
     nameOverride: filebrowser
     env:
-#      FB_DATABASE: "/config/filebrowser.db"
+      FB_DATABASE: "/config/filebrowser.db"
 #      FB_CONFIG: "/config/filebrowser.json"
-      FB_USERNAME: "malonso"
-      FB_PASSWORD: "complicatedpassword123!"
+      FB_USERNAME: 'admin1'
+      FB_PASSWORD: 'admin1'
       FB_ROOT: "/media"
       FB_LOG: "stdout"
 #      FB_NOAUTH: "false"
