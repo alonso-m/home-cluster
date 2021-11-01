@@ -15,10 +15,9 @@ spec:
         name: openebs-charts
         namespace: flux-system
   values:
-    configInline:
-      localpv-provisioner:
+    localpv-provisioner:
+      enabled: true
+      openebsNDM:
         enabled: true
-        openebsNDM:
-          enabled: true
-#      nfs-provisioner:
-#        enabled: true
+    nfs-provisioner:
+      enabled: true
