@@ -24,7 +24,7 @@ spec:
       FB_JSON: "/config.filebrowser.json"
       FB_ROOT: "/media"
       FB_LOG: "stdout"
-#      FB_NOAUTH: "true"
+      FB_NOAUTH: "false"
       TZ: "Europe/Amsterdam"
     service:
       main:
