@@ -59,13 +59,14 @@ spec:
         existingClaim: filebrowser-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "192.168.188.70"
-            path: /mnt/kingston/application-data/jellyfin
-        mountPath: /media
-        readOnly: true
+        existingClaim: filebrowser-media-v1
+#        type: custom
+#        volumeSpec:
+#          nfs:
+#            server: "192.168.188.70"
+#            path: /mnt/kingston/application-data/jellyfin
+#        mountPath: /media
+#        readOnly: true
     resources:
       requests:
         memory: 100Mi
