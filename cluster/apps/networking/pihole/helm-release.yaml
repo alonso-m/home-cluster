@@ -21,7 +21,7 @@ spec:
     replicaCount: 1
 
     serviceDns:
-      mixedService: false
+      mixedService: true
       type: LoadBalancer
       port: 53
       externalTrafficPolicy: Local
