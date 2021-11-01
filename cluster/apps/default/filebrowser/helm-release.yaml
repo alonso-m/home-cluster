@@ -21,13 +21,12 @@ spec:
     nameOverride: filebrowser
     env:
       FB_DATABASE: "/config/filebrowser.db"
-#      FB_CONFIG: "/config/filebrowser.json"
-      FB_USERNAME: 'malonso'
-      FB_PASSWORD: '$2a$10$VM7gPGJF8nOHp4xrlsbb5u6bWkmp/GBNAcgb8e.nJgEf0etsziFg6'
       FB_ROOT: "/media"
       FB_LOG: "stdout"
-#      FB_NOAUTH: "false"
       TZ: "Europe/Amsterdam"
+    envFrom:
+      - secretRef:
+          name: vaultwarden
     service:
       main:
         ports:
@@ -56,7 +55,7 @@ spec:
 
     persistence:
       config:
-        enabled: false
+        enabled: true
         existingClaim: filebrowser-config-v1
       media:
         enabled: true
