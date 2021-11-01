@@ -48,6 +48,8 @@ spec:
         tls:
           - hosts:
               - "filebrowser.${SECRET_DOMAIN}"
+            secretName: "filebrowser-tls"
+
     persistence:
       config:
         enabled: true
