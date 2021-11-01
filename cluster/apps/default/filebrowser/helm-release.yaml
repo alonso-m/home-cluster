@@ -22,8 +22,8 @@ spec:
     env:
       FB_DATABASE: "/config/filebrowser.db"
 #      FB_CONFIG: "/config/filebrowser.json"
-      FB_USERNAME: 'admin1'
-      FB_PASSWORD: 'admin1'
+      FB_USERNAME: 'malonso'
+      FB_PASSWORD: '$2a$10$VM7gPGJF8nOHp4xrlsbb5u6bWkmp/GBNAcgb8e.nJgEf0etsziFg6'
       FB_ROOT: "/media"
       FB_LOG: "stdout"
 #      FB_NOAUTH: "false"
