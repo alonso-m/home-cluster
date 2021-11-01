@@ -25,7 +25,7 @@ spec:
       type: LoadBalancer
       port: 53
       externalTrafficPolicy: Local
-      loadBalancerIP: "192.168.188.231"
+      loadBalancerIP: "${SVC_PIHOLE_ADDR}"
 #      annotations:
 #        metallb.universe.tf/allow-shared-ip: pihole-svc
 
@@ -46,6 +46,7 @@ spec:
     #    external-dns/is-public: "true"
     #    kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-production"
+        cert-manager.io/issue-temporary-certificate: "true"
     #    hajimari.io/enable: "true"
     #    hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -59,7 +60,7 @@ spec:
 
     persistentVolumeClaim:
       enabled: true
-      existingClaim: "pihole-storage"
+      existingClaim: "pihole-config-v1"
       accessModes:
         - ReadWriteOnce
       size: "500Mi"
