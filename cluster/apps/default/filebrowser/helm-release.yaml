@@ -21,9 +21,9 @@ spec:
     nameOverride: filebrowser
     env:
       FB_DATABASE: "/config/filebrowser.db"
-      FB_CONFIG: "/config/filebrowser.json"
-#      FB_USERNAME: "malonso"
-#      FB_PASSWORD: "test123"
+#      FB_CONFIG: "/config/filebrowser.json"
+      FB_USERNAME: "malonso"
+      FB_PASSWORD: "test123"
       FB_ROOT: "/media"
       FB_LOG: "stdout"
 #      FB_NOAUTH: "false"
@@ -56,7 +56,7 @@ spec:
 
     persistence:
       config:
-        enabled: true
+        enabled: false
         existingClaim: filebrowser-config-v1
       media:
         enabled: true
