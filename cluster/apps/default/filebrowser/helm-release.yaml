@@ -21,6 +21,7 @@ spec:
     nameOverride: filebrowser
     env:
       FB_DATABASE: "/config/filebrowser.db"
+      FB_JSON: "/config.filebrowser.json"
       FB_ROOT: "/media"
       FB_LOG: "stdout"
 #      FB_NOAUTH: "true"
