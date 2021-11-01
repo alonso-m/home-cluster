@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: filebrowser-config-v1
-  namespace: tools
+  namespace: default
   labels:
 #    kasten.io/backup-volume: "enabled"
 spec:
