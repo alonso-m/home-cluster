@@ -21,13 +21,13 @@ spec:
     replicaCount: 1
 
     serviceDns:
-      mixedService: true
+      mixedService: false
       type: LoadBalancer
       port: 53
       externalTrafficPolicy: Local
       loadBalancerIP: "${SVC_PIHOLE_ADDR}"
-#      annotations:
-#        metallb.universe.tf/allow-shared-ip: pihole-svc
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-dns
 
     serviceWeb:
       http:
