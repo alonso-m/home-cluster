@@ -29,6 +29,9 @@ spec:
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-dns
 
+    serviceDhcp:
+      enabled: false
+
     serviceWeb:
       http:
         enabled: true
