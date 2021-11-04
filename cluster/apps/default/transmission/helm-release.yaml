@@ -21,31 +21,23 @@ spec:
       repository: haugene/transmission-openvpn
       tag: latest
     env:
-      - name: OPENVPN_PROVIDER
-        value: "NORDVPN" # VPN provider. List of supported providers: https://haugene.github.io/docker-transmission-openvpn/supported-providers/
-      - name: NORDVPN_PROTOCOL
-        value: "TCP"
-      - name: NORDVPN_COUNTRY
-        value: "NL" # Country where we want to download over VPN
-      - name: NORDVPN_CATEGORY
-        value: "P2P" # VPN Type
-      - name: LOCAL_NETWORK
-        value: "192.168.188.0/24"
-      - name: TRANSMISSION_PEER_PORT
-        value: "47444"
-      - name: TRANSMISSION_DOWNLOAD_DIR
-        value: "/downloads/transmission"
-      - name: TRANSMISSION_RPC_AUTHENTICATION_REQUIRED
-        value: "true"
-      - name: TRANSMISSION_DOWNLOAD_QUEUE_SIZE
-        value: "8"
-      - name: PUID
-        value: "1000"
-      - name: PGID
-        value: "1000"
-    envFrom:
-      - secretRef:
-          name: transmission
+      OPENVPN_PROVIDER: "NORDVPN" # VPN provider. List of supported providers: https://haugene.github.io/docker-transmission-openvpn/supported-providers/
+      NORDVPN_PROTOCOL: "TCP"
+      NORDVPN_COUNTRY: "NL" # Country where we want to download over VPN
+      NORDVPN_CATEGORY: "P2P" # VPN Type
+      LOCAL_NETWORK: "192.168.188.0/24"
+      TRANSMISSION_PEER_PORT: "47444"
+      TRANSMISSION_DOWNLOAD_DIR: "/downloads/transmission"
+      TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
+      TRANSMISSION_DOWNLOAD_QUEUE_SIZE: "8"
+      PUID: "1000"
+      PGID: "1000"
+
+    secretEnv:
+    OPENVPN_USERNAME: ${OPENVPN_USERNAME}
+    OPENVPN_PASSWORD: ${OPENVPN_PASSWORD}
+    TRANSMISSION_RPC_USERNAME: ${TRANSMISSION_RPC_USERNAME}
+    TRANSMISSION_RPC_PASSWORD: ${TRANSMISSION_RPC_PASSWORD}
     ingress:
       main:
         enabled: true
