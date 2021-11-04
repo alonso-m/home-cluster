@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://utkuozdemir.org/helm-charts
       chart: transmission-openvpn
-      version: 1.10.11
+      version: 1.0.11
       sourceRef:
         kind: HelmRepository
         name: utkuozdemir-charts
