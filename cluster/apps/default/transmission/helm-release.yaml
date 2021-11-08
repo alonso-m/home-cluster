@@ -55,7 +55,7 @@ spec:
         existingClaim: transmission-config
       media:
         enabled: true
-        existingClaim: media
+        existingClaim: filebrowser-media-v1
       shared:
         enabled: true
         type: emptyDir
