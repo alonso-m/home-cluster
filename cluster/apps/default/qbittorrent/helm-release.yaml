@@ -36,8 +36,8 @@ spec:
       supplementalGroups:
         - 65539
 
-    settings:
-      automaticPortSetup: false
+    # settings:
+    #   automaticPortSetup: false
 
     env:
       TZ: "Europe/Amsterdam"
