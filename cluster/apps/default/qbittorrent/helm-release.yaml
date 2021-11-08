@@ -2,15 +2,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: transmission
+  name: qbittorrent
   namespace: default
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: transmission
-      version: 8.0.1
+      chart: qbittorrent
+      version: 13.0.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -18,14 +18,31 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/transmission
-      tag: latest
+      repository: ghcr.io/k8s-at-home/qbittorrent
+      tag: v4.3.9
+      pullPolicy: Always
+
+    hostname: qbittorrent
+
+    # podAnnotations:
+    #   secret.reloader.stakater.com/reload: "qbittorrent-vpnconfig"
+    #   backup.velero.io/backup-volumes: config
+    #   pre.hook.backup.velero.io/container: fsfreeze
+    #   pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/data"]'
+    #   post.hook.backup.velero.io/container: fsfreeze
+    #   post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/data"]'
+
+    podSecurityContext:
+      supplementalGroups:
+        - 65539
+
+    settings:
+      automaticPortSetup: false
+
     env:
-      TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
       TZ: "Europe/Amsterdam"
-    envFrom:
-      - secretRef:
-          name: transmission
+      UMASK: "022"
+      WAIT_FOR_VPN: "true"
 
     ingress:
       main:
@@ -52,14 +69,30 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: transmission-config
+        existingClaim: qbitorrent-config
       media:
         enabled: true
         existingClaim: media
       shared:
         enabled: true
-        type: emptyDir
+        type: emptyDirtransmission
         mountPath: /shared
+    resources:
+      requests:
+        cpu: "0.3"
+        memory: "1000Mi"
+      limits:
+        memory: "4000Mi"
+
+    # additionalContainers:
+    #   fsfreeze:
+    #     name: fsfreeze
+    #     image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+    #     volumeMounts:
+    #       - name: config
+    #         mountPath: /data
+    #     securityContext:
+    #       privileged: true
 
     addons:
 #      netshoot:
@@ -106,3 +139,10 @@ spec:
             #!/bin/bash
             /etc/openvpn/down.sh
             echo "disconnected" > /shared/vpnstatus
+
+        resources:
+          requests:
+            cpu: "0.001"
+            memory: 64Mi
+          limits:
+            memory: 128Mi
