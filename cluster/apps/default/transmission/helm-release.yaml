@@ -23,6 +23,7 @@ spec:
     env:
       TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
       TZ: "Europe/Amsterdam"
+      NAME_SERVERS: "192.168.1.1,1.1.1.1"
     envFrom:
       - secretRef:
           name: transmission
