@@ -121,6 +121,8 @@ spec:
           ROUTE_1: ${NETWORK_K8S_CLUSTER_CIDR}
           ROUTE_2: ${NETWORK_K8S_SERVICE_CIDR}
           ROUTE_3: ${NETWORK_SERVER_CIDR}
+          VPNPORT_1: "8080"
+          VPNPORT_2: "6881"
 
 
         # The .ovpn file provided by your VPN provider goes here.
