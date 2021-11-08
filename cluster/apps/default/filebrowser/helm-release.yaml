@@ -59,7 +59,7 @@ spec:
         existingClaim: filebrowser-config-v1
       media:
         enabled: true
-        existingClaim: filebrowser-media-v1
+        existingClaim: media
 #        type: custom
 #        volumeSpec:
 #          nfs:
