@@ -9,7 +9,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  # resources:
-  #   requests:
-  #     storage: 500Gi
+  resources:
+    requests:
+      storage: 500Gi
   storageClassName: openebs-device
