@@ -2,14 +2,14 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sXQL6dvs8jQrjK
+  name: transmission-config
   namespace: default
-  labels:
+#  labels:
 #    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Gi
-  storageClassName: openebs-device
+      storage: 250Mi
+  storageClassName: openebs-hostpath
