@@ -4,7 +4,7 @@ metadata:
     name: openvpn-auth
     namespace: default
 stringData:
-    openVpnAuth: ENC[AES256_GCM,data:2kwP5cpcZwusHrBkyk55mv60ulkkTT0HrYts3v+OOVQt7yhD+yML,iv:lil1PvbErZCfUBPf18FV5amffl3NWmT/OUwtAvCWdfk=,tag:P4iOVLA6bV5yFpre22DQtQ==,type:str]
+    VPN_AUTH: ENC[AES256_GCM,data:2kwP5cpcZwusHrBkyk55mv60ulkkTT0HrYts3v+OOVQt7yhD+yML,iv:lil1PvbErZCfUBPf18FV5amffl3NWmT/OUwtAvCWdfk=,tag:P4iOVLA6bV5yFpre22DQtQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
