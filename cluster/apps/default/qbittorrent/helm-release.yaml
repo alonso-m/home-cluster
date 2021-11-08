@@ -75,8 +75,9 @@ spec:
         existingClaim: media
       shared:
         enabled: true
-        type: emptyDirtransmission
+        type: emptyDir
         mountPath: /shared
+
     resources:
       requests:
         cpu: "0.3"
