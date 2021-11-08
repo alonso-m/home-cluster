@@ -109,9 +109,9 @@ spec:
           authSecret: openvpn-auth
 
         # If the podSecurityContext is set to run as a different user, make sure to run the OpenVPN container as root.
-#        securityContext:
-#          runAsGroup: 0
-#          runAsUser: 0
+        securityContext:
+          runAsGroup: 0
+          runAsUser: 0
 
         env:
           # Set this environment variable to 'on' to make sure all traffic gets routed through the VPN container.
