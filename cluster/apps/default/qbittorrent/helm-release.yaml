@@ -118,6 +118,10 @@ spec:
           # Make sure to check the other environment variables for the OpenVPN image to see how you can exclude certain
           # traffic from these firewall rules.
           FIREWALL: 'on'
+          ROUTE_1: ${NETWORK_K8S_CLUSTER_CIDR}
+          ROUTE_2: ${NETWORK_K8S_SERVICE_CIDR}
+          ROUTE_3: ${NETWORK_SERVER_CIDR}
+
 
         # The .ovpn file provided by your VPN provider goes here.
         #
