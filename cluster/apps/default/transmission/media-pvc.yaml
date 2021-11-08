@@ -8,8 +8,8 @@ metadata:
 #    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 500Gi
+    - ReadWriteOnce
+  # resources:
+  #   requests:
+  #     storage: 500Gi
   storageClassName: openebs-device
