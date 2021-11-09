@@ -28,10 +28,10 @@ spec:
           name: transmission
 
     podSecurityContext:
-      fsGroup: 568
+      fsGroup: 0
       # runAsNonRoot: true
-      # runAsUser: 568
-      # runAsGroup: 568
+      runAsUser: 0
+      runAsGroup: 0
       fsGroupChangePolicy: "Always"
       # supplementalGroups:
       #   - 100
