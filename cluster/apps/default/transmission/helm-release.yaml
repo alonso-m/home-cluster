@@ -23,9 +23,17 @@ spec:
     env:
       TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
       TZ: "Europe/Amsterdam"
-    envFrom:
-      - secretRef:
-          name: transmission
+      TRANSMISSION_RPC_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: transmission
+            key: TRANSMISSION_RPC_USERNAME
+      TRANSMISSION_RPC_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: transmission
+            key: TRANSMISSION_RPC_PASSWORD
+
 
     podSecurityContext:
       fsGroup: 0
