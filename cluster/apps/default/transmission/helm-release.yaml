@@ -22,6 +22,8 @@ spec:
       tag: latest
     env:
       TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"
+      TRANSMISSION_DOWNLOAD_DIR: /media/downloads/complete
+      TRANSMISSION_INCOMPLETE_DIR: /media/downloads/incomplete
       TZ: "Europe/Amsterdam"
       TRANSMISSION_RPC_USERNAME:
         valueFrom:
