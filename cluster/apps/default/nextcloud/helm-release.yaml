@@ -117,13 +117,13 @@ spec:
         passwordKey: POSTGRESQL_PASSWORD
 
     redis:
-      enabled: true
+      enabled: false
       usePassword: false
       # password: 'changeme'
 
     persistence:
       # Nextcloud Data (/var/www/html)
-      enabled: true
+      enabled: false
       # annotations: {}
       ## nextcloud data Persistent Volume Storage Class
       ## If defined, storageClassName: <storageClass>
