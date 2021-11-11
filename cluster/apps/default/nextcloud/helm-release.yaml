@@ -113,7 +113,7 @@ spec:
       ## Use a existing secret
       existingSecret:
         enabled: true
-        secretName: nextcloud
+        secretName: nextcloud-secret
         usernameKey: POSTGRESQL_USERNAME
         passwordKey: POSTGRESQL_PASSWORD
 
