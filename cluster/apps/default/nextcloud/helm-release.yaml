@@ -20,22 +20,22 @@ spec:
     image:
       repository: nextcloud
       tag: stable-apache
-    env:
-      TZ: Europe/Amsterdam
-      REDIS_HOST: localhost
-      POSTGRES_HOST: postgres
-      POSTGRES_DB: nextcloud
-      SMTP_HOST: smtp.gmail.com
-      SMTP_SECURE: ssl
-      MAIL_FROM_ADDRESS: cloud
-      OVERWRITEPROTOCOL: https
-    envFrom:
-      - secretRef:
-          name: nextcloud
-      - secretRef:
-          name: database
-      - secretRef:
-          name: redis
+    # env:
+    #   TZ: Europe/Amsterdam
+    #   REDIS_HOST: localhost
+    #   POSTGRES_HOST: postgres
+    #   POSTGRES_DB: nextcloud
+    #   SMTP_HOST: smtp.gmail.com
+    #   SMTP_SECURE: ssl
+    #   MAIL_FROM_ADDRESS: cloud
+    #   OVERWRITEPROTOCOL: https
+    # envFrom:
+    #   - secretRef:
+    #       name: nextcloud
+    #   - secretRef:
+    #       name: database
+    #   - secretRef:
+    #       name: redis
 
     ingress:
       main:
@@ -49,60 +49,129 @@ spec:
           # hajimari.io/enable: "true"
           # hajimari.io/icon: "shield-key"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          # tls:
+        #   - secretName: nextcloud-tls
+        #     hosts:
+        #       - nextcloud.kube.home
+        # path: /
+        # pathType: Prefix
         hosts:
-          - host: vault.${SECRET_DOMAIN}
+          - host: cloud.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
-              - path: /notifications/hub
-                pathType: Prefix
-                service:
-                  port: 3012
-              - path: /notifications/hub/negotiate
-                pathType: Prefix
         tls:
           - hosts:
-              - vault.${SECRET_DOMAIN}
-            secretName: "vault-tls"
-      admin:
+              - cloud.${SECRET_DOMAIN}
+            secretName: "nextcloud-tls"
+
+    nextcloud:
+      host: cloud.${SECRET_DOMAIN}
+      # username: admin
+      # password: changeme
+      ## Use an existing secret
+      # existingSecret:
+      #   enabled: true
+      #   secretName: nextcloud
+      #   smtpUsernameKey: SMTP_NAME
+      #   smtpPasswordKey: SMTP_PASSWORD
+      # If web server is not binding default port, you can define it
+      # containerPort: 8080
+      # datadir: /var/www/html/data
+      # persistence:
+      #   subPath:
+      # mail:
+      #   enabled: false
+      #   fromAddress: user
+      #   domain: domain.com
+      #   smtp:
+      #     host: domain.com
+      #     secure: ssl
+      #     port: 465
+      #     authtype: LOGIN
+      #     name: user
+      #     password: pass
+
+    externalDatabase:
+      enabled: true
+
+      ## Supported database engines: mysql or postgresql
+      type: postgresql
+
+      ## Database host
+      host: postgresql
+
+      # ## Database user
+      # user: nextcloud
+
+      # ## Database password
+      # password:
+
+      ## Database name
+      database: nextcloud
+
+      ## Use a existing secret
+      existingSecret:
         enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-#          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
-        hosts:
-          - host: vault.${SECRET_DOMAIN}
-            paths:
-              - path: /admin
-                pathType: Prefix
-        tls:
-          - hosts:
-              - vault.${SECRET_DOMAIN}
-            secretName: "vault-tls"
+        secretName: nextcloud
+        usernameKey: POSTGRESQL_USERNAME
+        passwordKey: POSTGRESQL_PASSWORD
+
+    redis:
+      enabled: true
+      usePassword: false
+      # password: 'changeme'
 
     persistence:
-      config:
-        enabled: true
-        existingClaim: vaultwarden-config-v1
-#    podAnnotations:
-#      backup.velero.io/backup-volumes: config
-#      pre.hook.backup.velero.io/container: fsfreeze
-#      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-#      post.hook.backup.velero.io/container: fsfreeze
-#      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-#      secret.reloader.stakater.com/reload: "vaultwarden"
-#    resources:
-#      requests:
-#        memory: 100Mi
-#        cpu: 100m
-#      limits:
-#        memory: 2000Mi
-#    additionalContainers:
-#      fsfreeze:
-#        name: fsfreeze
-#        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-#        volumeMounts:
-#          - name: config
-#            mountPath: /config
-#        securityContext:
-#          privileged: true
+      # Nextcloud Data (/var/www/html)
+      enabled: true
+      # annotations: {}
+      ## nextcloud data Persistent Volume Storage Class
+      ## If defined, storageClassName: <storageClass>
+      ## If set to "-", storageClassName: "", which disables dynamic provisioning
+      ## If undefined (the default) or set to null, no storageClassName spec is
+      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+      ##   GKE, AWS & OpenStack)
+      ##
+      # storageClass: "-"
+
+      ## A manually managed Persistent Volume and Claim
+      ## Requires persistence.enabled: true
+      ## If defined, PVC must be created manually before volume will be bound
+      existingClaim: nextcloud-config
+
+      # accessMode: ReadWriteOnce
+      # size: 8Gi
+
+    # metrics:
+    #   enabled: false
+
+    #   replicaCount: 1
+    #   # The metrics exporter needs to know how you serve Nextcloud either http or https
+    #   https: false
+    #   timeout: 5s
+
+    #   image:
+    #     repository: xperimental/nextcloud-exporter
+    #     tag: v0.4.0
+    #     pullPolicy: IfNotPresent
+
+    #   ## Metrics exporter resource requests and limits
+    #   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+    #   ##
+    #   # resources: {}
+
+    #   ## Metrics exporter pod Annotation and Labels
+    #   # podAnnotations: {}
+
+    #   # podLabels: {}
+
+    #   service:
+    #     type: ClusterIP
+    #     ## Use serviceLoadBalancerIP to request a specific static IP,
+    #     ## otherwise leave blank
+    #     # loadBalancerIP:
+    #     annotations:
+    #       prometheus.io/scrape: "true"
+    #       prometheus.io/port: "9205"
+    #     labels: {}
