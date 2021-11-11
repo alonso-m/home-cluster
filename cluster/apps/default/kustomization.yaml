@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - filebrowser
   - jellyfin
+  - postgres
   - transmission
   # - qbittorrent
   - vaultwarden
