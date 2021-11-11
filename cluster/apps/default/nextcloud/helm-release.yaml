@@ -117,9 +117,9 @@ spec:
         passwordKey: POSTGRESQL_PASSWORD
 
     redis:
-      enabled: false
-      usePassword: false
-      # password: 'changeme'
+      enabled: true
+      usePassword: true
+      password: 'changeme'
 
     persistence:
       # Nextcloud Data (/var/www/html)
