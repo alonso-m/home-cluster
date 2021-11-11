@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-  - media-pvc.yaml
   - openvpn-auth.sops.yaml
   - openvpn-config.sops.yaml
   - secrets.sops.yaml
