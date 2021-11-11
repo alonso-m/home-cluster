@@ -38,32 +38,31 @@ spec:
     #       name: redis
 
     ingress:
-      main:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
+      enabled: true
+      className: "traefik"
+      annotations:
 #          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
 #          external-dns/is-public: "true"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/issue-temporary-certificate: "true"
-          # hajimari.io/enable: "true"
-          # hajimari.io/icon: "shield-key"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          # tls:
-        #   - secretName: nextcloud-tls
-        #     hosts:
-        #       - nextcloud.kube.home
-        # path: /
-        # pathType: Prefix
-        hosts:
-          - host: cloud.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - cloud.${SECRET_DOMAIN}
-            secretName: "nextcloud-tls"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        cert-manager.io/issue-temporary-certificate: "true"
+        # hajimari.io/enable: "true"
+        # hajimari.io/icon: "shield-key"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        # tls:
+      #   - secretName: nextcloud-tls
+      #     hosts:
+      #       - nextcloud.kube.home
+      path: /
+      pathType: Prefix
+      # hosts:
+      #   - host: cloud.${SECRET_DOMAIN}
+      #     paths:
+      #       - path: /
+              # pathType: Prefix
+      tls:
+        - hosts:
+            - cloud.${SECRET_DOMAIN}
+          secretName: "nextcloud-tls"
 
     nextcloud:
       host: cloud.${SECRET_DOMAIN}
