@@ -107,7 +107,7 @@ spec:
       # password:
 
       ## Database name
-      database: nextcloud2
+      database: nextcloud
 
       ## Use a existing secret
       existingSecret:
