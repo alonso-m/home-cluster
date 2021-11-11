@@ -22,10 +22,32 @@ spec:
       repository: bitnami/postgresql
       tag: 10
 
-    # metrics:
-    #   enabled: true
-    #   serviceMonitor:
-    #     enabled: true
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
     persistence:
       size: 5Gi
       existingClaim: postgresql-config
+
+    # postgresqlUsername: "postgres"
+    postgresqlDatabase: "postgres"
+    existingSecret: "postgresql"
+
+    initdbScripts:
+      my_init_script.sh: |
+        #!/bin/sh
+        set -e
+
+        psql -U postgres -c "CREATE DATABASE bitbucket;"
+        psql -U postgres -c "CREATE DATABASE bamboo;"
+        psql -U postgres -c "CREATE DATABASE nextcloud;"
+
+    # psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE bitbucket TO docker"
+
+    #     CREATE USER docker;
+    #     CREATE DATABASE my_project_development;
+    #     GRANT ALL PRIVILEGES ON DATABASE my_project_development TO docker;
+    #     CREATE DATABASE my_project_test;
+    #     GRANT ALL PRIVILEGES ON DATABASE my_project_test TO docker;
+    # EOSQL
