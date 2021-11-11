@@ -22,10 +22,10 @@ spec:
       repository: bitnami/postgresql
       tag: 10
 
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
+    # metrics:
+    #   enabled: true
+    #   serviceMonitor:
+    #     enabled: true
     persistence:
       size: 5Gi
       existingClaim: postgresql-config
