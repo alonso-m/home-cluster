@@ -120,7 +120,7 @@ spec:
         passwordKey: POSTGRESQL_PASSWORD
 
     redis:
-      enabled: false
+      enabled: true
       # usePassword: true
       # password: 'changeme'
 
