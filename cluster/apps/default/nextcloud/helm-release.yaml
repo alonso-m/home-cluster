@@ -91,6 +91,9 @@ spec:
       #     name: user
       #     password: pass
 
+    internalDatabase:
+      enabled: false
+
     externalDatabase:
       enabled: true
 
