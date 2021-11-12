@@ -11,5 +11,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 931.5Gi
-  storageClassName: openebs-device
+      storage: 500Gi
+  storageClassName: openebs-hostpath-media
