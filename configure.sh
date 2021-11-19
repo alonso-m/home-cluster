@@ -33,7 +33,7 @@ main() {
         verify_kubevip
         verify_gpg
         verify_git_repository
-        # verify_cloudflare
+        verify_domain
         success
     else
         # sops configuration file
@@ -52,10 +52,6 @@ main() {
             > "${PROJECT_DIR}/cluster/core/cert-manager/secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/base/cluster-secrets.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/core/cert-manager/secret.sops.yaml"
-        # terraform
-        envsubst < "${PROJECT_DIR}/tmpl/terraform/secret.sops.yaml" \
-            > "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"
-        sops --encrypt --in-place "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"
         # ansible
         envsubst < "${PROJECT_DIR}/tmpl/ansible/kube-vip.yml" \
             > "${PROJECT_DIR}/provision/ansible/inventory/group_vars/kubernetes/kube-vip.yml"
@@ -183,29 +179,12 @@ verify_git_repository() {
     export GIT_TERMINAL_PROMPT=1
 }
 
-# verify_cloudflare() {
-#     local account_zone=
-#     local errors=
+verify_domain() {
 
-#     _has_envar "BOOTSTRAP_CLOUDFLARE_APIKEY"
-#     _has_envar "BOOTSTRAP_CLOUDFLARE_DOMAIN"
-#     _has_envar "BOOTSTRAP_CLOUDFLARE_EMAIL"
+     _has_envar "BOOTSTRAP_DOMAIN"
+     _has_envar "BOOTSTRAP_EMAIL"
 
-#     # Try to retrieve zone information from Cloudflare's API
-#     account_zone=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=${BOOTSTRAP_CLOUDFLARE_DOMAIN}&status=active" \
-#         -H "X-Auth-Email: ${BOOTSTRAP_CLOUDFLARE_EMAIL}" \
-#         -H "X-Auth-Key: ${BOOTSTRAP_CLOUDFLARE_APIKEY}" \
-#         -H "Content-Type: application/json"
-#     )
-
-#     if [[ "$(echo "${account_zone}" | jq ".success")" == "true" ]]; then
-#         _log "INFO" "Verified Cloudflare Account and Zone information"
-#     else
-#         errors=$(echo "${account_zone}" | jq -c ".errors")
-#         _log "ERROR" "Unable to get Cloudflare Account and Zone information ${errors}"
-#         exit 1
-#     fi
-# }
+}
 
 verify_ansible_hosts() {
     local node_id=
