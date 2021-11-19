@@ -33,7 +33,7 @@ main() {
         verify_kubevip
         verify_gpg
         verify_git_repository
-        verify_cloudflare
+        # verify_cloudflare
         success
     else
         # sops configuration file
@@ -183,29 +183,29 @@ verify_git_repository() {
     export GIT_TERMINAL_PROMPT=1
 }
 
-verify_cloudflare() {
-    local account_zone=
-    local errors=
+# verify_cloudflare() {
+#     local account_zone=
+#     local errors=
 
-    _has_envar "BOOTSTRAP_CLOUDFLARE_APIKEY"
-    _has_envar "BOOTSTRAP_CLOUDFLARE_DOMAIN"
-    _has_envar "BOOTSTRAP_CLOUDFLARE_EMAIL"
+#     _has_envar "BOOTSTRAP_CLOUDFLARE_APIKEY"
+#     _has_envar "BOOTSTRAP_CLOUDFLARE_DOMAIN"
+#     _has_envar "BOOTSTRAP_CLOUDFLARE_EMAIL"
 
-    # Try to retrieve zone information from Cloudflare's API
-    account_zone=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=${BOOTSTRAP_CLOUDFLARE_DOMAIN}&status=active" \
-        -H "X-Auth-Email: ${BOOTSTRAP_CLOUDFLARE_EMAIL}" \
-        -H "X-Auth-Key: ${BOOTSTRAP_CLOUDFLARE_APIKEY}" \
-        -H "Content-Type: application/json"
-    )
+#     # Try to retrieve zone information from Cloudflare's API
+#     account_zone=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=${BOOTSTRAP_CLOUDFLARE_DOMAIN}&status=active" \
+#         -H "X-Auth-Email: ${BOOTSTRAP_CLOUDFLARE_EMAIL}" \
+#         -H "X-Auth-Key: ${BOOTSTRAP_CLOUDFLARE_APIKEY}" \
+#         -H "Content-Type: application/json"
+#     )
 
-    if [[ "$(echo "${account_zone}" | jq ".success")" == "true" ]]; then
-        _log "INFO" "Verified Cloudflare Account and Zone information"
-    else
-        errors=$(echo "${account_zone}" | jq -c ".errors")
-        _log "ERROR" "Unable to get Cloudflare Account and Zone information ${errors}"
-        exit 1
-    fi
-}
+#     if [[ "$(echo "${account_zone}" | jq ".success")" == "true" ]]; then
+#         _log "INFO" "Verified Cloudflare Account and Zone information"
+#     else
+#         errors=$(echo "${account_zone}" | jq -c ".errors")
+#         _log "ERROR" "Unable to get Cloudflare Account and Zone information ${errors}"
+#         exit 1
+#     fi
+# }
 
 verify_ansible_hosts() {
     local node_id=
