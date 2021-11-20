@@ -46,8 +46,8 @@ spec:
       dashboard:
         enabled: false
     globalArguments:
-     - "--api.insecure=true"
-     - "--serverstransport.insecureskipverify=true"
+      - "--api.insecure=true"
+      - "--serverstransport.insecureskipverify=true"
       - "--providers.kubernetesingress.ingressclass=traefik"
       - "--metrics.prometheus=true"
       - "--metrics.prometheus.entryPoint=metrics"
