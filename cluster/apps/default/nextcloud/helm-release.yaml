@@ -48,8 +48,7 @@ spec:
         # hajimari.io/enable: "true"
         # hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-headers@kubernetescrd"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-redirect-regex@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-headers@kubernetescrd, networking-redirect-regex@kubernetescrd"
         # tls:
       #   - secretName: nextcloud-tls
       #     hosts:
