@@ -5,15 +5,13 @@ metadata:
   name: headers
   namespace: networking
 spec:
-  http:
-    middlewares:
-      headers-default:
-        headers:
-          # sslRedirect: true
-          # browserXssFilter: true
-          # contentTypeNosniff: true
-          # forceSTSHeader: true
-          stsIncludeSubdomains: true
-          stsPreload: true
-          stsSeconds: 15552000
-          # customFrameOptionsValue: SAMEORIGIN
+  headers-default:
+    headers:
+      # sslRedirect: true
+      # browserXssFilter: true
+      # contentTypeNosniff: true
+      # forceSTSHeader: true
+      stsIncludeSubdomains: true
+      stsPreload: true
+      stsSeconds: 15552000
+      # customFrameOptionsValue: SAMEORIGIN
