@@ -48,7 +48,7 @@ spec:
         # hajimari.io/enable: "true"
         # hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-headers@kubernetescrd, networking-redirect-regex@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.middlewares: networking-headers@kubernetescrd,networking-redirect-regex@kubernetescrd
         # tls:
       #   - secretName: nextcloud-tls
       #     hosts:
@@ -68,11 +68,12 @@ spec:
     nextcloud:
       host: cloud.${SECRET_DOMAIN}
       configs:
-        traefik.config.php: |-
+        proxies.config.php: |-
           <?php
           $CONFIG = array (
-            'overwriteprotocol' => 'https'
-            );        
+            'trusted_proxies' => ['10.43.0.0/16','192.168.0.0/16']
+          );
+   
       # username: admin
       # password: changeme
       ## Use an existing secret
