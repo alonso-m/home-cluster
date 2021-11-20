@@ -48,9 +48,7 @@ spec:
         # hajimari.io/enable: "true"
         # hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/hsts-include-subdomains: "true"
-        traefik.ingress.kubernetes.io/hsts-max-age: "315360000"
-        traefik.ingress.kubernetes.io/hsts-preload: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-headers@kubernetescrd"
         # tls:
       #   - secretName: nextcloud-tls
       #     hosts:
