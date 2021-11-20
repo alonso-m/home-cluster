@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - _pvc
   - filebrowser
+  - filestash
   - hajimari
   - jellyfin
   - nextcloud
