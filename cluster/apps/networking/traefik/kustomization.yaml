@@ -4,4 +4,4 @@ resources:
   - dashboard
   - middlewares
   - helm-release.yaml
-
+  
