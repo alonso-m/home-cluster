@@ -7,5 +7,5 @@ resources:
   - nextcloud
   - postgresql
   - transmission
-  - qbittorrent
+  # - qbittorrent
   - vaultwarden
