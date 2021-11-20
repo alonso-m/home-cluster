@@ -6,8 +6,8 @@ metadata:
   namespace: networking
 spec:
   redirectRegex:
-    regex: "https://(.*)/.well-known/(card|cal)dav"
-    replacement: "https://${1}/remote.php/dav/"
+    regex: "/.well-known/(card|cal)dav"
+    replacement: "/remote.php/dav/"
     permanent: true
 # ---
 # apiVersion: traefik.containo.us/v1alpha1
