@@ -4,7 +4,7 @@ resources:
   - _pvc
   - filebrowser
   - jellyfin
-  # - nextcloud
+  - nextcloud
   - postgresql
   - transmission
   # - qbittorrent
