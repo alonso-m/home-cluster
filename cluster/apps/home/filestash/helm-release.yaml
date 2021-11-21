@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: machines/filestash
-      tag: latest@sha256:85b32a4092c6bac1551bbde6b03ef832bdb65f368a4608539a14f2388ad2ec37
+      tag: latest@sha256:9f0d3e85e709827741d544129bb4b43bddd201ad2b8a90cf701a1a241658f2d4
     nameOverride: filestash
     env:
       APPLICATION_URL: "https://filestash.${SECRET_DOMAIN}"
