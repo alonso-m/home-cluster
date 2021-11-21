@@ -6,7 +6,6 @@ resources:
   - development.yaml
   - downloads.yaml
   - home.yaml
-  - metallb-system.yaml
   - minio.yaml
   - monitoring.yaml
   - networking.yaml
