@@ -7,6 +7,8 @@ resources:
   - downloads.yaml
   - home.yaml
   - metallb-system.yaml
+  - minio.yaml
   - monitoring.yaml
   - networking.yaml
   - openebs.yaml
+  - velero.yaml
