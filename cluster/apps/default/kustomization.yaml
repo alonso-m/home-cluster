@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   # - filestash
   # - hajimari
-  - nextcloud
+  # - nextcloud
   # - postgresql
   # - vaultwarden
