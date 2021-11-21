@@ -45,8 +45,8 @@ spec:
 #          external-dns/is-public: "true"
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         cert-manager.io/issue-temporary-certificate: "true"
-        # hajimari.io/enable: "true"
-        # hajimari.io/icon: "shield-key"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "cloud-download-outline"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.ingress.kubernetes.io/router.middlewares: networking-headers@kubernetescrd,networking-redirect-regex@kubernetescrd
         # tls:

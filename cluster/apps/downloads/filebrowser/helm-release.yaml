@@ -38,7 +38,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           hajimari.io/enable: "true"
-          hajimari.io/icon: "web-sync"
+          hajimari.io/icon: "folder"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
           kubernetes.io/tls-acme: "true"
