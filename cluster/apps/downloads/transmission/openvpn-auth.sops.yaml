@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: openvpn-auth
-    namespace: default
+    namespace: downloads
 stringData:
     VPN_AUTH: ENC[AES256_GCM,data:N8WxPI/B2jFUEk3sAKqIMX3hppfo/LqXM06F7Ju8XajQAl4vGFY=,iv:EgEl6XKWGnANPDCpLMx2Y0Og7dek7z5XqZvECiKn6Ro=,tag:ECqfZX9VKlPDMFGBJO/xHg==,type:str]
 sops:
