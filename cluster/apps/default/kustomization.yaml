@@ -4,5 +4,5 @@ resources:
   # - filestash
   # - hajimari
   - nextcloud
-  - postgresql
+  # - postgresql
   # - vaultwarden
