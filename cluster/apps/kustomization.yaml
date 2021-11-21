@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - databases
   - default
+  - downloads
   - kube-system
   - networking
   - system-upgrade
