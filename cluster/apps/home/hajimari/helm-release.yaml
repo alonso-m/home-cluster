@@ -24,8 +24,11 @@ spec:
       defaultEnable: false
       namespaceSelector:
         matchNames:
-          - default
+          - downloads
+          - home
+          - minio
           - networking
+          - velero
       name: "Mikel"
 #      customApps:
 #        - name: Some External Cluster Service
