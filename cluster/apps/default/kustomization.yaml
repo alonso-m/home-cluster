@@ -5,4 +5,4 @@ resources:
   # - hajimari
   - nextcloud
   - postgresql
-  - vaultwarden
+  # - vaultwarden
