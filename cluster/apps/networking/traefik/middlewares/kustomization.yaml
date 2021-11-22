@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - headers.yaml
   - redirect-regex.yaml
+  - rfc1918.yaml
