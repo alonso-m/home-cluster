@@ -51,6 +51,7 @@ spec:
           cert-manager.io/issue-temporary-certificate: "true"
           # hajimari.io/enable: "true"
           # hajimari.io/icon: "movie-open-play"
+          traefik.ingress.kubernetes.io/router.middlewares: network-rfc1918-ips@kubernetescrd
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "minio.${SECRET_DOMAIN}"
