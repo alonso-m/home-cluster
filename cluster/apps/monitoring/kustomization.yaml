@@ -10,4 +10,4 @@ resources:
   # - promtail
   # - snmp-exporter-mikrotik
   # - speedtest-exporter
-  # - thanos
+  - thanos
