@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: velero
-  namespace: velero
+  namespace: backups
 spec:
   interval: 5m
   chart:
@@ -19,20 +19,24 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/velero
+
     configuration:
       extraEnvVars:
-        TZ: "America/New_York"
+        TZ: "Europe/Amsterdam"
+
       provider: aws
+
       backupStorageLocation:
         name: default
-        bucket: velero-001
+        bucket: velero
         default: true
         config:
           region: us-east-1
           s3ForcePathStyle: true
-          s3Url: http://minio.tools:9000
-          publicUrl: https://minio.${SECRET_DOMAIN}
+          s3Url: http://minio.selfhosted:9000
+          publicUrl: https://s3.${INGRESS_DOMAIN}
       resticTimeout: 4h
+
     initContainers:
       - name: velero-plugin-for-aws
         image: ghcr.io/k8s-at-home/velero-plugin-for-aws:v1.3.0
@@ -40,13 +44,16 @@ spec:
         volumeMounts:
           - mountPath: /target
             name: plugins
+
     credentials:
-      existingSecret: minio-credentials
+      existingSecret: velero-minio-credentials
+
     schedules:
       daily-backup:
         schedule: "0 6 * * *"
         template:
           ttl: "168h"
+
     metrics:
       enabled: true
       serviceMonitor:
@@ -55,11 +62,14 @@ spec:
     snapshotsEnabled: false
     upgradeCRDs: false
     cleanUpCRDs: false
+
     kubectl:
       image:
         repository: ghcr.io/k8s-at-home/kubectl
         tag: v1.22.4
+
     deployRestic: true
+
     restic:
       podVolumePath: /var/lib/kubelet/pods
       privileged: false
@@ -72,6 +82,7 @@ spec:
           cpu: 15m
         limits:
           memory: 3000Mi
+
     resources:
       requests:
         memory: 300Mi
