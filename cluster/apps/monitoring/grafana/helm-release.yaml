@@ -25,14 +25,7 @@ spec:
       GF_PANELS_DISABLE_SANITIZE_HTML: true
       GF_LOG_FILTERS: rendering:debug
       GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
-      GF_DATE_FORMATS_FULL_DATE: "MMM Do, YYYY hh:mm:ss a"
-      GF_DATE_FORMATS_INTERVAL_SECOND: "hh:mm:ss a"
-      GF_DATE_FORMATS_INTERVAL_MINUTE: "hh:mm a"
-      GF_DATE_FORMATS_INTERVAL_HOUR: "DD/MM hh:mm a"
-      GF_DATE_FORMATS_INTERVAL_DAY: "DD/MM"
-      GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
-      GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
-      VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
+
     admin:
       existingSecret: grafana
       userKey: adminUser
@@ -84,11 +77,26 @@ spec:
             url: http://loki:3100
     dashboards:
       default:
+        metallb:
+          gnetId: 14127
+          revision: 1
+          datasource: Prometheus
+        traefik:
+          gnetId: 12250
+          revision: 1
+          datasource: Prometheus
+        cert-manager:
+          gnetId: 11001
+          revision: 1
+          datasource: Prometheus
         minio:
           gnetId: 13502
           revision: 10
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/13665
+        node-exporter-full:
+          url: https://grafana.com/api/dashboards/1860/revisions/22/download
+          datasource: Prometheus
         speedtest:
           gnetId: 13665
           revision: 1
@@ -119,14 +127,21 @@ spec:
       enabled: true
       ingressClassName: "traefik"
       annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        cert-manager.io/issue-temporary-certificate: "true"
+        # hajimari.io/enable: "true"
+        # hajimari.io/icon: "movie-open-play"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:
         - hosts:
             - "grafana.${SECRET_DOMAIN}"
+          secretName: grafana-tls
     serviceAccount:
       create: true
       autoMount: true
     persistence:
-      enabled: false
+      enabled: true
+      existingClaim: grafana-config
