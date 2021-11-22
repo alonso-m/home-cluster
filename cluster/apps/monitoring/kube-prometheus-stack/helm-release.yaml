@@ -197,7 +197,7 @@ spec:
               - prometheus.${SECRET_DOMAIN}
 
       thanosService:
-        enabled: true
+        enabled: false
 
       prometheusSpec:
         replicas: 1
@@ -222,9 +222,9 @@ spec:
         #   limits:
         #     memory: 4096Mi
 
-        thanos:
-          image: quay.io/thanos/thanos:v0.23.1
-          version: v0.22.0
-          objectStorageConfig:
-            name: thanos-objstore-secret
-            key: objstore.yml
+        # thanos:
+        #   image: quay.io/thanos/thanos:v0.23.1
+        #   version: v0.22.0
+        #   objectStorageConfig:
+        #     name: thanos-objstore-secret
+        #     key: objstore.yml
