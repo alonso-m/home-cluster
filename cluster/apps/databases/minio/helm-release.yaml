@@ -72,6 +72,10 @@ spec:
               - "s3.${SECRET_DOMAIN}"
             secretName: minio-tls
 
+    metrics:
+      serviceMonitor:
+        enabled: true
+
     persistence:
       config:
         enabled: true
