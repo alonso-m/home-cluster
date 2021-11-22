@@ -5,9 +5,10 @@ resources:
   # - blackbox-exporter
   - grafana
   - kube-prometheus-stack
+  - botkube
   # - loki
   # - network-ups-tools
   # - promtail
   # - snmp-exporter-mikrotik
-  # - speedtest-exporter
+  - speedtest-exporter
   - thanos
