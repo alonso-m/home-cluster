@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
-  namespace: system-monitoring
+  namespace: monitoring
 spec:
   interval: 6h
   maxHistory: 2
@@ -108,8 +108,8 @@ spec:
         #     memory: 48Mi
         #   limits:
         #     memory: 96Mi
-      coreDns:
-    enabled: true
+    coreDns:
+      enabled: true
 
     kubeApiServer:
       enabled: true
