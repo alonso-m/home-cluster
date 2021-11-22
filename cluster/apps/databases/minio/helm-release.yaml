@@ -72,8 +72,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: openebs-hostpath
-        size: 10Gi
+        existingClaim: minio-config
         # volumeSpec:
         #   nfs:
         #     server: "${NAS_ADDR}"
