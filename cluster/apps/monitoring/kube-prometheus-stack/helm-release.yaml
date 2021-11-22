@@ -115,7 +115,13 @@ spec:
       enabled: true
 
     kubeControllerManager:
-      enabled: false
+      enabled: true
+      service:
+        port: 10257
+        targetPort: 10257
+      serviceMonitor:
+        https: true
+        insecureSkipVerify: true
 
     kubeEtcd:
       enabled: false
@@ -133,7 +139,12 @@ spec:
       enabled: false
 
     kubeScheduler:
-      enabled: false
+      service:
+        port: 10259
+        targetPort: 10259
+      serviceMonitor:
+        https: true
+        insecureSkipVerify: true
 
     kubeStateMetrics:
       enabled: true

@@ -81,10 +81,49 @@ spec:
           gnetId: 12250
           revision: 1
           datasource: Prometheus
-        minio:
-          gnetId: 13502
-          revision: 10
+        # openebs:
+        #   url: https://grafana.com/api/dashboards/12171/revisions/2/download
+        #   datasource: Prometheus
+        # openebs-pg-dashboard:
+        #   url: https://raw.githubusercontent.com/openebs/openebs/v2.3.0/k8s/openebs-pg-dashboard.json
+        #   datasource: Prometheus
+        thanos-overview:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/overview.json
           datasource: Prometheus
+        thanos-compact:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/compact.json
+          datasource: Prometheus
+        thanos-querier:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/query.json
+          datasource: Prometheus
+        thanos-store:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/store.json
+          datasource: Prometheus
+        thanos-receiver:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/receive.json
+          datasource: Prometheus
+        thanos-sidecar:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/sidecar.json
+          datasource: Prometheus
+        thanos-ruler:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/rule.json
+          datasource: Prometheus
+        thanos-replicate:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/b5431c44a6f40fd8f2aef54747dd1eaf9dfcbd25/examples/dashboards/bucket-replicate.json
+          datasource: Prometheus
+        toolkit-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/toolkit/main/manifests/monitoring/grafana/dashboards/cluster.json
+          datasource: Prometheus
+        toolkit-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/toolkit/main/manifests/monitoring/grafana/dashboards/control-plane.json
+          datasource: Prometheus
+        velero:
+          url: https://grafana.com/api/dashboards/11055/revisions/2/download
+          datasource: Prometheus
+        # minio:
+        #   gnetId: 13502
+        #   revision: 10
+        #   datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/13665
         node-exporter-full:
           url: https://grafana.com/api/dashboards/1860/revisions/22/download
