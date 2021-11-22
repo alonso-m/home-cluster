@@ -69,6 +69,8 @@ spec:
           - hosts:
               - "minio.${SECRET_DOMAIN}"
               - "s3.${SECRET_DOMAIN}"
+            secretName: minio-tls
+
     persistence:
       config:
         enabled: true
