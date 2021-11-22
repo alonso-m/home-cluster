@@ -6,5 +6,6 @@ resources:
   - kube-prometheus-stack
   - botkube
   - loki
+  - promtail
   - speedtest-exporter
   - thanos
