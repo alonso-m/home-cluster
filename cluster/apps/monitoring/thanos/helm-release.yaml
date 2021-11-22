@@ -28,16 +28,17 @@ spec:
 
       ingress:
         enabled: true
-        hostname: "thanos-cluster.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
+        hostname: "thanos.${SECRET_DOMAIN}"
         ingressClassName: "traefik"
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-rfc1918-ips@kubernetescrd
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/issue-temporary-certificate: "true"
+          # hajimari.io/enable: "true"
+          # hajimari.io/icon: "movie-open-play"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         tls: true
 
-    existingObjstoreSecret: thanos-objstore-secret
+    existingObjstoreSecret: thanos-object-store
 
     queryFrontend:
       enabled: false
