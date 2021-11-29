@@ -20,10 +20,10 @@ spec:
       enabled: true
       enableDeviceClass: false
       enableHostpathClass: true
-      basePath: "/var/openebs/local"
+      basePath: "/volumes/local"
     ndm:
       enabled: false
     ndmOperator:
       enabled: false
     nfs-provisioner:
-      enabled: true
+      enabled: false
