@@ -9,9 +9,9 @@ metadata:
         value: hostpath
       - name: BasePath
         value: /volumes/nvme-0
-parameters:
-  pathPattern: ${.PVC.namespace}-${.PVC.name}
-  onDelete: retain
+# parameters:
+#   pathPattern: ${.PVC.namespace}-${.PVC.name}
+#   onDelete: retain
 provisioner: openebs.io/local
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
