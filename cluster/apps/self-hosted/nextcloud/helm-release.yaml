@@ -129,14 +129,14 @@ spec:
 
     redis:
       enabled: true
-      global:
-        storageClass: openebs-nvme-0
-      # master:
-      #   persistence:
-      #     storageClass: openebs-nvme-0
-      # slave:
-      #   persistence:
-      #     storageClass: openebs-nvme-0
+      # global:
+      #   storageClass: openebs-nvme-0
+      master:
+        persistence:
+          storageClass: openebs-nvme-0
+      slave:
+        persistence:
+          storageClass: openebs-nvme-0
       # usePassword: true
       # password: 'changeme'
 
