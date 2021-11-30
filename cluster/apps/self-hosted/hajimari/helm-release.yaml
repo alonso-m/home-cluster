@@ -25,7 +25,7 @@ spec:
       namespaceSelector:
         matchNames:
           - downloads
-          - home
+          - self-hosted
           - minio
           - networking
           - velero
