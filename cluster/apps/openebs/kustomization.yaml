@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - local-storageclass.yaml
+  - namespace.yaml
   - nvme-storageclass.yaml
   - ssd-storageclass.yaml
