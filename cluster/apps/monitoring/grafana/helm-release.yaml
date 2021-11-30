@@ -175,4 +175,4 @@ spec:
       autoMount: true
     persistence:
       enabled: true
-      existingClaim: grafana-config
+      existingClaim: grafana
