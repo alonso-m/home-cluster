@@ -54,12 +54,9 @@ spec:
 
     storegateway:
       enabled: true
-      persistenceVolumeClaim:
-        spec:
-          storageClassName: openebs-nvme-0
-          resources:
-            requests:
-              storage: 20Gi
+      persistence:
+        enabled: true
+        size: 20Gi
 
     ruler:
       enabled: false
