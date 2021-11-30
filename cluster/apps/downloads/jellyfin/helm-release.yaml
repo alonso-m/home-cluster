@@ -58,10 +58,10 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: jellyfin-config
+        existingClaim: jellyfin
       media:
         enabled: true
-        existingClaim: media
+        existingClaim: downloads
       transcode:
         enabled: true
         type: emptyDir

@@ -71,10 +71,10 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: transmission-config
+        existingClaim: transmission
       media:
         enabled: true
-        existingClaim: media
+        existingClaim: downloads
       shared:
         enabled: true
         type: emptyDir

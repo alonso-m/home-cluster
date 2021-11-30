@@ -28,7 +28,7 @@ spec:
     #     enabled: true
     persistence:
       size: 5Gi
-      existingClaim: postgresql-config
+      existingClaim: postgresql
 
     # postgresqlUsername: "postgres"
     postgresqlDatabase: "postgres"

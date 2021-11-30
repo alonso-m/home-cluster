@@ -56,10 +56,10 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: filebrowser-config
+        existingClaim: filebrowser
       media:
         enabled: true
-        existingClaim: media
+        existingClaim: downloads
 #        type: custom
 #        volumeSpec:
 #          nfs:
