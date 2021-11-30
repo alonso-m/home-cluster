@@ -4,3 +4,4 @@ resources:
   - kube-vip
   - metrics-server
   - reloader
+  - system-upgrade
