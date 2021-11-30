@@ -63,7 +63,7 @@ spec:
 
     persistentVolumeClaim:
       enabled: true
-      existingClaim: "pihole-config-v1"
+      existingClaim: "pihole"
       accessModes:
         - ReadWriteOnce
       size: "500Mi"
