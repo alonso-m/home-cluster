@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - helm-release.yaml
-  - nvme-0-storageclass.yaml
-  - ssd-0-storageclass.yaml
+  - local-storageclass.yaml
+  - nvme-storageclass.yaml
+  - ssd-storageclass.yaml

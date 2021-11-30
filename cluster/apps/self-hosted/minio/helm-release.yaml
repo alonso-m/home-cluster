@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: minio
-  namespace: databases
+  namespace: self-hosted
 spec:
   interval: 5m
   chart:
@@ -79,7 +79,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: minio-config
+        existingClaim: minio
         # volumeSpec:
         #   nfs:
         #     server: "${NAS_ADDR}"

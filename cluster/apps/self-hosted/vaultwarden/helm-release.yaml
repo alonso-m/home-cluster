@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: vaultwarden
-  namespace: home
+  namespace: self-hosted
 spec:
   interval: 5m
   chart:
@@ -81,7 +81,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: vaultwarden-config
+        existingClaim: vaultwarden
 #    podAnnotations:
 #      backup.velero.io/backup-volumes: config
 #      pre.hook.backup.velero.io/container: fsfreeze

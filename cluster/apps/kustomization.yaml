@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - databases
   - downloads
-  - home
   - monitoring
   - networking
+  - self-hosted

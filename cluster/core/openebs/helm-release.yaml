@@ -19,8 +19,8 @@ spec:
     localprovisioner:
       enabled: true
       enableDeviceClass: false
-      enableHostpathClass: true
-      basePath: "/volumes/local"
+      enableHostpathClass: false
+      # basePath: "/volumes/local"
     ndm:
       enabled: false
     ndmOperator:

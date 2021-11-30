@@ -6,8 +6,7 @@ resources:
   - databases.yaml
   - development.yaml
   - downloads.yaml
-  - home.yaml
-  - minio.yaml
   - monitoring.yaml
   - networking.yaml
   - openebs.yaml
+  - self-hosted.yaml
