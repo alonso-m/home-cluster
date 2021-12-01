@@ -5,7 +5,7 @@ resources:
   # - databases
   # - downloads
   - kube-system
-  - monitoring
+  # - monitoring
   - networking
   - openebs
   - self-hosted

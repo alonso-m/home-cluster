@@ -98,7 +98,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: openebs-hostpath
+              storageClassName: openebs-nvme-0
               resources:
                 requests:
                   storage: 10Gi
