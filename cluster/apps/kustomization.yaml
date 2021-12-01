@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager
   # - databases
-  - downloads
+  # - downloads
   - kube-system
   - monitoring
   - networking
