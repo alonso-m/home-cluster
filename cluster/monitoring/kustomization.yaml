@@ -11,3 +11,4 @@ resources:
   - promtail
   - speedtest-exporter
   - thanos
+  - traefik
