@@ -5,6 +5,8 @@ metadata:
   name: cert-manager
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: networking
   interval: 10m0s
   path: ./cluster/cert-manager
   prune: true
