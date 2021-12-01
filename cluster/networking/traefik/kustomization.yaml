@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - dashboard
   - middlewares
-  - monitoring
+  # - monitoring
   - helm-release.yaml
