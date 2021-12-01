@@ -5,8 +5,8 @@ metadata:
   name: monitoring
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: networking
+  # dependsOn:
+  #   - name: networking
   interval: 10m0s
   path: ./cluster/monitoring
   prune: true
