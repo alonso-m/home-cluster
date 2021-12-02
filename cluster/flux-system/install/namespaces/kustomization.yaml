@@ -4,3 +4,7 @@ resources:
   - cert-manager.yaml
   - databases.yaml
   - downloads.yaml
+  - monitoring.yaml
+  - networking.yaml
+  - openebs.yaml
+  - self-hosted.yaml
