@@ -64,3 +64,20 @@ spec:
           for: 1m
           labels:
             severity: critical
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: traefik
+  namespace: networking
+  labels:
+    app.kubernetes.io/name: traefik
+spec:
+  jobLabel: traefik
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: traefik
+  endpoints:
+    - port: metrics
+      path: /metrics
+      honorLabels: true

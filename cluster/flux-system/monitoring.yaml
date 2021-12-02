@@ -5,10 +5,39 @@ metadata:
   name: monitoring
   namespace: flux-system
 spec:
-  # dependsOn:
-  #   - name: networking
+  dependsOn:
+    - name: kube-system
+    - name: networking
+    - name: openebs
+    - name: cert-manager
   interval: 10m0s
   path: ./cluster/monitoring
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: monitoring-config
+  namespace: monitoring
+spec:
+  dependsOn:
+    - name: monitoring
+  interval: 10m0s
+  path: ./cluster/monitoring/config
   prune: true
   sourceRef:
     kind: GitRepository

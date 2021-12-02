@@ -10,5 +10,5 @@ metadata:
       - name: BasePath
         value: /volumes/local
 provisioner: openebs.io/local
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer

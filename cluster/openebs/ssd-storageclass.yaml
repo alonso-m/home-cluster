@@ -10,5 +10,5 @@ metadata:
       - name: BasePath
         value: /volumes/ssd-0
 provisioner: openebs.io/local
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
