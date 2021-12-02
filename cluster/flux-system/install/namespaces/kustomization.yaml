@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - databases.yaml
+  - downloads.yaml

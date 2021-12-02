@@ -5,6 +5,11 @@ metadata:
   name: downloads
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: kube-system
+    - name: networking
+    - name: openebs
+    - name: cert-manager
   interval: 10m0s
   path: ./cluster/downloads
   prune: true

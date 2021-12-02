@@ -5,6 +5,8 @@ metadata:
   name: openebs
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: kube-system
   interval: 10m0s
   path: ./cluster/openebs
   prune: true

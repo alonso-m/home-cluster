@@ -5,6 +5,8 @@ metadata:
   name: networking
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: kube-system
   interval: 10m0s
   path: ./cluster/networking
   prune: true
