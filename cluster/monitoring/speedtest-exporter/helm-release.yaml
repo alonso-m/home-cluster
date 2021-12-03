@@ -20,6 +20,7 @@ spec:
     image:
       repository: ghcr.io/miguelndecarvalho/speedtest-exporter
       tag: v3.3.4
+
     metrics:
       enabled: true
       serviceMonitor:

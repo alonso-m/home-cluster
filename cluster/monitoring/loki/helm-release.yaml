@@ -69,28 +69,3 @@ spec:
       valuesKey: minio_secret_key
       targetPath: config.storage_config.aws.secret_access_key
       optional: false
-
-  # postRenderers:
-  #   - kustomize:
-  #       patchesJson6902:
-  #         - target:
-  #             version: v1beta1
-  #             kind: Ingress
-  #             name: netbox
-  #           patch:
-  #             - op: replace
-  #               path: /apiVersion
-  #               value: networking.k8s.io/v1
-  #             - op: remove
-  #               path: /spec/rules/0/http/paths/0/backend/servicePort
-  #             - op: remove
-  #               path: /spec/rules/0/http/paths/0/backend/serviceName
-  #             - op: add
-  #               path: /spec/rules/0/http/paths/0/backend/service
-  #               value:
-  #                 name: netbox
-  #                 port:
-  #                   name: http
-  #             - op: add
-  #               path: /spec/rules/0/http/paths/0/pathType
-  #               value: Prefix

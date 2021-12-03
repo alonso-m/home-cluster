@@ -20,6 +20,7 @@ spec:
 
   install:
     crds: CreateReplace
+
   upgrade:
     crds: CreateReplace
 
@@ -32,6 +33,7 @@ spec:
 
   values:
     fullnameOverride: prometheus
+
     alertmanager:
       config:
         receivers:
@@ -64,7 +66,6 @@ spec:
                 alertname: Watchdog
             - receiver: "discord"
               match_re:
-                # severity: critical|warning
                 severity: critical
               continue: true
         inhibit_rules:
@@ -73,6 +74,7 @@ spec:
             target_match:
               severity: "warning"
             equal: ["alertname", "namespace"]
+
       ingress:
         enabled: true
         pathType: Prefix
@@ -80,12 +82,9 @@ spec:
           kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
-          # hajimari.io/enable: "true"
-          # hajimari.io/icon: "movie-open-play"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "alert"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          # cert-manager.io/cluster-issuer: letsencrypt-production
-          # # external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
-          # traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
         hosts:
           - alertmanager.${SECRET_DOMAIN}
@@ -139,8 +138,6 @@ spec:
       enabled: true
 
     prometheusOperator:
-      # Setting this option to 0 to disable cpu limits
-      # see https://github.com/prometheus-operator/prometheus-operator/blob/master/cmd/operator/main.go#L175
       configReloaderCpu: 0
 
     grafana:
@@ -181,13 +178,9 @@ spec:
           kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
-          # hajimari.io/enable: "true"
-          # hajimari.io/icon: "movie-open-play"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "math-log"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          # kubernetes.io/ingress.class: traefik
-          # cert-manager.io/cluster-issuer: letsencrypt-production
-          # external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
-          # traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
         hosts:
           - prometheus.${SECRET_DOMAIN}
