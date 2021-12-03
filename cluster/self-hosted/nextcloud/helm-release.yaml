@@ -20,46 +20,19 @@ spec:
     image:
       repository: nextcloud
       tag: stable-apache
-    # env:
-    #   TZ: Europe/Amsterdam
-    #   REDIS_HOST: localhost
-    #   POSTGRES_HOST: postgres
-    #   POSTGRES_DB: nextcloud
-    #   SMTP_HOST: smtp.gmail.com
-    #   SMTP_SECURE: ssl
-    #   MAIL_FROM_ADDRESS: cloud
-    #   OVERWRITEPROTOCOL: https
-    # envFrom:
-    #   - secretRef:
-    #       name: nextcloud
-    #   - secretRef:
-    #       name: database
-    #   - secretRef:
-    #       name: redis
 
     ingress:
       enabled: true
       className: "traefik"
       annotations:
-#          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-#          external-dns/is-public: "true"
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         cert-manager.io/issue-temporary-certificate: "true"
         hajimari.io/enable: "true"
         hajimari.io/icon: "cloud-download-outline"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.ingress.kubernetes.io/router.middlewares: networking-headers@kubernetescrd,networking-redirect-regex@kubernetescrd
-        # tls:
-      #   - secretName: nextcloud-tls
-      #     hosts:
-      #       - nextcloud.kube.home
       path: /
       pathType: Prefix
-      # hosts:
-      #   - host: cloud.${SECRET_DOMAIN}
-      #     paths:
-      #       - path: /
-              # pathType: Prefix
       tls:
         - hosts:
             - cloud.${SECRET_DOMAIN}
@@ -74,53 +47,15 @@ spec:
             'trusted_proxies' => ['10.43.0.0/16','192.168.0.0/16']
           );
 
-      # username: admin
-      # password: changeme
-      ## Use an existing secret
-      # existingSecret:
-      #   enabled: true
-      #   secretName: nextcloud
-      #   smtpUsernameKey: SMTP_NAME
-      #   smtpPasswordKey: SMTP_PASSWORD
-      # If web server is not binding default port, you can define it
-      # containerPort: 8080
-      # datadir: /var/www/html/data
-      # persistence:
-      #   subPath:
-      # mail:
-      #   enabled: false
-      #   fromAddress: user
-      #   domain: domain.com
-      #   smtp:
-      #     host: domain.com
-      #     secure: ssl
-      #     port: 465
-      #     authtype: LOGIN
-      #     name: user
-      #     password: pass
-
     internalDatabase:
       enabled: false
 
     externalDatabase:
       enabled: true
-
-      ## Supported database engines: mysql or postgresql
       type: postgresql
-
-      ## Database host
       host: postgresql.databases.svc.cluster.local
-
-      # ## Database user
-      # user: nextcloud
-
-      # ## Database password
-      # password:
-
-      ## Database name
       database: nextcloud
 
-      ## Use a existing secret
       existingSecret:
         enabled: true
         secretName: nextcloud-secret
@@ -129,67 +64,13 @@ spec:
 
     redis:
       enabled: true
-      # global:
-      #   storageClass: openebs-nvme-0
       master:
         persistence:
           storageClass: openebs-nvme-0
       slave:
         persistence:
           storageClass: openebs-nvme-0
-      # usePassword: true
-      # password: 'changeme'
 
     persistence:
-      # Nextcloud Data (/var/www/html)
       enabled: true
-      # annotations: {}
-      ## nextcloud data Persistent Volume Storage Class
-      ## If defined, storageClassName: <storageClass>
-      ## If set to "-", storageClassName: "", which disables dynamic provisioning
-      ## If undefined (the default) or set to null, no storageClassName spec is
-      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-      ##   GKE, AWS & OpenStack)
-      ##
-      # storageClass: "-"
-
-      ## A manually managed Persistent Volume and Claim
-      ## Requires persistence.enabled: true
-      ## If defined, PVC must be created manually before volume will be bound
       existingClaim: nextcloud
-
-      # accessMode: ReadWriteOnce
-      # size: 8Gi
-
-    # metrics:
-    #   enabled: false
-
-    #   replicaCount: 1
-    #   # The metrics exporter needs to know how you serve Nextcloud either http or https
-    #   https: false
-    #   timeout: 5s
-
-    #   image:
-    #     repository: xperimental/nextcloud-exporter
-    #     tag: v0.4.0
-    #     pullPolicy: IfNotPresent
-
-    #   ## Metrics exporter resource requests and limits
-    #   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-    #   ##
-    #   # resources: {}
-
-    #   ## Metrics exporter pod Annotation and Labels
-    #   # podAnnotations: {}
-
-    #   # podLabels: {}
-
-    #   service:
-    #     type: ClusterIP
-    #     ## Use serviceLoadBalancerIP to request a specific static IP,
-    #     ## otherwise leave blank
-    #     # loadBalancerIP:
-    #     annotations:
-    #       prometheus.io/scrape: "true"
-    #       prometheus.io/port: "9205"
-    #     labels: {}
