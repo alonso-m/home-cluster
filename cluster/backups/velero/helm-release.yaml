@@ -71,8 +71,8 @@ spec:
     deployRestic: true
 
     restic:
-      podVolumePath: /volumes/nvme-0
-      privileged: true
+      podVolumePath: /var/lib/kubelet/pods
+      privileged: false
       # tolerations:
       #   - key: "node-role.kubernetes.io/master"
       #     operator: "Exists"
