@@ -21,6 +21,9 @@ spec:
       repository: nextcloud
       tag: stable-apache
 
+    podAnnotations:
+      backup.velero.io/backup-volumes: nextcloud
+
     ingress:
       enabled: true
       className: "traefik"

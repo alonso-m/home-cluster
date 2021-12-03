@@ -54,8 +54,8 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
-          # hajimari.io/enable: "true"
-          # hajimari.io/icon: "movie-open-play"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "backup-restore"
           traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
