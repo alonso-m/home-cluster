@@ -18,19 +18,24 @@ spec:
     image:
       repository: quay.io/minio/minio
       tag: RELEASE.2021-10-13T00-23-17Z
+
     nameOverride: minio
+
     env:
       MINIO_PROMETHEUS_AUTH_TYPE: "public"
       MINIO_UPDATE: "off"
       TZ: "Europe/Amsterdam"
+
     envFrom:
       - secretRef:
           name: minio
+
     args:
       - server
       - /data
       - --console-address
       - :9001
+
     service:
       main:
         enabled: true
@@ -41,12 +46,12 @@ spec:
           api:
             enabled: true
             port: 9000
+
     ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          # kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
           # hajimari.io/enable: "true"
@@ -72,21 +77,19 @@ spec:
               - "s3.${SECRET_DOMAIN}"
             secretName: minio-tls
 
-    # metrics:
-    #   serviceMonitor:
-    #     enabled: true
+    metrics:
+      serviceMonitor:
+        enabled: true
 
     persistence:
       config:
         enabled: true
         existingClaim: minio
-        # volumeSpec:
-        #   nfs:
-        #     server: "${NAS_ADDR}"
-        #     path: /tycho/Minio
         mountPath: /data
+
     podAnnotations:
       secret.reloader.stakater.com/reload: "minio"
+
     # resources:
     #   requests:
     #     memory: 100Mi
