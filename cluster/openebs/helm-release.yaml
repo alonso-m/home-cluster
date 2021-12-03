@@ -20,10 +20,12 @@ spec:
       enabled: true
       enableDeviceClass: false
       enableHostpathClass: false
-      # basePath: "/volumes/local"
+
     ndm:
       enabled: false
+
     ndmOperator:
       enabled: false
+
     nfs-provisioner:
       enabled: false
