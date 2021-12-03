@@ -6,3 +6,4 @@ resources:
   - loki.yaml
   - thanos.yaml
   - traefik.yaml
+  - velero.yaml

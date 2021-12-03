@@ -33,8 +33,8 @@ spec:
         config:
           region: us-east-1
           s3ForcePathStyle: true
-          s3Url: http://minio.selfhosted:9000
-          publicUrl: https://s3.${INGRESS_DOMAIN}
+          s3Url: http://minio.self-hosted:9000
+          publicUrl: https://s3.${SECRET_DOMAIN}
       resticTimeout: 4h
 
     initContainers:
@@ -46,7 +46,7 @@ spec:
             name: plugins
 
     credentials:
-      existingSecret: velero-minio-credentials
+      existingSecret: minio
 
     schedules:
       daily-backup:
@@ -71,11 +71,11 @@ spec:
     deployRestic: true
 
     restic:
-      podVolumePath: /var/lib/kubelet/pods
+      podVolumePath: /volumes/nvme-0
       privileged: false
-      tolerations:
-        - key: "node-role.kubernetes.io/master"
-          operator: "Exists"
+      # tolerations:
+      #   - key: "node-role.kubernetes.io/master"
+      #     operator: "Exists"
       resources:
         requests:
           memory: 200Mi

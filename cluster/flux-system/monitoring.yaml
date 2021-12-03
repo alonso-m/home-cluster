@@ -35,7 +35,10 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
+    - name: kube-system
+    - name: networking
     - name: monitoring
+    - name: backups
   interval: 10m0s
   path: ./cluster/monitoring/config
   prune: true
