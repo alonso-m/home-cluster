@@ -72,7 +72,7 @@ spec:
 
     restic:
       podVolumePath: /volumes/nvme-0
-      privileged: false
+      privileged: true
       # tolerations:
       #   - key: "node-role.kubernetes.io/master"
       #     operator: "Exists"
