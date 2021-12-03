@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: compact
+  name: thanos-compact
   namespace: monitoring
 spec:
   jobLabel: thanos-compact
@@ -16,7 +16,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: rule
+  name: thanos-rule
   namespace: monitoring
 spec:
   jobLabel: thanos-rule
@@ -30,7 +30,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: query
+  name: thanos-query
   namespace: monitoring
 spec:
   jobLabel: thanos-query
@@ -44,7 +44,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: sidecar
+  name: thanos-sidecar
   namespace: monitoring
 spec:
   jobLabel: thanos-sidecar
@@ -58,7 +58,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: store
+  name: thanos-store
   namespace: monitoring
 spec:
   jobLabel: thanos-store

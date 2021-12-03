@@ -18,20 +18,25 @@ spec:
     image:
       repository: filebrowser/filebrowser
       tag: v2.18.0
+
     nameOverride: filebrowser
+
     env:
       FB_DATABASE: "/config/filebrowser.db"
       FB_ROOT: "/media"
       FB_LOG: "stdout"
       TZ: "Europe/Amsterdam"
+
     envFrom:
       - secretRef:
           name: filebrowser
+
     service:
       main:
         ports:
           http:
             port: 80
+
     ingress:
       main:
         enabled: true
@@ -60,16 +65,10 @@ spec:
       media:
         enabled: true
         existingClaim: downloads
-#        type: custom
-#        volumeSpec:
-#          nfs:
-#            server: "192.168.188.70"
-#            path: /mnt/kingston/application-data/jellyfin
-#        mountPath: /media
-#        readOnly: true
-    resources:
-      requests:
-        memory: 100Mi
-        cpu: 100m
-      limits:
-        memory: 500Mi
+
+    # resources:
+    #   requests:
+    #     memory: 100Mi
+    #     cpu: 100m
+    #   limits:
+    #     memory: 500Mi
