@@ -36,4 +36,4 @@ spec:
       create: true
 
     extraArgs:
-      notify-url: "${KURED_DISCORD_WEBHOOK}"
+      notify-url: ${KURED_DISCORD_WEBHOOK}
