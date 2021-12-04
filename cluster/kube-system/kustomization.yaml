@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   # - goldilocks
   - kube-vip
-  # - kured
+  - kured
   - metrics-server
   - reloader
   - system-upgrade
