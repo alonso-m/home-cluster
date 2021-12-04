@@ -21,6 +21,13 @@ spec:
       repository: raspbernetes/kured
       tag: 1.8.0
 
+    extraEnvVars:
+      - name: slackHookUrl
+        valueFrom:
+          secretKeyRef:
+            name: kured
+            key: discord-webhook
+
     updateStrategy: RollingUpdate
 
     configuration:
@@ -34,6 +41,3 @@ spec:
 
     metrics:
       create: true
-
-    extraArgs:
-      notify-url: ${KURED_DISCORD_WEBHOOK}
