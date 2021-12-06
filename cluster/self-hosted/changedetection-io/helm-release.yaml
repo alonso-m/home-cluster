@@ -50,6 +50,7 @@ spec:
         tls:
           - hosts:
               - "change-detection.${SECRET_DOMAIN}"
+            secretName: change-detection-tls
 
     persistence:
       config:
