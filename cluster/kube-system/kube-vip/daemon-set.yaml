@@ -41,6 +41,12 @@ spec:
               value: "false"
             - name: vip_address
               value: "192.168.2.199"
+            - name: vip_leaseduration
+              value: "50"
+            - name: vip_renewdeadline
+              value: "30"
+            - name: vip_retryperiod
+              value: "10"
           securityContext:
             capabilities:
               add:
