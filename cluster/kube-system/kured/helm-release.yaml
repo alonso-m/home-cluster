@@ -21,12 +21,12 @@ spec:
       repository: raspbernetes/kured
       tag: 1.8.0
 
-    extraEnvVars:
-      - name: slackHookUrl
-        valueFrom:
-          secretKeyRef:
-            name: kured
-            key: discord-webhook
+    # extraEnvVars:
+    #   - name: slackHookUrl
+    #     valueFrom:
+    #       secretKeyRef:
+    #         name: kured
+    #         key: discord-webhook
 
     updateStrategy: RollingUpdate
 
