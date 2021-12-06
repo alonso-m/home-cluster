@@ -21,7 +21,7 @@ spec:
     - kind: Secret
       name: kured
       valuesKey: discord-webhook
-      targetPath: configuration.slackHookUrl
+      targetPath: configuration.notifyUrl
       optional: false
 
   values:
