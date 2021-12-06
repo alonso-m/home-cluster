@@ -43,13 +43,13 @@ spec:
           cert-manager.io/issue-temporary-certificate: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - host: "changedetection.${SECRET_DOMAIN}"
+          - host: "change-detection.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "changedetection.${SECRET_DOMAIN}"
+              - "change-detection.${SECRET_DOMAIN}"
 
     persistence:
       config:
