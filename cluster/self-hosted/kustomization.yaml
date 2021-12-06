@@ -6,7 +6,7 @@ resources:
   - hajimari
   - littlelink
   - minio
-  - nextcloud
+  # - nextcloud
   - rxresume
   - syncthing
   - vaultwarden
