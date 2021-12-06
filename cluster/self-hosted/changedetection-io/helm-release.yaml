@@ -54,7 +54,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: changedetection
+        existingClaim: changedetection-io
         mountPath: /datastore
       cache:
         enabled: true
