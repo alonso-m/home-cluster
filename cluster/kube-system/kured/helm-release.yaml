@@ -22,7 +22,7 @@ spec:
       tag: 1.8.0
 
     extraEnvVars:
-      - name: slackHookUrl
+      - name: KURED_DISCORD_WEBHOOK
         valueFrom:
           secretKeyRef:
             name: kured
@@ -43,4 +43,4 @@ spec:
       create: true
 
     extraArgs:
-      notify-url: "${DISCORD_WEBHOOK}"
+      notify-url: "${KURED_DISCORD_WEBHOOK}"
