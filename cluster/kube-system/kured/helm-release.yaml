@@ -17,9 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    # image:
-    #   repository: raspbernetes/kured
-    #   tag: 1.8.0
+    image:
+      repository: raspbernetes/kured
+      tag: 1.8.0
 
     extraEnvVars:
       - name: slackHookUrl
