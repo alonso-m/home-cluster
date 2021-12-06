@@ -41,3 +41,6 @@ spec:
 
     metrics:
       create: true
+
+    extraArgs:
+      notify-url: "${discord-webhook}"
