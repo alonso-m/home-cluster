@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: littlelink
+  namespace: collab
+spec:
+  interval: 5m
+  releaseName: littlelink
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: littlelink-server
+      version: 1.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/techno-tim/littlelink-server
+      tag: latest
+
+    env:
+      TZ: "Europe/Amsterdam"
+      META_TITLE: Miguel Alonso
+      META_DESCRIPTION: Miguel Alonso's link page
+      META_AUTHOR: Miguel Alonso
+      THEME: Dark
+      FAVICON_URL: https://avatars.githubusercontent.com/u/64870040?v=4
+      AVATAR_URL: https://avatars.githubusercontent.com/u/64870040?v=4
+      AVATAR_2X_URL: https://avatars.githubusercontent.com/u/64870040?v=4
+      AVATAR_ALT: Miguel Alonso
+      NAME: Miguel Alonso
+      BIO: Hey! Feel free to reach out to me on any of the below.
+      GITHUB: https://github.com/alonso-m
+      LINKED_IN: https://www.linkedin.com/in/alonsomiguel/
+      EMAIL: info@malonso.me
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        hosts:
+          - host: "me.${SECRET_SHORT_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "me.${SECRET_SHORT_DOMAIN}"
+            secretName: littlelink-tls

@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - changedetection-io
   - hajimari
+  - littlelink
   - minio
   - nextcloud
   - rxresume
