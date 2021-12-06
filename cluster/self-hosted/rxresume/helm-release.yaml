@@ -46,13 +46,13 @@ spec:
           # hajimari.io/icon: "shield-key"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - host: cv.${SECRET_SHORT_DOMAIN}
+          - host: cv.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "cv.${SECRET_SHORT_DOMAIN}"
+              - "cv.${SECRET_DOMAIN}"
             secretName: rxresume-tls
 
     resources:
