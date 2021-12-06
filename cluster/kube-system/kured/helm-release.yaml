@@ -16,17 +16,25 @@ spec:
         name: weaveworks-kured-charts
         namespace: flux-system
       interval: 5m
+
+  valuesFrom:
+    - kind: Secret
+      name: kured
+      valuesKey: discord-webhook
+      targetPath: configuration.slackHookUrl
+      optional: false
+
   values:
     image:
       repository: raspbernetes/kured
       tag: 1.8.0
 
-    extraEnvVars:
-      - name: KURED_DISCORD_WEBHOOK
-        valueFrom:
-          secretKeyRef:
-            name: kured
-            key: discord-webhook
+    # extraEnvVars:
+    #   - name: KURED_DISCORD_WEBHOOK
+    #     valueFrom:
+    #       secretKeyRef:
+    #         name: kured
+    #         key: discord-webhook
 
     updateStrategy: RollingUpdate
 
@@ -42,5 +50,5 @@ spec:
     metrics:
       create: true
 
-    extraArgs:
-      notify-url: ${KURED_DISCORD_WEBHOOK}
+    # extraArgs:
+    #   notify-url: ${KURED_DISCORD_WEBHOOK}
