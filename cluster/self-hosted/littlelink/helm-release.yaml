@@ -17,10 +17,9 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-
-  nameOverride: littlelink
-
   values:
+    nameOverride: littlelink
+
     image:
       repository: ghcr.io/techno-tim/littlelink-server
       tag: latest
