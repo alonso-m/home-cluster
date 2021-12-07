@@ -95,10 +95,10 @@ spec:
               - "hajimari.${SECRET_DOMAIN}"
             secretName: "hajimari-tls"
 
-    persistence:
-      data:
-        enabled: true
-        existingClaim: hajimari
+    # persistence:
+    #   data:
+    #     enabled: true
+    #     existingClaim: hajimari
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"
