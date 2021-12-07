@@ -32,7 +32,7 @@ spec:
     ghostBlogTitle: "Enkubados"
 
     service:
-      type: clusterIP
+      type: ClusterIP
 
     ingress:
       enabled: true
