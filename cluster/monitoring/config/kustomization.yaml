@@ -5,6 +5,7 @@ resources:
   - flux-system.yaml
   - kured.yaml
   - loki.yaml
+  - secrets.sops.yaml
   - thanos.yaml
   - traefik.yaml
   - velero.yaml
