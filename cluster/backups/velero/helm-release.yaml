@@ -35,6 +35,21 @@ spec:
           s3ForcePathStyle: true
           s3Url: http://minio.self-hosted:9000
           publicUrl: https://s3.${SECRET_DOMAIN}
+
+      volumeSnapshotLocation:
+        name: openebs-pv
+        # provider: openebs.io/zfspv-blockstore
+        config:
+          bucket: velero
+          # prefix: zfs
+          namespace: openebs
+          provider: aws
+          region: minio
+          s3ForcePathStyle: true
+          s3Url: http://minio.self-hosted:9000
+          publicUrl: https://s3.${SECRET_DOMAIN}
+          restApiTimeout: 90s
+
       resticTimeout: 4h
 
     initContainers:
