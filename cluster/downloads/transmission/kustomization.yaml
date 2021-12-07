@@ -5,5 +5,5 @@ resources:
   - helm-release.yaml
   - openvpn-auth.sops.yaml
   - openvpn-config.sops.yaml
-  - pvc.yaml
+  # - pvc.yaml
   - secrets.sops.yaml
