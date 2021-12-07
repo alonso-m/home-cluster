@@ -4,4 +4,4 @@ resources:
   - _pvc
   - filebrowser
   - jellyfin
-  - transmission
+  # - transmission
