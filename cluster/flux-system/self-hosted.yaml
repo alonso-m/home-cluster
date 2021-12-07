@@ -6,10 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: kube-system
     - name: networking
-    - name: openebs
-    - name: cert-manager
   interval: 10m0s
   path: ./cluster/self-hosted
   prune: true

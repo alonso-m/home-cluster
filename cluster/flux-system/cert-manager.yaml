@@ -6,7 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: kube-system
     - name: networking
   interval: 10m0s
   path: ./cluster/cert-manager
