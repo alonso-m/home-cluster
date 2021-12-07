@@ -28,9 +28,7 @@ spec:
       targetPath: ghostEmail
       optional: false
   values:
-
     ghostUsername: "malonso"
-
     ghostBlogTitle: "Enkubados"
 
     service:
