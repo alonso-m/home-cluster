@@ -31,6 +31,8 @@ spec:
     ghostUsername: "malonso"
     ghostBlogTitle: "Enkubados"
 
+    allowEmptyPassword: false
+
     service:
       type: ClusterIP
 
