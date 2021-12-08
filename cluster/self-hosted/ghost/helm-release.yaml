@@ -41,7 +41,7 @@ spec:
     # ghostHost: rfc826.com
     ghostUsername: "malonso"
     ghostBlogTitle: "Enkubados"
-    # ghostEnableHttps: true
+    ghostEnableHttps: true
 
     allowEmptyPassword: false
 
