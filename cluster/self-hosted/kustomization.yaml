@@ -10,4 +10,4 @@ resources:
   # - nextcloud
   - rxresume
   - syncthing
-  - vaultwarden
+  # - vaultwarden
