@@ -62,6 +62,12 @@ spec:
       tls: true
       ingressClassName: "traefik"
 
+    livenessProbe:
+      enabled: false
+
+    readinessProbe:
+      enabled: false
+
     persistence:
       enabled: true
       existingClaim: "ghost"
