@@ -9,5 +9,5 @@ resources:
   - minio
   # - nextcloud
   - rxresume
-  # - syncthing
+  - syncthing
   - vaultwarden
