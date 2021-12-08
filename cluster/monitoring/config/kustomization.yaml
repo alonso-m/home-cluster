@@ -7,6 +7,6 @@ resources:
   # - loki.yaml
   - secrets.sops.yaml
   - thanos.yaml
-  - traefik.yaml
+  # - traefik.yaml
   # - velero.yaml
   - webhook-receiver
