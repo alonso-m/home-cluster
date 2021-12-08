@@ -7,7 +7,6 @@ resources:
   - cluster-settings.yaml
   - databases.yaml
   - downloads.yaml
-  - install
   - kube-system.yaml
   - monitoring.yaml
   - networking.yaml
