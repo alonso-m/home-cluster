@@ -27,6 +27,11 @@ spec:
       valuesKey: ghostEmail
       targetPath: ghostEmail
       optional: false
+    - kind: Secret
+      name: ghost-secret
+      valuesKey: mariadbPassword
+      targetPath: mariadb.auth.password
+      optional: false
   values:
     ghostUsername: "malonso"
     ghostBlogTitle: "Enkubados"
