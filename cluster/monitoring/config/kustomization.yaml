@@ -3,10 +3,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - flux-system.yaml
-  # - kured.yaml
-  # - loki.yaml
+  - kured.yaml
+  - loki.yaml
   - secrets.sops.yaml
   - thanos.yaml
-  # - traefik.yaml
-  # - velero.yaml
+  - traefik.yaml
+  - velero.yaml
   - webhook-receiver
