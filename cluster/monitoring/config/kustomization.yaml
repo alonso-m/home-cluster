@@ -8,5 +8,5 @@ resources:
   - secrets.sops.yaml
   - thanos.yaml
   - traefik.yaml
-  - velero.yaml
+  # - velero.yaml
   - webhook-receiver
