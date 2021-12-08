@@ -12,3 +12,4 @@ resources:
   - networking.yaml
   - openebs.yaml
   - self-hosted.yaml
+  - webhook-receiver
