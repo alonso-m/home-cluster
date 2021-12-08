@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - changedetection-io
   - echo-server
-  # - ghost
+  - ghost
   - hajimari
   - littlelink
   - minio
