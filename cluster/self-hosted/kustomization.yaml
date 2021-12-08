@@ -6,7 +6,7 @@ resources:
   - ghost
   - hajimari
   - littlelink
-  - minio
+  # - minio
   # - nextcloud
   - rxresume
   - syncthing
