@@ -14,9 +14,6 @@
     "fileMatch": [
       "cluster/.+\\.yaml$"
     ],
-    "ignorePaths": [
-      "cluster/flux-system/"
-    ],
   },
   "regexManagers": [
     // regexManager to read and process HelmRelease files
