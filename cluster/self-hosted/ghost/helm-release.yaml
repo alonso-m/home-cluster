@@ -38,7 +38,7 @@ spec:
       targetPath: mariadb.auth.rootPassword
       optional: false
   values:
-    ghostHost: rfc826.com
+    # ghostHost: rfc826.com
     ghostUsername: "malonso"
     ghostBlogTitle: "Enkubados"
     ghostEnableHttps: true
