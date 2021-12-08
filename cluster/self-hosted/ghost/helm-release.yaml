@@ -32,6 +32,11 @@ spec:
       valuesKey: mariadbPassword
       targetPath: mariadb.auth.password
       optional: false
+    - kind: Secret
+      name: ghost-secret
+      valuesKey: mariadbPassword
+      targetPath: mariadb.auth.rootPassword
+      optional: false
   values:
     ghostHost: rfc826.com
     ghostUsername: "malonso"
