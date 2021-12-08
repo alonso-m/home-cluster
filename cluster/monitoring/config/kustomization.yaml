@@ -9,3 +9,4 @@ resources:
   - thanos.yaml
   - traefik.yaml
   - velero.yaml
+  - webhook-receiver
