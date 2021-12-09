@@ -38,7 +38,7 @@ spec:
       targetPath: mariadb.auth.rootPassword
       optional: false
   values:
-    # ghostHost: https://rfc826.com
+    ghostHost: rfc826.com
     ghostUsername: "malonso"
     ghostBlogTitle: "Enkubados"
     ghostEnableHttps: true
@@ -67,30 +67,6 @@ spec:
 
     readinessProbe:
       enabled: true
-
-    customLivenessProbe:
-      httpHeaders:
-        - name: Host
-          value: rfc826.com
-        - name: X-Forwarded-Proto
-          value: https
-      initialDelaySeconds: 120
-      periodSeconds: 10
-      timeoutSeconds: 5
-      failureThreshold: 6
-      successThreshold: 1
-
-    customReadinessProbe:
-      httpHeaders:
-        - name: Host
-          value: rfc826.com
-        - name: X-Forwarded-Proto
-          value: https
-      initialDelaySeconds: 30
-      periodSeconds: 5
-      timeoutSeconds: 3
-      failureThreshold: 6
-      successThreshold: 1
 
     persistence:
       enabled: true
