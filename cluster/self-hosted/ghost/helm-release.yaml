@@ -47,6 +47,9 @@ spec:
 
     service:
       type: ClusterIP
+      ports:
+        http: 80
+        # https: 443
 
     ingress:
       enabled: true
