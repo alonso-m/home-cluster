@@ -187,3 +187,6 @@ spec:
     persistence:
       enabled: true
       existingClaim: grafana
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "grafana"

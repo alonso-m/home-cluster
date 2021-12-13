@@ -52,3 +52,6 @@ spec:
 
     # extraArgs:
     #   notify-url: ${KURED_DISCORD_WEBHOOK}
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "kured"

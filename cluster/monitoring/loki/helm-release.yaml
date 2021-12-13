@@ -58,6 +58,9 @@ spec:
     serviceMonitor:
       enabled: true
 
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "kured"
+
   valuesFrom:
     - kind: Secret
       name: loki-s3
