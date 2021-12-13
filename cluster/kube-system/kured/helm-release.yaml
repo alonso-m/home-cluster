@@ -21,7 +21,7 @@ spec:
     - kind: Secret
       name: kured
       valuesKey: discord-webhook
-      targetPath: configuration.notifyUrl
+      targetPath: extraArgs.notify-url
       optional: false
 
   values:

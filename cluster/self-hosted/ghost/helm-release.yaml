@@ -61,8 +61,7 @@ spec:
         # hajimari.io/enable: "true"
         # hajimari.io/icon: "ufo"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/service.serverstransport.insecureskipverify: "true"
-        # traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+          # traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
       tls: true
       ingressClassName: "traefik"
 
