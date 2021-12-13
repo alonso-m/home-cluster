@@ -59,30 +59,12 @@ spec:
             secretName: "filebrowser-tls"
 
     persistence:
-      config:
-        enabled: true
-        existingClaim: filebrowser
       media:
         enabled: true
         existingClaim: downloads
 
     podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/data"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/data"]'
       secret.reloader.stakater.com/reload: "filebrowser"
-
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /data
-        securityContext:
-          privileged: true
 
     # resources:
     #   requests:
