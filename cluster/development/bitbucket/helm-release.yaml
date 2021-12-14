@@ -82,8 +82,6 @@ spec:
       #
       driver: 'org.postgresql.Driver'
 
-      # JDBC connection credentials
-      #
       credentials:
 
         # -- The name of the K8s Secret that contains the database login credentials.
