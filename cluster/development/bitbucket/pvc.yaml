@@ -2,14 +2,25 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: vaultwarden
-  namespace: self-hosted
-#  labels:
-#    kasten.io/backup-volume: "enabled"
+  name: bitbucket-home
+  namespace: development
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
+  storageClassName: openebs-nvme-0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bitbucket-shared
+  namespace: development
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
   storageClassName: openebs-nvme-0
