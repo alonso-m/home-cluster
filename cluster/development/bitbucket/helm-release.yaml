@@ -69,7 +69,7 @@ spec:
       # - 'jdbc:oracle:thin:@<dbhost>:1521:<SID>'
       # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#databaseurl
       #
-      url: 'jdbc:postgresql://databases.postgres.svc.cluster.local:5432/bitbucket'
+      url: 'jdbc:postgresql://databases.postgresql.svc.cluster.local:5432/bitbucket'
 
       # -- The Java class name of the JDBC driver to be used. If not specified, then it will
       # need to be provided via the browser during manual configuration post deployment.
