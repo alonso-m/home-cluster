@@ -21,371 +21,41 @@ spec:
       repository: atlassian/bitbucket
       tag: 7.19.0
 
-    ## Atlassian Bitbucket Data Center Helm values
-    #
-    # HEADS UP!
-    #
-    # Data loss will occur if sections declared as 'REQUIRED' are not configured appropriately!
-    # These sections are:
-    # - database
-    # - volumes
-    #
-    # Additional details on pre-provisioning these required resources can be found here:
-    # https://atlassian.github.io/data-center-helm-charts/userguide/INSTALLATION/#3-configure-database
-    # https://atlassian.github.io/data-center-helm-charts/userguide/INSTALLATION/#5-configure-persistent-storage
-    #
-    # To manage external access to the Bitbucket instance, an ingress resource can also be configured
-    # under the 'ingress' stanza. This requires a pre-provisioned ingress controller to be present.
-    #
-    # Additional details on pre-provisioning an ingress controller can be found here:
-    # https://atlassian.github.io/data-center-helm-charts/userguide/INSTALLATION/#4-configure-ingress
-    #
-    # Unlike the other products, Bitbucket has the added advantage that it can be fully
-    # configured at deployment. For a fully configured Bitbucket instance that does not
-    # require manual configuration post deployment the following sections should all be
-    # configured:
-    # - database
-    # - volumes
-    # - bitbucket.license
-    # - bitbucket.sysadminCredentials
-    # - bitbucket.elasticSearch
-    #
-    ##
-
-
-    # REQUIRED - Database configuration
-    #
-    # Bitbucket requires a backend database. The configuration below can be used to define the
-    # database to use and its connection details.
-    # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#database-connectivity
-    #
     database:
-
-      # -- The jdbc URL of the database. If not specified, then it will need to be provided
-      # via the browser during manual configuration post deployment. Example URLs include:
-      # - 'jdbc:postgresql://<dbhost>:5432/<dbname>'
-      # - 'jdbc:mysql://<dbhost>/<dbname>'
-      # - 'jdbc:sqlserver://<dbhost>:1433;databaseName=<dbname>'
-      # - 'jdbc:oracle:thin:@<dbhost>:1521:<SID>'
-      # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#databaseurl
-      #
       url: 'jdbc:postgresql://postgresql.databases.svc.cluster.local:5432/bitbucket'
-
-      # -- The Java class name of the JDBC driver to be used. If not specified, then it will
-      # need to be provided via the browser during manual configuration post deployment.
-      # Valid drivers are:
-      # - 'org.postgresql.Driver'
-      # - 'com.mysql.jdbc.Driver'
-      # - 'oracle.jdbc.OracleDriver'
-      # - 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
-      # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#databasedriver:
-      #
       driver: 'org.postgresql.Driver'
-
       credentials:
-
-        # -- The name of the K8s Secret that contains the database login credentials.
-        # If the secret is specified, then the credentials will be automatically utilised on
-        # Bitbucket startup. If the secret is not provided, then the credentials will need
-        # to be provided via the browser during manual configuration post deployment.
-        #
-        # Example of creating a database credentials K8s secret below:
-        # 'kubectl create secret generic <secret-name> --from-literal=username=<username> \
-        # --from-literal=password=<password>'
-        # https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets
-        #
         secretName: bitbucket
-
-        # -- The key ('username') in the Secret used to store the database login username
-        #
         usernameSecretKey: database-username
-
-        # -- The key ('password') in the Secret used to store the database login password
-        #
         passwordSecretKey: database-password
 
-    # REQUIRED - Volume configuration
-    #
-    # By default, the charts will configure the local-home and shared-home as ephemeral
-    # volumes i.e. 'emptyDir: {}'. This is fine for evaluation purposes but for production
-    # deployments this is not ideal and so local-home and shared-home should both be configured
-    # appropriately.
-    # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#volumes
-    #
     volumes:
-
-      # Each pod requires its own volume for 'local-home'. This is needed for key data
-      # that help define how Bitbucket works.
-      # https://confluence.atlassian.com/bitbucketserver/set-the-home-directory-776640890.html
-      #
       localHome:
-
-        # Dynamic provisioning of local-home using the K8s Storage Classes
-        #
-        # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic
-        # https://atlassian.github.io/data-center-helm-charts/examples/storage/aws/LOCAL_STORAGE/
-        #
-        persistentVolumeClaim:
-
-          # -- If 'true', then a 'PersistentVolume' and 'PersistentVolumeClaim' will be dynamically
-          # created for each pod based on the 'StorageClassName' supplied below.
-          #
-          create: false
-
-          # -- Specify the name of the 'StorageClass' that should be used for the local-home
-          # volume claim.
-          #
-          storageClassName:
-
-          # -- Specifies the standard K8s resource requests and/or limits for the local-home
-          # volume claims.
-          #
-          resources:
-            requests:
-              storage: 1Gi
-
-        # -- Static provisioning of local-home using K8s PVs and PVCs
-        #
-        # NOTE: Due to the ephemeral nature of pods this approach to provisioning volumes for
-        # pods is not recommended. Dynamic provisioning described above is the prescribed
-        # approach.
-        #
-        # When 'persistentVolumeClaim.create' is 'false', then this value can be used to define
-        # a standard K8s volume that will be used for the local-home volume(s). If not defined,
-        # then an 'emptyDir' volume is utilised. Having provisioned a 'PersistentVolume', specify
-        # the bound 'persistentVolumeClaim.claimName' for the 'customVolume' object.
-        # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static
-        #
         customVolume:
           persistentVolumeClaim:
             claimName: "bitbucket-home"
-
-        # -- Specifies the path in the Bitbucket container to which the local-home volume will be
-        # mounted.
-        #
-        mountPath: "/var/atlassian/application-data/bitbucket"
-
-      # An NFS volume for 'shared-home' is required by Bitbucket to effectively operate in multi-node
-      # environment.
-      #
-      # Details on how an NFS should be stood up for Bitbucket can be found here:
-      # https://confluence.atlassian.com/bitbucketserver/install-bitbucket-data-center-872139817.html#InstallBitbucketDataCenter-nfs
-      #
-      # Additional information on utilizing an NFS with the Helm charts can be found here:
-      # https://atlassian.github.io/data-center-helm-charts/examples/storage/nfs/NFS/
-      #
       sharedHome:
-
-        # Provision a PersistentVolume for an existing NFS server
-        #
-        persistentVolume:
-
-          # -- If 'true' then a 'PersistentVolume' will be created for the NFS server
-          #
-          create: false
-
-          # NFS server details for which the PersistentVolume should be created.
-          #
-          nfs:
-
-            # -- The address of the NFS server. It needs to be resolvable by the kubelet,
-            # so consider using an IP address.
-            #
-            server: ""
-
-            # -- Specifies NFS directory share. This will be mounted into the Pod(s) using the
-            # 'volumes.sharedHome.mountPath'
-            #
-            path: ""
-
-          # -- Additional options to be used when mounting the NFS volume
-          #
-          mountOptions: []
-
-        # Create a claim for the NFS PersistentVolume
-        #
-        persistentVolumeClaim:
-
-          # -- If 'true', then a 'PersistentVolumeClaim' will be created for the 'PersistentVolume'
-          #
-          create: false
-
-          # -- Specify the name of the 'StorageClass' that should be used
-          #
-          # If set to non-empty string value, this will specify the storage class to be used.
-          # If left without value, the default Storage Class will be utilised. Alternatively,
-          # can be set to the empty string "", to indicate that no Storage Class should be used here.
-          storageClassName:
-
-          # -- If persistentVolume.create and persistentVolumeClaim.create are both true then any
-          # value supplied here is ignored and the default used. A custom value here is useful
-          # when bringing your own 'PersistentVolume' i.e. 'persistentVolume.create' is false.
-          #
-          volumeName:
-
-          # -- Specifies the access mode of the volume to claim
-          #
-          accessMode: ReadWriteMany
-
-          # -- Specifies the standard K8s resource requests and/or limits for the shared-home
-          #volume claims.
-          #
-          resources:
-            requests:
-              storage: 1Gi
-
-        # -- Static provisioning of shared-home using K8s PVs and PVCs
-        #
-        # When 'persistentVolume.create' and 'persistentVolumeClaim.create' are 'false', then
-        # this property can be used to define a custom volume that will be used for shared-home
-        # If not defined, then an 'emptyDir' volume is utilised.
-        #
-        # Having manually provisioned a 'PersistentVolume' with corresponding 'PersistentVolumeClaim'
-        # specify the bound claim name below
-        # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static
-        # https://atlassian.github.io/data-center-helm-charts/examples/storage/aws/SHARED_STORAGE/
-        #
         customVolume:
           persistentVolumeClaim:
             claimName: "bitbucket-shared"
-
-        # -- Specifies the path in the Bitbucket container to which the shared-home volume will be
-        # mounted.
-        #
-        mountPath: "/var/atlassian/application-data/shared-home"
-
-        # -- Specifies the sub-directory of the shared-home volume that will be mounted in to the
-        # Bitbucket container.
-        #
-        subPath:
-
-        # Modify permissions on shared-home
-        #
         nfsPermissionFixer:
-
-          # -- If 'true', this will alter the shared-home volume's root directory so that Bitbucket
-          # can write to it. This is a workaround for a K8s bug affecting NFS volumes:
-          # https://github.com/kubernetes/examples/issues/260
-          #
           enabled: false
 
-          # -- The path in the K8s initContainer where the shared-home volume will be mounted
-          #
-          mountPath: "/shared-home"
-
-          # -- By default, the fixer will change the group ownership of the volume's root directory
-          # to match the Bitbucket container's GID (2003), and then ensures the directory is
-          # group-writeable. If this is not the desired behaviour, command used can be specified
-          # here.
-          #
-          command:
-
-      # -- Defines additional volumes that should be applied to all Bitbucket pods.
-      # Note that this will not create any corresponding volume mounts;
-      # those need to be defined in bitbucket.additionalVolumeMounts
-      #
-      additional: []
-
-    # Ingress configuration
-    #
-    # To make the Atlassian product available from outside the K8s cluster an Ingress
-    # Controller should be pre-provisioned. With this in place the configuration below
-    # can be used to configure an appropriate Ingress Resource.
-    # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#ingress
-    #
     ingress:
-
-      # -- Set to 'true' if an Ingress Resource should be created. This depends on a
-      # pre-provisioned Ingress Controller being available.
-      #
       create: true
-
-      # -- The class name used by the ingress controller if it's being used.
-      #
-      # Please follow documentation of your ingress controller. If the cluster
-      # contains multiple ingress controllers, this setting allows you to control
-      # which of them is used for Atlassian application traffic.
-      #
       className: "traefik"
-
-      # -- Set to 'true' if the Ingress Resource is to use the K8s 'ingress-nginx'
-      # controller.
-      # https://kubernetes.github.io/ingress-nginx/
-      #
-      # This will populate the Ingress Resource with annotations that are specific to
-      # the K8s ingress-nginx controller. Set to 'false' if a different controller is
-      # to be used, in which case the appropriate annotations for that controller must
-      # be specified below under 'ingress.annotations'.
-      #
       nginx: false
-
-      # -- The max body size to allow. Requests exceeding this size will result
-      # in an HTTP 413 error being returned to the client.
-      #
-      maxBodySize: 250m
-
-      # -- The fully-qualified hostname (FQDN) of the Ingress Resource. Traffic coming in on
-      # this hostname will be routed by the Ingress Resource to the appropriate backend
-      # Service.
-      #
       host: code.${SECRET_DOMAIN}
-
-      # -- The base path for the Ingress Resource. For example '/bitbucket'. Based on a
-      # 'ingress.host' value of 'company.k8s.com' this would result in a URL of
-      # 'company.k8s.com/bitbucket'. Default value is 'bitbucket.service.contextPath'.
-      #
-      path:
-
-      # -- The custom annotations that should be applied to the Ingress Resource
-      # when NOT using the K8s ingress-nginx controller.
-      #
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         cert-manager.io/issue-temporary-certificate: "true"
         # hajimari.io/enable: "true"
         # hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-
-      # -- Set to 'true' if browser communication with the application should be TLS
-      # (HTTPS) enforced.
-      #
       https: true
-
-      # -- The name of the K8s Secret that contains the TLS private key and corresponding
-      # certificate. When utilised, TLS termination occurs at the ingress point where
-      # traffic to the Service, and it's Pods is in plaintext.
-      #
-      # Usage is optional and depends on your use case. The Ingress Controller itself
-      # can also be configured with a TLS secret for all Ingress Resources.
-      # https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets
-      # https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
-      #
       tlsSecretName: bitbucket-tls
 
-    # Bitbucket configuration
-    #
     bitbucket:
-
-      # K8s Service configuration
-      #
-      service:
-
-        # -- The port on which the Bitbucket K8s Service will listen
-        #
-        port: 80
-
-        # -- The type of K8s service to use for Bitbucket
-        #
-        type: ClusterIP
-
-        # -- The context path that Bitbucket will use.
-        #
-        contextPath:
-
-        # -- Additional annotations to apply to the Service
-        #
-        annotations: {}
-
       # -- Enable or disable an additional service for exposing SSH for external access.
       # Disable when the SSH service is exposed through the ingress controller, or
       # enable if the ingress controller does not support TCP.
@@ -413,96 +83,16 @@ spec:
         #
         annotations: {}
 
-      # Standard K8s field that holds pod-level security attributes and common container settings.
-      # https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-      # Do not populate when deploying to OpenShift, unless anyuid policy is attached to a service account.
-      #
-      securityContext:
-
-        # -- The GID used by the Bitbucket docker image
-        # If not supplied, will default to 2003.
-        # This is intended to ensure that the shared-home volume is group-writeable by the GID used by the Bitbucket container.
-        # However, this doesn't appear to work for NFS volumes due to a K8s bug: https://github.com/kubernetes/examples/issues/260
-        #
-        fsGroup: 2003
-
-      # -- Standard K8s field that holds security configurations that will be applied to a container.
-      # https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-      #
-      containerSecurityContext: {}
-
-      # -- Boolean to define whether to set local home directory permissions on startup
-      # of Bitbucket container. Set to 'false' to disable this behaviour.
-      #
-      setPermissions: true
-
-      # Port definitions
-      #
-      ports:
-
-        # -- The port on which the Bitbucket container listens for HTTP traffic
-        #
-        http: 7990
-
-        # -- The port on which the Bitbucket container listens for SSH traffic
-        #
-        ssh: 7999
-
-        # -- The port on which the Hazelcast listens for client traffic
-        #
-        hazelcast: 5701
-
-      # Bitbucket licensing details
-      #
       license:
-
-        # -- The name of the K8s Secret that contains the Bitbucket license key. If specified, then
-        # the license will be automatically populated during Bitbucket setup. Otherwise, it will
-        # need to be provided via the browser after initial startup. An Example of creating
-        # a K8s secret for the license below:
-        # 'kubectl create secret generic <secret-name> --from-literal=license-key=<license>
-        # https://kubernetes.io/docs/concepts/configuration/secret/#opaque-secrets
-        #
         secretName: bitbucket
-
-        # -- The key in the K8s Secret that contains the Bitbucket license key
-        #
         secretKey: license-key
 
-      # Bitbucket system administrator credential config
-      # https://atlassian.github.io/data-center-helm-charts/userguide/INSTALLATION/?h=sysad#7-configure-license
-      #
       sysadminCredentials:
-
-        # -- The name of the Kubernetes Secret that contains the Bitbucket sysadmin credentials
-        # If specified, then these will be automatically populated during Bitbucket setup.
-        # Otherwise, they will need to be provided via the browser after initial startup.
-        #
         secretName: bitbucket
-
-        # -- The key in the Kubernetes Secret that contains the sysadmin username
-        #
         usernameSecretKey: admin-username
-
-        # -- The key in the Kubernetes Secret that contains the sysadmin password
-        #
         passwordSecretKey: admin-password
-
-        # -- The key in the Kubernetes Secret that contains the sysadmin display name
-        #
         displayNameSecretKey: admin-displayName
-
-        # -- The key in the Kubernetes Secret that contains the sysadmin email address
-        #
         emailAddressSecretKey: admin-emailAddress
-
-      # -- Set the display name of the Bitbucket instance. Note that this value is only used during installation and
-      # changing the value during an upgrade has no effect.
-      #
-      displayName:
-
-      # Data Center clustering
-      #
 
     # Fluentd configuration
     #
