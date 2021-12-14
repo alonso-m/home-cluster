@@ -45,7 +45,6 @@ spec:
 
         psql -U postgres -c "CREATE DATABASE bitbucket;"
         psql -U postgres -c "CREATE DATABASE bamboo;"
-        psql -U postgres -c "CREATE DATABASE nextcloud;"
 
     # psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE bitbucket TO docker"
 
