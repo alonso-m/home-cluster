@@ -26,10 +26,11 @@ spec:
     podAnnotations:
       backup.velero.io/backup-volumes: postgresql
 
-    # metrics:
-    #   enabled: true
-    #   serviceMonitor:
-    #     enabled: true
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
     persistence:
       size: 5Gi
       existingClaim: postgresql

@@ -56,24 +56,12 @@ spec:
       tlsSecretName: bitbucket-tls
 
     bitbucket:
-      # -- Enable or disable an additional service for exposing SSH for external access.
-      # Disable when the SSH service is exposed through the ingress controller, or
-      # enable if the ingress controller does not support TCP.
-      #
       sshService:
-
-        # -- Set to 'true' if an additional SSH Service should be created
-        #
-        enabled: false
-
-        # -- Port to expose the SSH service on.
-        #
-        port: 22
-
+        enabled: true
+        port: 7999
         # -- The hostname of the SSH service. If set, it'll be used to configure the SSH base URL for the application.
         #
         host:
-
         # -- SSH Service type
         #
         type: LoadBalancer
@@ -94,77 +82,4 @@ spec:
         displayNameSecretKey: admin-displayName
         emailAddressSecretKey: admin-emailAddress
 
-    # Fluentd configuration
-    #
-    # Bitbucket log collection and aggregation can be enabled using Flunetd. This config
-    # assumes an existing ELK stack has been stood up and is available.
-    # https://www.fluentd.org/
-    #
-    fluentd:
-
-      # -- Set to 'true' if the Fluentd sidecar (DaemonSet) should be added to each pod
-      #
-      enabled: false
-
-      # -- The Fluentd sidecar image
-      #
-      imageName: fluent/fluentd-kubernetes-daemonset:v1.11.5-debian-elasticsearch7-1.2
-
-      # -- The command used to start Fluentd. If not supplied the default command
-      # will be used: "fluentd -c /fluentd/etc/fluent.conf -v"
-      #
-      # Note: The custom command can be free-form, however pay particular attention to
-      # the process that should ultimately be left running in the container. This process
-      # should be invoked with 'exec' so that signals are appropriately propagated to it,
-      # for instance SIGTERM. An example of how such a command may look is:
-      # "<command 1> && <command 2> && exec <primary command>"
-      command:
-
-      # -- Set to 'true' if a custom config (see 'configmap-fluentd.yaml' for default)
-      # should be used for Fluentd. If enabled this config must be supplied via the
-      # 'fluentdCustomConfig' property below.
-      #
-      customConfigFile: false
-
-      # -- Custom fluent.conf file
-      #
-      fluentdCustomConfig: {}
-      # fluent.conf: |
-      #   <source>
-      #     @type tail
-      #     <parse>
-      #     @type multiline
-      #     format_firstline /\d{4}-\d{1,2}-\d{1,2}/
-      #     </parse>
-      #     path /application-data/logs/atlassian-bitbucket-access.log*
-      #     pos_file /tmp/bitbucketlog.pos
-      #     tag bitbucket-access-logs
-      #   </source>
-
-      # Elasticsearch config based on your ELK stack
-      #
-      elasticsearch:
-
-        # -- Set to 'true' if Fluentd should send all log events to an Elasticsearch service.
-        #
-        enabled: true
-
-        # -- The hostname of the Elasticsearch service that Fluentd should send logs to.
-        #
-        hostname: elasticsearch
-
-      # -- Specify custom volumes to be added to Fluentd container (e.g. more log sources)
-      #
-      extraVolumes: []
-      # - name: local-home
-      #   mountPath: application-data/logs
-      #   subPath: log
-      #   readOnly: true
-
-    # -- Custom annotations that will be applied to all Bitbucket pods
-    #
     podAnnotations: {}
-    #  name: <value>
-
-    # -- Standard K8s node-selectors that will be applied to all Bitbucket pods
-    #
