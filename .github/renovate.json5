@@ -1,4 +1,7 @@
 {
+  "extends": [
+    "github>alonso-m/home-cluster//.github/renovate/autoMerge"
+  ],
   "enabled": true,
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
@@ -13,6 +16,9 @@
   "kubernetes": {
     "fileMatch": [
       "cluster/.+\\.yaml$"
+    ],
+    "ignorePaths": [
+      "cluster/flux-system/"
     ],
   },
   "regexManagers": [
