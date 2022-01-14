@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - _pvc
   - filebrowser
-  - jellyfin
+  # - jellyfin
   - transmission
