@@ -5,6 +5,7 @@ resources:
   - flux-system.yaml
   - kured.yaml
   - loki.yaml
+  - middlewares
   - secrets.sops.yaml
   - system-upgrade-controller
   - thanos.yaml
