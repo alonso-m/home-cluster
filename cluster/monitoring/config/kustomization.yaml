@@ -6,6 +6,7 @@ resources:
   - kured.yaml
   - loki.yaml
   - secrets.sops.yaml
+  - system-upgrade-controller
   - thanos.yaml
   - traefik.yaml
   - velero.yaml
