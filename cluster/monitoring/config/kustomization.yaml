@@ -8,7 +8,7 @@ resources:
   - middlewares
   - secrets.sops.yaml
   - system-upgrade-controller
-  - thanos.yaml
+  # - thanos.yaml
   - traefik.yaml
   - velero.yaml
   - webhook-receiver
