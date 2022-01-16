@@ -5,7 +5,6 @@ metadata:
   name: minio
   namespace: self-hosted
   labels:
-#    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
