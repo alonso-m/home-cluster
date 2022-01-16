@@ -25,3 +25,29 @@ spec:
         name: cluster-settings
       - kind: Secret
         name: cluster-secrets
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: backups-config
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cert-manager
+  interval: 10m0s
+  path: ./cluster/backups/config
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets

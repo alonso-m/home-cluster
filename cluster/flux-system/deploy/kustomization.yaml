@@ -8,6 +8,7 @@ resources:
   - databases.yaml
   - development.yaml
   - downloads.yaml
+  - flux-system.yaml
   - kube-system.yaml
   - monitoring.yaml
   - networking.yaml
