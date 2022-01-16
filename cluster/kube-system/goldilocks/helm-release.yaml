@@ -20,7 +20,13 @@ spec:
     vpa:
       enabled: true
 
+    controller:
+      flags:
+        on-by-default: true
+        exclude-namespaces: kube-system
+
     dashboard:
+      replicaCount: 1
       ingress:
         enabled: true
         annotations:
