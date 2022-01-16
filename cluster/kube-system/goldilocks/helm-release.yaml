@@ -45,3 +45,4 @@ spec:
         tls:
           - hosts:
               - goldilocks.${SECRET_DOMAIN}
+            secretName: "goldilocks-tls"
