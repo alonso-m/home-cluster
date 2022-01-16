@@ -29,6 +29,8 @@ metadata:
   name: kube-system-config
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: kube-system
   interval: 10m0s
   path: ./cluster/kube-system/config
   prune: true

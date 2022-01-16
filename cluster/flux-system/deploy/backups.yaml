@@ -33,7 +33,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cert-manager
+    - name: backups
   interval: 10m0s
   path: ./cluster/backups/config
   prune: true

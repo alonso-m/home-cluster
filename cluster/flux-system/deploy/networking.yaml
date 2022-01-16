@@ -29,6 +29,8 @@ metadata:
   name: networking-config
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: networking
   interval: 10m0s
   path: ./cluster/networking/config
   prune: true

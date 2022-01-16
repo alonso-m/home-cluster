@@ -32,9 +32,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: networking
     - name: monitoring
-    - name: backups
   interval: 10m0s
   path: ./cluster/monitoring/config
   prune: true
