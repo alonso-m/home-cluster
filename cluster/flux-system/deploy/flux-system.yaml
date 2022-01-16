@@ -5,6 +5,8 @@ metadata:
   name: flux-system-config
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: flux-system
   interval: 10m0s
   path: ./cluster/flux-system/config
   prune: true
