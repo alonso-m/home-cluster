@@ -33,7 +33,9 @@ spec:
           traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
         hosts:
           - host: goldilocks.${SECRET_DOMAIN}
-            paths: ["/"]
+            paths:
+              - path: /
+                type: ImplementationSpecific
         tls:
           - hosts:
               - goldilocks.${SECRET_DOMAIN}
