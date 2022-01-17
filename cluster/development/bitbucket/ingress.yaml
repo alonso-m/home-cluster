@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bitbucket-ssh
+  namespace: development
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  ingressClassName: "traefik"
+  rules:
+    - host: "code.${SECRET_DOMAIN}"
+      ssh:
+        paths:
+          - path: /
+            backend:
+              service:
+                name: bitbucket-ssh
+                port:
+                  number: 7999
+  tls:
+    - hosts:
+        - "code.${SECRET_DOMAIN}"
+      secretName: bitbucket-tls

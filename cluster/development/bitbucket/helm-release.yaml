@@ -61,10 +61,10 @@ spec:
         port: 7999
         # -- The hostname of the SSH service. If set, it'll be used to configure the SSH base URL for the application.
         #
-        host:
+        host: code.${SECRET_DOMAIN}
         # -- SSH Service type
         #
-        type: LoadBalancer
+        type: ClusterIP
 
         # -- Annotations for the SSH service. Useful if a load balancer controller
         # needs extra annotations.
