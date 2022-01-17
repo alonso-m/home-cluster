@@ -2,15 +2,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: bitbucket
+  name: bamboo
   namespace: development
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://atlassian.github.io/data-center-helm-charts
-      chart: bitbucket
-      version: 1.1.0
+      chart: bamboo
+      version: 1.0.0
       sourceRef:
         kind: HelmRepository
         name: atlassian-charts
@@ -18,14 +18,14 @@ spec:
       interval: 5m
   values:
     image:
-      repository: atlassian/bitbucket
-      tag: 7.19.3
+      repository: atlassian/bamboo
+      tag: 8.1.1
 
     database:
-      url: 'jdbc:postgresql://postgresql.databases.svc.cluster.local:5432/bitbucket'
-      driver: 'org.postgresql.Driver'
+      type: 'postgresql'
+      url: 'jdbc:postgresql://postgresql.databases.svc.cluster.local:5432/bamboo'
       credentials:
-        secretName: bitbucket
+        secretName: bamboo
         usernameSecretKey: database-username
         passwordSecretKey: database-password
 
@@ -33,11 +33,11 @@ spec:
       localHome:
         customVolume:
           persistentVolumeClaim:
-            claimName: "bitbucket-home"
+            claimName: "bamboo-home"
       sharedHome:
         customVolume:
           persistentVolumeClaim:
-            claimName: "bitbucket-shared"
+            claimName: "bamboo-shared"
         nfsPermissionFixer:
           enabled: false
 
@@ -45,7 +45,7 @@ spec:
       create: true
       className: "traefik"
       nginx: false
-      host: code.${SECRET_DOMAIN}
+      host: build.${SECRET_DOMAIN}
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         cert-manager.io/issue-temporary-certificate: "true"
@@ -53,35 +53,21 @@ spec:
         # hajimari.io/icon: "shield-key"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       https: true
-      tlsSecretName: bitbucket-tls
+      tlsSecretName: bamboo-tls
 
-    bitbucket:
-      sshService:
-        enabled: true
-        port: 7999
-        # -- The hostname of the SSH service. If set, it'll be used to configure the SSH base URL for the application.
-        #
-        host:
-        # -- SSH Service type
-        #
-        type: LoadBalancer
-
-        # -- Annotations for the SSH service. Useful if a load balancer controller
-        # needs extra annotations.
-        #
-        annotations: {}
-
+    bamboo:
+      unattendedSetup: true
       license:
-        secretName: bitbucket
+        secretName: bamboo
         secretKey: license-key
 
       sysadminCredentials:
-        secretName: bitbucket
+        secretName: bamboo
         usernameSecretKey: admin-username
         passwordSecretKey: admin-password
         displayNameSecretKey: admin-displayName
         emailAddressSecretKey: admin-emailAddress
 
     podAnnotations:
-      backup.velero.io/backup-volumes: "bitbucket-home, bitbucket-shared"
-      secret.reloader.stakater.com/reload: "bitbucket"
+      backup.velero.io/backup-volumes: "bamboo-home, bamboo-shared"
+      secret.reloader.stakater.com/reload: "bamboo"

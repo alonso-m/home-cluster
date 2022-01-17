@@ -20,10 +20,10 @@ spec:
     vpa:
       enabled: true
 
-    controller:
-      flags:
-        on-by-default: true
-        exclude-namespaces: kube-system
+    # controller:
+    #   flags:
+    #     on-by-default: true
+    #     exclude-namespaces: kube-system
 
     dashboard:
       replicaCount: 1
