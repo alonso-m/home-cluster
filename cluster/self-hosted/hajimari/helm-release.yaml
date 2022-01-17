@@ -25,11 +25,12 @@ spec:
       defaultEnable: false
       namespaceSelector:
         matchNames:
+          - development
+          - kube-system
           - downloads
           - self-hosted
-          - minio
+          - monitoring
           - networking
-          - velero
       name: "Mikel"
       customApps:
         - name: Router
@@ -94,11 +95,6 @@ spec:
           - hosts:
               - "hajimari.${SECRET_DOMAIN}"
             secretName: "hajimari-tls"
-
-    # persistence:
-    #   data:
-    #     enabled: true
-    #     existingClaim: hajimari
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"
