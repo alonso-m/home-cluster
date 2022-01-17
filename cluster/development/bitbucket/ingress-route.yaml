@@ -8,7 +8,7 @@ spec:
     - ssh
   routes:
     - kind: Rule
-    ## Domain matching is not possible with SSH, so match all domains:
+      ## Domain matching is not possible with SSH, so match all domains:
       match: HostSNI(@@@*@@@)
       services:
         - name: bitbucket-ssh
