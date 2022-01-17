@@ -6,9 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: networking
-    - name: openebs
-  interval: 10m0s
+    - name: cert-manager
+  interval: 30m0s
   path: ./cluster/development
   prune: true
   sourceRef:

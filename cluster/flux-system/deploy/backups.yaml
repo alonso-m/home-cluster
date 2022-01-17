@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: networking
     - name: openebs
-  interval: 10m0s
+  interval: 30m0s
   path: ./cluster/backups
   prune: true
   sourceRef:
@@ -34,7 +34,7 @@ metadata:
 spec:
   dependsOn:
     - name: backups
-  interval: 10m0s
+  interval: 30m0s
   path: ./cluster/backups/config
   prune: true
   sourceRef:
