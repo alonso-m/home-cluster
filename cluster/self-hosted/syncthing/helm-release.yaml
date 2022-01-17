@@ -24,8 +24,8 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
-          # hajimari.io/enable: "true"
-          # hajimari.io/icon: "shield-key"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "folder-sync"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: syncthing.${SECRET_DOMAIN}

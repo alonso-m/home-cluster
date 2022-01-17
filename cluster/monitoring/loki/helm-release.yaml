@@ -19,25 +19,25 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/loki
-    # ingress:
-    #   enabled: true
-    #   # ingressClassName: "traefik"
-    #   annotations:
-    #     kubernetes.io/ingress.class: traefik
-    #     cert-manager.io/cluster-issuer: "letsencrypt-production"
-    #     cert-manager.io/issue-temporary-certificate: "true"
-    #     # hajimari.io/enable: "true"
-    #     # hajimari.io/icon: "movie-open-play"
-    #     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    #     traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
-    #   hosts:
-    #     - host: "loki.${SECRET_DOMAIN}"
-    #       paths:
-    #         - /
-    #   tls:
-    #     - hosts:
-    #         - "loki.${SECRET_DOMAIN}"
-    #       secretName: loki-tls
+    ingress:
+      enabled: true
+      # ingressClassName: "traefik"
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        cert-manager.io/issue-temporary-certificate: "true"
+        # hajimari.io/enable: "true"
+        # hajimari.io/icon: "movie-open-play"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+      hosts:
+        - host: "loki.${SECRET_DOMAIN}"
+          paths:
+            - /
+      tls:
+        - hosts:
+            - "loki.${SECRET_DOMAIN}"
+          secretName: loki-tls
 
     config:
       storage_config:
