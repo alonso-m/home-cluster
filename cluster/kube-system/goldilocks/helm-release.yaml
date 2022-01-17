@@ -46,3 +46,7 @@ spec:
           - hosts:
               - goldilocks.${SECRET_DOMAIN}
             secretName: "goldilocks-tls"
+
+    resources:
+      limits:
+        memory: 500Mi
