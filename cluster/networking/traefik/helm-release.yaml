@@ -75,6 +75,11 @@ spec:
     ports:
       traefik:
         expose: true
+      ssh:
+        expose: true
+        exposedPort: 22
+        port: 7999
+        protocol: TCP
       web:
         redirectTo: websecure
       websecure:
