@@ -60,14 +60,16 @@ spec:
       license:
         secretName: bamboo
         secretKey: license-key
-
       sysadminCredentials:
         secretName: bamboo
         usernameSecretKey: admin-username
         passwordSecretKey: admin-password
         displayNameSecretKey: admin-displayName
         emailAddressSecretKey: admin-emailAddress
+      securityToken:
+        secretName: bamboo
+        secretKey: security-token
 
     podAnnotations:
-      backup.velero.io/backup-volumes: "bamboo-home, bamboo-shared"
+      backup.velero.io/backup-volumes: "localHome, sharedHome"
       secret.reloader.stakater.com/reload: "bamboo"

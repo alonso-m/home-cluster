@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: bamboo-agent
+  namespace: development
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://atlassian.github.io/data-center-helm-charts
+      chart: bamboo-agent
+      version: 1.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: atlassian-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: atlassian/bamboo-agent-base
+      tag: 8.1.1
+
+    agent:
+      securityToken:
+        secretName: bamboo
+        secretKey: security-token
+      server: bamboo.development.svc.cluster.local
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "bamboo-agent"

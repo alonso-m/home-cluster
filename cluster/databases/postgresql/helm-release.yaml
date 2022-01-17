@@ -24,7 +24,7 @@ spec:
 
 
     podAnnotations:
-      backup.velero.io/backup-volumes: postgresql
+      backup.velero.io/backup-volumes: "data"
 
     metrics:
       enabled: true
