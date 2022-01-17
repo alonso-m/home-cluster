@@ -69,6 +69,7 @@ spec:
       securityToken:
         secretName: bamboo
         secretKey: security-token
+      disableAgentAuth: true
 
     podAnnotations:
       backup.velero.io/backup-volumes: "localHome, sharedHome"
