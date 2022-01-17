@@ -7,9 +7,7 @@ spec:
   entryPoints:
     - ssh
   routes:
-    - kind: Rule
-      ## Domain matching is not possible with SSH, so match all domains:
-      match: HostSNI(@@@*@@@)
+    - match: HostSNI(`*`)
       services:
         - name: bitbucket-ssh
           port: 7999
