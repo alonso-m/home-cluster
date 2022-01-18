@@ -33,8 +33,10 @@ jobs:
           delete-branch: true
           title: "chore(deps): update KaH common library chart"
           signoff: true
-          assignees: "alonso-m"
           commit-message: "chore(deps): update KaH common library chart"
+          committer: "Miguel Alonso <alonso-m@users.noreply.github.com>"
+          author: "Miguel Alonso <alonso-m@users.noreply.github.com>"
+          assignees: "alonso-m"
           body: |
             Update the kah library chart
           labels: renovate/helm-chart

@@ -35,8 +35,9 @@ jobs:
           delete-branch: true
           title: "chore(deps): upgrade flux components to ${{ steps.upgrade.outputs.flux_version }}"
           signoff: false
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          committer: "Miguel Alonso <alonso-m@users.noreply.github.com>"
+          author: "Miguel Alonso <alonso-m@users.noreply.github.com>"
+          assignees: "alonso-m"
           commit-message: "chore(deps): upgrade flux components to ${{ steps.upgrade.outputs.flux_version }}"
           body: |
             Release notes: https://github.com/fluxcd/flux2/releases/tag/${{ steps.upgrade.outputs.flux_version }}
