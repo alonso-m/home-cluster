@@ -67,9 +67,6 @@ spec:
             secretName: "download-tls"
 
     persistence:
-      # config:
-      #   enabled: true
-      #   existingClaim: transmission
       media:
         enabled: true
         existingClaim: downloads

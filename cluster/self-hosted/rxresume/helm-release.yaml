@@ -48,6 +48,12 @@ spec:
               - "cv.${SECRET_DOMAIN}"
             secretName: rxresume-tls
 
+    persistence:
+      config:
+        enabled: true
+        existingClaim: rxresume
+        mountPath: /usr/share/nginx/html
+
     resources:
       requests:
         memory: 100Mi

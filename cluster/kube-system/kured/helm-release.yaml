@@ -29,13 +29,6 @@ spec:
       repository: raspbernetes/kured
       tag: 1.9.1
 
-    # extraEnvVars:
-    #   - name: KURED_DISCORD_WEBHOOK
-    #     valueFrom:
-    #       secretKeyRef:
-    #         name: kured
-    #         key: discord-webhook
-
     updateStrategy: RollingUpdate
 
     configuration:
@@ -49,9 +42,6 @@ spec:
 
     metrics:
       create: true
-
-    # extraArgs:
-    #   notify-url: ${KURED_DISCORD_WEBHOOK}
 
     podAnnotations:
       secret.reloader.stakater.com/reload: "kured"
