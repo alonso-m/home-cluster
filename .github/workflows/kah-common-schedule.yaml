@@ -39,4 +39,4 @@ jobs:
           assignees: "alonso-m"
           body: |
             Update the kah library chart
-          labels: renovate/helm-chart
+          labels: renovate/helm
