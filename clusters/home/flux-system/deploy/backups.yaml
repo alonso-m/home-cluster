@@ -9,7 +9,7 @@ spec:
     - name: networking
     - name: openebs
   interval: 30m0s
-  path: ./cluster/backups
+  path: ./clusters/home/backups
   prune: true
   sourceRef:
     kind: GitRepository
@@ -35,7 +35,7 @@ spec:
   dependsOn:
     - name: backups
   interval: 30m0s
-  path: ./cluster/backups/config
+  path: ./clusters/home/backups/config
   prune: true
   sourceRef:
     kind: GitRepository

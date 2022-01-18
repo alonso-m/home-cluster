@@ -1,6 +1,6 @@
 {
   "extends": [
-    "github>alonso-m/home-cluster//.github/renovate/autoMerge"
+    "github>alonso-m/home-cluster/.github/renovate/autoMerge"
   ],
   "enabled": true,
   "semanticCommits": "enabled",
@@ -10,22 +10,22 @@
   "rebaseWhen": "conflicted",
   "helm-values": {
     "fileMatch": [
-      "cluster/.+/helm-release\\.yaml$"
+      "clusters/.+/helm-release\\.yaml$"
     ]
   },
   "kubernetes": {
     "fileMatch": [
-      "cluster/.+\\.yaml$"
+      "clusters/.+\\.yaml$"
     ],
     "ignorePaths": [
-      "cluster/flux-system/"
+      "clusters/home/flux-system/"
     ],
   },
   "regexManagers": [
     // regexManager to read and process HelmRelease files
     {
       "fileMatch": [
-        "cluster/.+\\.yaml$"
+        "clusters/.+\\.yaml$"
       ],
       "matchStrings": [
         // helm releases

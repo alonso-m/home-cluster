@@ -2,13 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cert-manager
+  name: networking
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: networking
   interval: 30m0s
-  path: ./cluster/cert-manager
+  path: ./clusters/home/networking
   prune: true
   sourceRef:
     kind: GitRepository
@@ -28,13 +26,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cert-manager-config
+  name: networking-config
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cert-manager
+    - name: networking
   interval: 30m0s
-  path: ./cluster/cert-manager/config
+  path: ./clusters/home/networking/config
   prune: true
   sourceRef:
     kind: GitRepository

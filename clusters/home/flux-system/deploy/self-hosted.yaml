@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cert-manager
   interval: 30m0s
-  path: ./cluster/self-hosted
+  path: ./clusters/home/self-hosted
   prune: true
   sourceRef:
     kind: GitRepository

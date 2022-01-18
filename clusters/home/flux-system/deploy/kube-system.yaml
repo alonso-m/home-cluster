@@ -2,13 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: monitoring
+  name: kube-system
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cert-manager
   interval: 30m0s
-  path: ./cluster/monitoring
+  path: ./clusters/home/kube-system
   prune: true
   sourceRef:
     kind: GitRepository
@@ -28,13 +26,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: monitoring-config
+  name: kube-system-config
   namespace: flux-system
 spec:
   dependsOn:
-    - name: monitoring
+    - name: kube-system
   interval: 30m0s
-  path: ./cluster/monitoring/config
+  path: ./clusters/home/kube-system/config
   prune: true
   sourceRef:
     kind: GitRepository
