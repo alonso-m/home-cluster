@@ -22,9 +22,9 @@ spec:
       repository: bitnami/postgresql
       tag: 10
 
-
-    podAnnotations:
-      backup.velero.io/backup-volumes: "data"
+    primary:
+      podAnnotations:
+        backup.velero.io/backup-volumes: "data"
 
     metrics:
       enabled: true
@@ -35,7 +35,7 @@ spec:
       size: 5Gi
       existingClaim: postgresql
 
-    # postgresqlUsername: "postgres"
+
     postgresqlDatabase: "postgres"
     existingSecret: "postgresql"
 
@@ -48,10 +48,17 @@ spec:
         psql -U postgres -c "CREATE DATABASE bamboo;"
 
     # psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE bitbucket TO docker"
-
     #     CREATE USER docker;
     #     CREATE DATABASE my_project_development;
     #     GRANT ALL PRIVILEGES ON DATABASE my_project_development TO docker;
     #     CREATE DATABASE my_project_test;
     #     GRANT ALL PRIVILEGES ON DATABASE my_project_test TO docker;
     # EOSQL
+
+    # resources:
+    #   requests:
+    #     cpu: 10m
+    #     memory: 110M
+    #   limits:
+    #     cpu: 18m
+    #     memory: 212M
