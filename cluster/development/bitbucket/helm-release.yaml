@@ -83,5 +83,5 @@ spec:
         emailAddressSecretKey: admin-emailAddress
 
     podAnnotations:
-      backup.velero.io/backup-volumes: "localHome, sharedHome"
+      backup.velero.io/backup-volumes: "local-home, shared-home"
       secret.reloader.stakater.com/reload: "bitbucket"
