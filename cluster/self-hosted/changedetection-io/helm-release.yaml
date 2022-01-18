@@ -66,10 +66,11 @@ spec:
 
     resources:
       requests:
-        memory: 100Mi
-        cpu: 100m
+        cpu: 10m
+        memory: 110M
       limits:
-        memory: 750Mi
+        cpu: 200m
+        memory: 200M
 
     additionalContainers:
       chrome-webdriver:
@@ -82,6 +83,13 @@ spec:
         volumeMounts:
           - name: cache
             mountPath: /dev/shm
+        resources:
+          requests:
+            cpu: 10m
+            memory: 183M
+          limits:
+            cpu: 100m
+            memory: 300M
       # fsfreeze:
       #   name: fsfreeze
       #   image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0

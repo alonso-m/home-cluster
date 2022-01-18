@@ -55,10 +55,9 @@ spec:
     #     GRANT ALL PRIVILEGES ON DATABASE my_project_test TO docker;
     # EOSQL
 
-    # resources:
-    #   requests:
-    #     cpu: 10m
-    #     memory: 110M
-    #   limits:
-    #     cpu: 18m
-    #     memory: 212M
+    resources:
+      requests:
+        cpu: 10m
+        memory: 110M
+      limits:
+        memory: 700M

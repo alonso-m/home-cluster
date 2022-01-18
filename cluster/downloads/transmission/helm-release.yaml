@@ -106,3 +106,10 @@ spec:
             #!/bin/bash
             /etc/openvpn/down.sh
             echo "disconnected" > /shared/vpnstatus
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 226M
+      limits:
+        memory: 800M

@@ -43,6 +43,11 @@ spec:
         existingClaim: syncthing
         mountPath: /var/syncthing
 
+    resources:
+      requests:
+        cpu: 11m
+        memory: 204M
+
     podAnnotations:
       backup.velero.io/backup-volumes: config
       # pre.hook.backup.velero.io/container: fsfreeze

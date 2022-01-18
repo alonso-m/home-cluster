@@ -56,5 +56,12 @@ spec:
         type: emptyDir
         medium: Memory
 
+    resources:
+      requests:
+        cpu: 10m
+        memory: 920M
+      limits:
+        memory: 4000M
+
     podAnnotations:
       backup.velero.io/backup-volumes: config

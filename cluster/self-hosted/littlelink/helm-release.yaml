@@ -58,3 +58,10 @@ spec:
           - hosts:
               - "me.${SECRET_DOMAIN}"
             secretName: littlelink-tls
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 105M
+      limits:
+        memory: 105M
