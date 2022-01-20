@@ -29,6 +29,7 @@ metadata:
   name: kube-system-config
   namespace: flux-system
 spec:
+  interval: 10m0s
   dependsOn:
     - name: kube-system
   path: ./clusters/pueblo/kube-system/config
