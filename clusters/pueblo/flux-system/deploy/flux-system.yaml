@@ -7,6 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: flux-system
+  interval: 30m0s
   path: ./clusters/pueblo/flux-system/config
   prune: true
   sourceRef:
