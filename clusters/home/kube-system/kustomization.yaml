@@ -4,7 +4,7 @@ resources:
   - goldilocks
   - kube-cleanup-operator
   - kube-vip
-  - kured
+  # - kured
   - metrics-server
   - reloader
   - system-upgrade
