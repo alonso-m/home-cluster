@@ -8,6 +8,19 @@
   "dependencyDashboardTitle": "Renovate Dashboard",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
+
+  "helmv3": {
+    "fileMatch": [
+      "clusters/home/flux-system/install/.+charts\\.yaml$",
+      "clusters/pueblo/flux-system/install/.+charts\\.yaml$",
+      ]
+  },
+  "flux": {
+   "fileMatch": [
+     "clusters/home/.+\\.yaml$",
+     "clusters/pueblo/.+\\.yaml$"
+   ]
+  },
   "helm-values": {
     "fileMatch": [
       "clusters/.+/helm-release\\.yaml$"
@@ -18,22 +31,10 @@
       "clusters/.+\\.yaml$"
     ],
     "ignorePaths": [
-      "clusters/home/flux-system/"
+      "clusters/home/flux-system/",
+      "clusters/pueblo/flux-system/"
     ],
   },
-  "regexManagers": [
-    // regexManager to read and process HelmRelease files
-    {
-      "fileMatch": [
-        "clusters/.+\\.yaml$"
-      ],
-      "matchStrings": [
-        // helm releases
-        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "helm"
-    },
-  ],
   "packageRules": [
     // setup datasources
     {
