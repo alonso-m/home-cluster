@@ -1,7 +1,4 @@
 {
-  "extends": [
-    "github>alonso-m/home-cluster//.github/renovate/autoMerge"
-  ],
   "enabled": true,
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
@@ -33,7 +30,7 @@
     "ignorePaths": [
       "clusters/home/flux-system/",
       "clusters/pueblo/flux-system/"
-    ],
+    ]
   },
   "packageRules": [
     // setup datasources
@@ -74,12 +71,28 @@
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
-      "labels": ["renovate/helm", "dep/minor"]
+      "labels": ["renovate/helm", "dep/minor"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchPackageNames": [
+        "kube-prometheus-stack",
+        "grafana",
+        "thanos"
+      ]
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
-      "labels": ["renovate/helm", "dep/patch"]
+      "labels": ["renovate/helm", "dep/patch"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchPackageNames": [
+        "kube-prometheus-stack",
+        "grafana",
+        "thanos"
+      ]
     }
   ]
 }
