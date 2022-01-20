@@ -17,6 +17,11 @@ spec:
       name: "flux-system"
       namespace: "flux-system"
 
+    - apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: GitRepository
+      name: "flux-system-config"
+      namespace: "flux-system"
+
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
       kind: Kustomization
       name: "backups"
@@ -29,7 +34,17 @@ spec:
 
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
       kind: Kustomization
+      name: "cert-manager-config"
+      namespace: "flux-system"
+
+    - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+      kind: Kustomization
       name: "kube-system"
+      namespace: "flux-system"
+
+    - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+      kind: Kustomization
+      name: "kube-system-config"
       namespace: "flux-system"
 
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -39,7 +54,17 @@ spec:
 
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
       kind: Kustomization
+      name: "monitoring-config"
+      namespace: "flux-system"
+
+    - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+      kind: Kustomization
       name: "networking"
+      namespace: "flux-system"
+
+    - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+      kind: Kustomization
+      name: "networking-config"
       namespace: "flux-system"
 
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
