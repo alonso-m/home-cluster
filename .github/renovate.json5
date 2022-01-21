@@ -8,14 +8,12 @@
 
   "helmv3": {
     "fileMatch": [
-      "clusters/home/flux-system/install/.+charts\\.yaml$",
-      "clusters/pueblo/flux-system/install/.+charts\\.yaml$",
+      "charts/.+/Chart\\.yaml$"
       ]
   },
   "flux": {
    "fileMatch": [
-     "clusters/home/.+\\.yaml$",
-     "clusters/pueblo/.+\\.yaml$"
+     "clusters/.+\\.yaml$"
    ]
   },
   "helm-values": {
@@ -78,7 +76,8 @@
       "matchPackageNames": [
         "kube-prometheus-stack",
         "grafana",
-        "thanos"
+        "thanos",
+        "loki"
       ]
     },
     {
@@ -91,7 +90,8 @@
       "matchPackageNames": [
         "kube-prometheus-stack",
         "grafana",
-        "thanos"
+        "thanos",
+        "loki"
       ]
     }
   ]
