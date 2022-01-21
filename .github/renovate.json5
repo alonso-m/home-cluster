@@ -30,8 +30,7 @@
   },
   "flux": {
     "fileMatch": [
-      "clusters/home/flux-system/install/.+\\.yaml$",
-      "clusters/pueblo/flux-system/install/.+\\.yaml$"
+      "clusters/.+\\.yaml$"
    ]
   },
   "helm-values": {
