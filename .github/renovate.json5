@@ -10,7 +10,7 @@
     ":enablePreCommit"
   ],
   "platform": "github",
-//  "username": "alonso-m-bot[bot]",
+  "username": "alonso-m-bot[bot]",
   "repositories": ["alonso-m/home-cluster"],
   "onboarding": false,
   "requireConfig": false,
