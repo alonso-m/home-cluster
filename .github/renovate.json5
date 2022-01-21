@@ -83,6 +83,7 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
       "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
     }
+  ],
   "packageRules": [
     // setup datasources
     {
