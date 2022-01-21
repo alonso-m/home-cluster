@@ -1,11 +1,27 @@
 {
-  "enabled": true,
-  "semanticCommits": "enabled",
-  "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Renovate Dashboard",
-  "suppressNotifications": ["prIgnoreNotification"],
+  "extends": [
+    ":enableRenovate",
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separatePatchReleases",
+    "docker:enableMajor",
+    ":enablePreCommit"
+  ],
+  "platform": "github",
+  "username": "alonso-m-bot[bot]",
+  "repositories": ["alonso-m/home-cluster"],
+  "onboarding": false,
+  "requireConfig": false,
+//  "gitAuthor": "alonso-m-bot <166283+alonso-m[bot]@users.noreply.github.com>",
+  "timezone": "Europe/Amsterdam",
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "suppressNotifications": [
+    "prIgnoreNotification"
+  ],
   "rebaseWhen": "conflicted",
-
+  // set up renovate managers
   "helmv3": {
     "fileMatch": [
       "charts/.+/Chart\\.yaml$"

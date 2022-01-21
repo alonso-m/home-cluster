@@ -10,9 +10,16 @@ jobs:
   main:
     runs-on: ubuntu-20.04
     steps:
+      - name: Get alonso-m-bot token
+        id: get-app-token
+        uses: getsentry/action-github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.get-app-token.outputs.token }}
           fetch-depth: 1
 
       - uses: azure/setup-helm@v1
@@ -24,19 +31,17 @@ jobs:
       - run: helm repo update
 
       - run: helm dep update
-        working-directory: charts/kah-common
+        working-directory: k8s/charts/kah-common-chart
 
       - uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.get-app-token.outputs.token }}
           branch: "renovate-kah-library-chart"
           delete-branch: true
           title: "chore(deps): update KaH common library chart"
           signoff: true
-          commit-message: "chore(deps): update KaH common library chart"
-          committer: "Miguel Alonso <alonso-m@users.noreply.github.com>"
-          author: "Miguel Alonso <alonso-m@users.noreply.github.com>"
           assignees: "alonso-m"
+          commit-message: "chore(deps): update KaH common library chart"
           body: |
             Update the kah library chart
-          labels: renovate/helm
+          labels: renovate/helm-chart
