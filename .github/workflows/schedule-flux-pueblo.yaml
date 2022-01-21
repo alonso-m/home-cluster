@@ -1,5 +1,5 @@
 ---
-name: Schedule - Flux Update
+name: Schedule - Flux Update - Pueblo
 
 on: # yamllint disable-line rule:truthy
   workflow_dispatch:
