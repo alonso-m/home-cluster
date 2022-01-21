@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://atlassian.github.io/data-center-helm-charts
       chart: bamboo
       version: 1.0.0
       sourceRef:

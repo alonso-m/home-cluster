@@ -9,6 +9,7 @@ spec:
   releaseName: littlelink
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: littlelink-server
       version: 1.2.0
       sourceRef:
