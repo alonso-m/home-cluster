@@ -1,0 +1,6 @@
+---
+area/ci:
+  - ".github/**/*"
+area/cluster:
+  - "charts/**/*"
+  - "clusters/**/*"

@@ -7,14 +7,15 @@
     ":semanticCommits",
     ":separatePatchReleases",
     "docker:enableMajor",
-    ":enablePreCommit"
+    ":enablePreCommit",
+    "github>alonso-m/home-cluster//.github/renovate/autoMerge",
+    "github>alonso-m/home-cluster//.github/renovate/labels"
   ],
   "platform": "github",
   "username": "alonso-m-bot[bot]",
   "repositories": ["alonso-m/home-cluster"],
   "onboarding": false,
   "requireConfig": false,
-//  "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
   "gitAuthor": "alonso-m-bot <98149217+alonso-m[bot]@users.noreply.github.com>",
   "timezone": "Europe/Amsterdam",
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
@@ -47,69 +48,50 @@
       "clusters/pueblo/flux-system/"
     ]
   },
+  "regexManagers": [
+    // regexManager to read and process GitHub release artifacts
+    {
+      "fileMatch": [
+        "clusters/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "{{org}}/{{repo}}"
+    },
+    // Generic Regex Manager
+    {
+      "fileMatch": [
+        "clusters/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+    },
+    // Generic Docker image Regex manager
+    {
+      "fileMatch": [
+        "clusters/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+    }
   "packageRules": [
     // setup datasources
     {
       "matchDatasources": ["helm"],
-      "separateMinorPatch": true,
       "ignoreDeprecated": true
     },
-    // global docker datasource settings
     {
       "matchDatasources": ["docker"],
-      "enabled": true,
-      "commitMessageTopic": "container image {{depName}}",
-      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-      "matchUpdateTypes": ["major", "minor", "patch"],
-    },
-    // add labels according to package and update types
-    {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["major"],
-      "labels": ["renovate/image", "dep/major"]
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["minor"],
-      "labels": ["renovate/image", "dep/minor"]
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["patch"],
-      "labels": ["renovate/image", "dep/patch"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major"],
-      "labels": ["renovate/helm", "dep/major"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
-      "labels": ["renovate/helm", "dep/minor"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchPackageNames": [
-        "kube-prometheus-stack",
-        "grafana",
-        "thanos",
-        "loki"
-      ]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
-      "labels": ["renovate/helm", "dep/patch"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchPackageNames": [
-        "kube-prometheus-stack",
-        "grafana",
-        "thanos",
-        "loki"
-      ]
+      "commitMessageExtra": "to {{newVersion}}",
     }
   ]
 }
