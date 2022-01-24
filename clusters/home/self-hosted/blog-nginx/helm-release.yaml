@@ -20,8 +20,8 @@ spec:
       repository: "https://github.com/alonso-m/blog.git"
       branch: "main"
 
-    containerPorts:
-      http: 80
+    # containerPorts:
+    #   http: 80
 
     podSecurityContext:
       enabled: true
@@ -34,7 +34,7 @@ spec:
 
     serverBlock: |-
       server {
-        listen 0.0.0.0:8080;
+        listen 0.0.0.0:8080 default_server;
         server_name rf826.com;
         location / {
           return 200 "hello!";
