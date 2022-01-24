@@ -17,7 +17,7 @@ spec:
   values:
     cloneStaticSiteFromGit:
       enabled: true
-      repository: "https://github.com/alonso-m/blog.git"
+      repository: "git@github.com:alonso-m/blog-public.git"
       branch: "main"
 
     # containerPorts:
@@ -32,16 +32,16 @@ spec:
     #   runAsUser: 1001
     #   runAsNonRoot: true
 
-    serverBlock: |-
-      server {
-        # listen ::8080 default_server;
-        # server_name rf826.com;
-        root /app/public/;
+    # serverBlock: |-
+    #   server {
+    #     # listen ::8080 default_server;
+    #     # server_name rf826.com;
+    #     root /app/public/;
 
-        location / {
-               try_files $uri $uri/ =404;
-        }
-      }
+    #     location / {
+    #            try_files $uri $uri/ =404;
+    #     }
+    #   }
 
     ingress:
       enabled: true
