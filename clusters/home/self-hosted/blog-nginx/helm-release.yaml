@@ -44,7 +44,7 @@ spec:
       #   pullPolicy: IfNotPresent
       #   pullSecrets: []
       repository: "https://github.com/alonso-m/blog.git"
-      # branch: "main"
+      branch: "main"
       # interval: 60
 
     ingress:
