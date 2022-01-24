@@ -14,24 +14,23 @@ spec:
         kind: HelmRepository
         name: bitnami-charts
         namespace: flux-system
-
-  serverBlock: |-
-    server {
-      listen 0.0.0.0:8080;
-
-      root /app;
-      index index.html; # Hugo generates HTML
-
-      location / {
-              try_files $uri $uri/ =404;
-      }
-    }
-
   values:
     cloneStaticSiteFromGit:
       enabled: true
       repository: "https://github.com/alonso-m/blog.git"
       branch: "main"
+
+    serverBlock: |-
+      server {
+        listen 0.0.0.0:8080;
+
+        root /app;
+        index index.html; # Hugo generates HTML
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+      }
 
     ingress:
       enabled: true
