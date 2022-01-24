@@ -36,9 +36,8 @@ spec:
       server {
         listen ::8080 default_server;
         # server_name rf826.com;
-        location / {
-          return 200 "hello!";
-        }
+        root /app/public/;
+        index index.html;
       }
 
     ingress:
