@@ -23,9 +23,9 @@ spec:
     # containerPorts:
     #   http: 80
 
-    podSecurityContext:
-      enabled: true
-      fsGroup: 1001
+    # podSecurityContext:
+    #   enabled: true
+    #   fsGroup: 1001
 
     # containerSecurityContext:
     #   enabled: true
