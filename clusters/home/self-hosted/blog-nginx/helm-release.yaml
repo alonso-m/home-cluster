@@ -24,7 +24,7 @@ spec:
       server {
         # listen 0.0.0.0:8080;
 
-        root /app;
+        root /app/public/;
         location / {
           index index.html;
           try_files $uri $uri/ =404;
