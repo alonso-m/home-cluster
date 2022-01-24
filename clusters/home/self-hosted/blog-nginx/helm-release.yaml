@@ -20,6 +20,9 @@ spec:
       repository: "https://github.com/alonso-m/blog.git"
       branch: "main"
 
+    containerPorts:
+      http: 80
+
     podSecurityContext:
       enabled: true
       fsGroup: 1001
