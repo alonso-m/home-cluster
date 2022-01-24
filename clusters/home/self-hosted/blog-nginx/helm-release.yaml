@@ -36,13 +36,13 @@ spec:
         # listen 8080;
         # listen [::]:8080;
 
+        listen 80;
+
         server_name rfc826.com;
 
         root /app/public/;
+        index index.html;
 
-        location / {
-          index index.html;
-        }
       }
 
     ingress:
