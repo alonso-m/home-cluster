@@ -37,7 +37,7 @@ spec:
         # listen ::8080 default_server;
         server_name rf826.com;
         root /app/public/;
-        index index.html;
+        public index.html;
       }
 
     ingress:
