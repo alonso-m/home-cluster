@@ -17,7 +17,7 @@ spec:
   values:
     cloneStaticSiteFromGit:
       enabled: true
-      repository: "git@github.com:alonso-m/blog-public.git"
+      repository: "https://github.com/alonso-m/blog-public.git"
       branch: "main"
 
     # containerPorts:
