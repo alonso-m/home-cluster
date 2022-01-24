@@ -35,9 +35,12 @@ spec:
     serverBlock: |-
       server {
         # listen ::8080 default_server;
-        server_name rf826.com;
+        # server_name rf826.com;
         root /app/public/;
-        public index.html;
+
+        location / {
+               try_files $uri $uri/ =404;
+        }
       }
 
     ingress:
