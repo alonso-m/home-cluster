@@ -33,10 +33,16 @@ spec:
       server {
         # listen 0.0.0.0:8080;
 
+        listen 8080;
+        listen [::]:8080;
+
+        server_name rfc826.com;
+
         root /app/public/;
+        index index.html;
+
         location / {
-          index index.html;
-          try_files $uri $uri/ =404;
+                try_files $uri $uri/ =404;
         }
       }
 
