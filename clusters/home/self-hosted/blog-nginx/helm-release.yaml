@@ -31,10 +31,10 @@ spec:
 
     serverBlock: |-
       server {
-        # listen 0.0.0.0:8080;
+        listen 0.0.0.0:8080;
 
-        listen 8080;
-        listen [::]:8080;
+        # listen 8080;
+        # listen [::]:8080;
 
         server_name rfc826.com;
 
