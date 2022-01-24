@@ -31,18 +31,10 @@ spec:
 
     serverBlock: |-
       server {
-        # listen 0.0.0.0:8080;
-
-        # listen 8080;
-        # listen [::]:8080;
-
-        # listen 80;
-
-        server_name rfc826.com;
-
-        root /app/public/;
-        index index.html;
-
+        listen 0.0.0.0:8080;
+        location / {
+          return 200 "hello!";
+        }
       }
 
     ingress:
