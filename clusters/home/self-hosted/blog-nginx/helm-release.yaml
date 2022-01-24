@@ -20,6 +20,15 @@ spec:
       repository: "https://github.com/alonso-m/blog.git"
       branch: "main"
 
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+
+    # containerSecurityContext:
+    #   enabled: true
+    #   runAsUser: 1001
+    #   runAsNonRoot: true
+
     serverBlock: |-
       server {
         # listen 0.0.0.0:8080;
