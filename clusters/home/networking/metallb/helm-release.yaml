@@ -21,13 +21,3 @@ spec:
           protocol: layer2
           addresses:
             - "${METALLB_LB_RANGE}"
-
-    controller:
-      image:
-        repository: metallb/controller
-        tag: v0.8.1
-
-    speaker:
-      image:
-        repository: metallb/speaker
-        tag: v0.8.1
