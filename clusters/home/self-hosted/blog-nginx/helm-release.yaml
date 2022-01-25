@@ -22,7 +22,7 @@ spec:
 
     cloneStaticSiteFromGit:
       enabled: true
-      repository: "https://github.com/alonso-m/blog-public.git"
+      repository: "https://github.com/alonso-m/blog.git"
       branch: "main"
 
     # containerPorts:
@@ -40,8 +40,9 @@ spec:
     serverBlock: |-
       server {
         listen 0.0.0.0:8080;
-        server_name rf826.com;
-        root /app/;
+        # server_name rf826.com;
+        root /app/public;
+        index index.html;
 
         location / {
                try_files $uri $uri/ =404;
