@@ -62,6 +62,7 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.frontend.passHostHeader: "true"
         traefik.ingress.kubernetes.io/frontend.passHostHeader: "true"
+        traefik.ingress.kubernetes.io/frontend.rule: "Host:${SECRET_DOMAIN}"
       tls: true
 
     metrics:
