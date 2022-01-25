@@ -17,8 +17,7 @@ spec:
       interval: 5m
   values:
     image:
-      registry: ghcr.io
-      repository: k8s-at-home/loki
+      repository: ghcr.io/k8s-at-home/loki
       tag: v2.4.2
 
     ingress:
