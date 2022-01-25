@@ -16,6 +16,11 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      registry: ghcr.io
+      repository: k8s-at-home/loki
+      tag: 2.4.2
+
     ingress:
       enabled: false
       # annotations:

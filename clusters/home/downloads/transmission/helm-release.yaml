@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/transmission
-      tag: latest
+      tag: v3.00
 
     env:
       TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: "true"

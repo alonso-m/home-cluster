@@ -215,8 +215,8 @@ spec:
         #     memory: 4096Mi
 
         thanos:
-          image: quay.io/thanos/thanos:v0.24.0
-          version: v0.22.0
+          image: quay.io/thanos/thanos
+          version: v0.24.0
           objectStorageConfig:
             name: thanos-object-store
             key: objstore.yml
