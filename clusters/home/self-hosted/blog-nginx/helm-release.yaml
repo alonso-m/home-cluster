@@ -39,7 +39,8 @@ spec:
 
     serverBlock: |-
       server {
-        listen 0.0.0.0:8080;
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
         server_name rf826.com;
         root /app/public;
         index index.html;
@@ -59,6 +60,7 @@ spec:
         hajimari.io/icon: "application-outline"
         # cert-manager.io/issue-temporary-certificate: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.frontend.passHostHeader: "true"
       tls: true
 
     metrics:
