@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: nginx
-      version: 9.7.3
+      version: 9.7.4
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -22,7 +22,7 @@ spec:
 
     cloneStaticSiteFromGit:
       enabled: true
-      repository: "https://github.com/alonso-m/blog.git"
+      repository: "https://github.com/alonso-m/blog-public.git"
       branch: "main"
 
     # containerPorts:
@@ -37,19 +37,19 @@ spec:
     #   runAsUser: 1001
     #   runAsNonRoot: true
 
-    serverBlock: |-
-      server {
-        # listen 80;
-        listen 8080 default_server;
-        listen [::]:8080 default_server;
-        server_name rf826.com;
-        root /app/public;
-        index index.html;
+    # serverBlock: |-
+    #   server {
+    #     # listen 80;
+    #     listen 8080 default_server;
+    #     listen [::]:8080 default_server;
+    #     server_name rf826.com;
+    #     root /app/public;
+    #     index index.html;
 
-        location / {
-               try_files $uri $uri/ =404;
-        }
-      }
+    #     location / {
+    #            try_files $uri $uri/ =404;
+    #     }
+    #   }
 
     ingress:
       enabled: true
@@ -62,9 +62,6 @@ spec:
         hajimari.io/icon: "application-outline"
         # cert-manager.io/issue-temporary-certificate: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.frontend.passHostHeader: "true"
-        traefik.ingress.kubernetes.io/frontend.passHostHeader: "true"
-        traefik.ingress.kubernetes.io/frontend.rule: "Host:${SECRET_DOMAIN}"
       tls: true
 
     metrics:
