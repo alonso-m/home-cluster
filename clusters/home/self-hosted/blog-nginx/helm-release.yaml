@@ -39,7 +39,7 @@ spec:
 
     serverBlock: |-
       server {
-        listen 80;
+        # listen 80;
         # listen 8080 default_server;
         # listen [::]:8080 default_server;
         # server_name rf826.com;
