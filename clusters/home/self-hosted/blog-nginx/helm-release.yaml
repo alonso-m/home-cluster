@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: nginx
-      version: 9.7.4
+      version: 9.7.3
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -40,9 +40,9 @@ spec:
     serverBlock: |-
       server {
         # listen 80;
-        # listen 8080 default_server;
-        # listen [::]:8080 default_server;
-        # server_name rf826.com;
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
+        server_name rf826.com;
         root /app/public;
         index index.html;
 
@@ -54,6 +54,7 @@ spec:
     ingress:
       enabled: true
       hostname: ${SECRET_DOMAIN}
+      certmanager: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
         kubernetes.io/ingress.class: "traefik"
