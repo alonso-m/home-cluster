@@ -61,6 +61,7 @@ spec:
         # cert-manager.io/issue-temporary-certificate: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.frontend.passHostHeader: "true"
+        traefik.ingress.kubernetes.io/frontend.passHostHeader: "true"
       tls: true
 
     metrics:
