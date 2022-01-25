@@ -54,7 +54,6 @@ spec:
     ingress:
       enabled: true
       hostname: ${SECRET_DOMAIN}
-      certmanager: false
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
         kubernetes.io/ingress.class: "traefik"
