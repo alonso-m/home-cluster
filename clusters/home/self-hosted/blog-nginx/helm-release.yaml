@@ -52,7 +52,7 @@ spec:
     #   }
 
     ingress:
-      enabled: false
+      enabled: true
       hostname: ${SECRET_DOMAIN}
       certManager: false
       annotations:
