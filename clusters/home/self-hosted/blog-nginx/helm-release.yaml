@@ -15,6 +15,11 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
+    image:
+      registry: docker.io
+      repository: bitnami/nginx
+      tag: 1.21.5-debian-10-r26
+
     cloneStaticSiteFromGit:
       enabled: true
       repository: "https://github.com/alonso-m/blog-public.git"
@@ -32,16 +37,16 @@ spec:
     #   runAsUser: 1001
     #   runAsNonRoot: true
 
-    # serverBlock: |-
-    #   server {
-    #     # listen ::8080 default_server;
-    #     # server_name rf826.com;
-    #     root /app/public/;
+    serverBlock: |-
+      server {
+        listen 0.0.0.0:8080;
+        server_name rf826.com;
+        root /app/;
 
-    #     location / {
-    #            try_files $uri $uri/ =404;
-    #     }
-    #   }
+        location / {
+               try_files $uri $uri/ =404;
+        }
+      }
 
     ingress:
       enabled: true
@@ -56,4 +61,4 @@ spec:
       tls: true
 
     metrics:
-      enabled: true
+      enabled: false
