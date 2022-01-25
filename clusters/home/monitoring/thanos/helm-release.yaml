@@ -19,6 +19,7 @@ spec:
     image:
       registry: public.ecr.aws
       repository: bitnami/thanos
+      tag: 0.24.0
 
     query:
       enabled: true
