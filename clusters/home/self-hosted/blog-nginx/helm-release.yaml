@@ -56,17 +56,17 @@ spec:
       }
 
     ingress:
-      enabled: true
-      hostname: "malonso.${SECRET_DOMAIN}"
-      certManager: false
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        kubernetes.io/ingress.class: "traefik"
-        hajimari.io/enable: "true"
-        hajimari.io/icon: "application-outline"
-        # cert-manager.io/issue-temporary-certificate: "true"
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      tls: true
+      enabled: false
+      # hostname: "malonso.${SECRET_DOMAIN}"
+      # certManager: false
+      # annotations:
+      #   cert-manager.io/cluster-issuer: letsencrypt-production
+      #   kubernetes.io/ingress.class: "traefik"
+      #   hajimari.io/enable: "true"
+      #   hajimari.io/icon: "application-outline"
+      #   # cert-manager.io/issue-temporary-certificate: "true"
+      #   traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      # tls: true
 
     metrics:
       enabled: false

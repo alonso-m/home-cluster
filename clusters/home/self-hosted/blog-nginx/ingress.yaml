@@ -7,8 +7,8 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     cert-manager.io/issue-temporary-certificate: "true"
-    # hajimari.io/enable: "true"
-    # hajimari.io/icon: "web"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "application-outline"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     # traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
 spec:
@@ -27,4 +27,4 @@ spec:
               service:
                 name: blog-nginx
                 port:
-                  number: 8080
+                  number: 80
