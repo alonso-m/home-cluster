@@ -53,7 +53,7 @@ spec:
 
     ingress:
       enabled: true
-      hostname: malonso.${SECRET_DOMAIN}
+      hostname: "malonso.${SECRET_DOMAIN}"
       certManager: false
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
