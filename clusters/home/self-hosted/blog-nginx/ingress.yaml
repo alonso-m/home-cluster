@@ -2,21 +2,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: traefik-dashboard
-  namespace: networking
+  name: blog-nginx
+  namespace: self-hosted
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     cert-manager.io/issue-temporary-certificate: "true"
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "web"
+    # hajimari.io/enable: "true"
+    # hajimari.io/icon: "web"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+    # traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
 spec:
   ingressClassName: "traefik"
   tls:
     - hosts:
-        - "traefik.${SECRET_DOMAIN}"
-      secretName: "traefik-dashboard-tls"
+        - "malonso.${SECRET_DOMAIN}"
+      secretName: "blog-nginx-tls"
   rules:
     - host: "traefik.${SECRET_DOMAIN}"
       http:
@@ -25,6 +25,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: traefik
+                name: blog-nginx
                 port:
-                  number: 9000
+                  number: 8080
