@@ -18,7 +18,7 @@ spec:
         - "malonso.${SECRET_DOMAIN}"
       secretName: "blog-nginx-tls"
   rules:
-    - host: "traefik.${SECRET_DOMAIN}"
+    - host: "malonso.${SECRET_DOMAIN}"
       http:
         paths:
           - path: /
