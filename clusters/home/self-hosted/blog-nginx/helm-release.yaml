@@ -29,18 +29,6 @@ spec:
       type: ClusterIP
       externalTrafficPolicy: Local
 
-    # containerPorts:
-    #   http: 80
-
-    # podSecurityContext:
-    #   enabled: true
-    #   fsGroup: 1001
-
-    # containerSecurityContext:
-    #   enabled: true
-    #   runAsUser: 1001
-    #   runAsNonRoot: true
-
     serverBlock: |-
       server {
         # listen 80;
@@ -57,16 +45,6 @@ spec:
 
     ingress:
       enabled: false
-      # hostname: "malonso.${SECRET_DOMAIN}"
-      # certManager: false
-      # annotations:
-      #   cert-manager.io/cluster-issuer: letsencrypt-production
-      #   kubernetes.io/ingress.class: "traefik"
-      #   hajimari.io/enable: "true"
-      #   hajimari.io/icon: "application-outline"
-      #   # cert-manager.io/issue-temporary-certificate: "true"
-      #   traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      # tls: true
 
     metrics:
       enabled: false

@@ -13,12 +13,3 @@ spec:
       - http01:
           ingress:
             class: traefik
-#      - dns01:
-#          cloudflare:
-#            email: "${SECRET_CLOUDFLARE_EMAIL}"
-#            apiKeySecretRef:
-#              name: cloudflare-api-key
-#              key: api-key
-#        selector:
-#          dnsZones:
-#            - ${SECRET_DOMAIN}

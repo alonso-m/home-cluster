@@ -94,7 +94,6 @@ spec:
       default:
         minVersion: VersionTLS12
         maxVersion: VersionTLS13
-#        sniStrict: true
 
     pilot:
       enabled: false
@@ -102,10 +101,3 @@ spec:
     experimental:
       plugins:
         enabled: false
-
-    # resources:
-    #   requests:
-    #     memory: 100Mi
-    #     cpu: 500m
-    #   limits:
-    #     memory: 500Mi

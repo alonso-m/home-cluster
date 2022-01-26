@@ -101,11 +101,6 @@ spec:
                 requests:
                   storage: 10Gi
 
-        # resources:
-        #   requests:
-        #     memory: 48Mi
-        #   limits:
-        #     memory: 96Mi
     coreDns:
       enabled: true
 

@@ -38,15 +38,15 @@ spec:
     postgresqlDatabase: "postgres"
     existingSecret: "postgresql"
 
-    initdbScripts:
-      my_init_script.sh: |
-        #!/bin/sh
-        set -e
+    # initdbScripts:
+    #   my_init_script.sh: |
+    #     #!/bin/sh
+    #     set -e
 
-        psql -U postgres -c "CREATE DATABASE bitbucket;"
-        psql -U postgres -c "CREATE DATABASE bamboo;"
+    #     psql -U postgres -c "CREATE DATABASE bitbucket;"
+    #     psql -U postgres -c "CREATE DATABASE bamboo;"
 
-    # psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE bitbucket TO docker"
+    #     psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE bitbucket TO docker"
     #     CREATE USER docker;
     #     CREATE DATABASE my_project_development;
     #     GRANT ALL PRIVILEGES ON DATABASE my_project_development TO docker;
