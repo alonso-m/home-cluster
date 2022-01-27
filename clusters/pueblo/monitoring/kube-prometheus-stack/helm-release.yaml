@@ -75,10 +75,10 @@ spec:
             equal: ["alertname", "namespace"]
 
       ingress:
+        ingressClassName: traefik
         enabled: true
         pathType: Prefix
         annotations:
-          kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
           hajimari.io/enable: "true"
@@ -101,11 +101,6 @@ spec:
                 requests:
                   storage: 10Gi
 
-        # resources:
-        #   requests:
-        #     memory: 48Mi
-        #   limits:
-        #     memory: 96Mi
     coreDns:
       enabled: true
 
@@ -171,10 +166,10 @@ spec:
 
     prometheus:
       ingress:
+        ingressClassName: traefik
         enabled: true
         pathType: Prefix
         annotations:
-          kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
           hajimari.io/enable: "true"
@@ -216,7 +211,7 @@ spec:
 
         thanos:
           image: quay.io/thanos/thanos:v0.24.0
-          version: v0.22.0
+          # version: v0.22.0
           objectStorageConfig:
             name: thanos-object-store
             key: objstore.yml
