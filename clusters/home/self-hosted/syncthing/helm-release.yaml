@@ -40,6 +40,29 @@ spec:
               - syncthing.${SECRET_DOMAIN}
             secretName: "syncthing-tls"
 
+    service:
+      port:
+        port: 8384
+      additionalServices:
+        - enabled: true
+          nameSuffix: listen
+          type: ClusterIP
+        # port:
+        #   port: 22000
+        #   name: listen
+        #   protocol: TCP
+        #   targetPort: 22000
+        # externalTrafficPolicy: Local
+        - enabled: true
+          nameSuffix: discovery
+          type: ClusterIP
+        # port:
+        #   port: 21027
+        #   name: discovery
+        #   protocol: UDP
+        #   targetPort: 21027
+        # externalTrafficPolicy: Local
+
     persistence:
       config:
         enabled: true
