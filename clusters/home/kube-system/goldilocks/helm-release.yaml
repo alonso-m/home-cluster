@@ -27,9 +27,9 @@ spec:
     dashboard:
       replicaCount: 1
       ingress:
+        ingressClassName: "traefik"
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/issue-temporary-certificate: "true"
           hajimari.io/enable: "true"
