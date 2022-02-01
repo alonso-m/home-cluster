@@ -15,7 +15,8 @@
           "kube-prometheus-stack",
           "grafana",
           "thanos",
-          "loki"
+          "loki",
+          "promtail"
         ]
       },
       {
