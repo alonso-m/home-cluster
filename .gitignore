@@ -7,8 +7,5 @@ Thumbs.db
 kubeconfig
 # vscode-sops
 .decrypted~*.yaml
-.config.env
 # Python venv
 env/
-# Templates
-tmpl/
