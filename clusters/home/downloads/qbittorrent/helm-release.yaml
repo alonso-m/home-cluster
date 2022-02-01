@@ -36,6 +36,8 @@ spec:
       ui:
         enabled: true
         type: LoadBalancer
+        externalIPs:
+          - "${LB_QBITTORRENT}"
         ports:
           ui:
             enabled: true
