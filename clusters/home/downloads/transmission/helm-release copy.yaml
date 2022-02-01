@@ -36,14 +36,14 @@ spec:
             name: transmission
             key: TRANSMISSION_RPC_PASSWORD
 
-    # podSecurityContext:
+    podSecurityContext:
     #   fsGroup: 0
     #   # runAsNonRoot: true
     #   runAsUser: 0
     #   runAsGroup: 0
     #   fsGroupChangePolicy: "Always"
-    #   # supplementalGroups:
-    #   #   - 100
+      supplementalGroups:
+        - 100
 
     ingress:
       main:
