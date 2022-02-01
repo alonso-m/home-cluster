@@ -125,10 +125,10 @@ spec:
         velero:
           url: https://grafana.com/api/dashboards/11055/revisions/2/download
           datasource: Prometheus
-        minio:
-          gnetId: 13502
-          revision: 10
-          datasource: Prometheus
+        # minio:
+        #   gnetId: 13502
+        #   revision: 10
+        #   datasource: Prometheus
         node-exporter-full:
           url: https://grafana.com/api/dashboards/1860/revisions/22/download
           datasource: Prometheus
@@ -151,13 +151,13 @@ spec:
         enabled: true
         searchNamespace: ALL
 
-    plugins:
-      - natel-discrete-panel
-      - pr0ps-trackmap-panel
-      - grafana-piechart-panel
-      - vonage-status-panel
-      - grafana-worldmap-panel
-      - grafana-clock-panel
+    # plugins:
+    #   - natel-discrete-panel
+    #   - pr0ps-trackmap-panel
+    #   - grafana-piechart-panel
+    #   - vonage-status-panel
+    #   - grafana-worldmap-panel
+    #   - grafana-clock-panel
 
     serviceMonitor:
       enabled: true
