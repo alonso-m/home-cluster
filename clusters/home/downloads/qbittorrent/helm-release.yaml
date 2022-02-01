@@ -51,7 +51,7 @@ spec:
         hosts:
           - host: qbittorrent.${SECRET_DOMAIN}
             paths:
-              - path: /transmission
+              - path: /
                 pathType: Prefix
         tls:
           - hosts:
