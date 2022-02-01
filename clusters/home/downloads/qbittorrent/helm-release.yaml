@@ -21,14 +21,12 @@ spec:
       tag: v4.3.9
       pullPolicy: Always
 
-    # hostname: qbittorrent
+    podAnnotations:
+      backup.velero.io/backup-volumes: "config"
 
-    # podAnnotations:
-    #   setGateway: "true"
-
-    # podSecurityContext:
-    #   supplementalGroups:
-    #     - 65539
+    podSecurityContext:
+      supplementalGroups:
+        - 65539
 
     service:
       main:
@@ -44,15 +42,6 @@ spec:
             port: 8080
             protocol: TCP
             targetPort: 8080
-      # bittorrent:
-      #   enabled: true
-      #   type: LoadBalancer
-      #   ports:
-      #     bittorrent:
-      #       enabled: true
-      #       port: 50413
-      #       protocol: TCP
-      #       targetPort: 50413
 
     env:
       TZ: "Europe/Amsterdam"
@@ -81,7 +70,7 @@ spec:
     resources:
       requests:
         cpu: "0.3"
-        memory: "1000Mi"
+        memory: "250Mi"
       limits:
         memory: "4000Mi"
 
