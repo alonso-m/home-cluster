@@ -24,6 +24,13 @@
         "automergeType": "branch",
         "requiredStatusChecks": null,
         "matchUpdateTypes": ["minor", "patch"]
+      },
+      {
+        "matchManagers": ["pre-commit"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["minor", "patch"]
       }
     ]
   }
