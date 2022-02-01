@@ -26,12 +26,17 @@ spec:
     # podAnnotations:
     #   setGateway: "true"
 
-    podSecurityContext:
-      supplementalGroups:
-        - 65539
+    # podSecurityContext:
+    #   supplementalGroups:
+    #     - 65539
 
-    # settings:
-    #   automaticPortSetup: false
+    settings:
+      automaticPortSetup: false
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
 
     env:
       TZ: "Europe/Amsterdam"
@@ -49,13 +54,13 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: network-rfc1918-ips@kubernetescrd
         hosts:
-          - host: &host "qbittorrent.${SECRET_DOMAIN}"
+          - host: qbittorrent.${SECRET_DOMAIN}
             paths:
               - path: /
-                pathType: Prefix
         tls:
           - hosts:
-              - *host
+              - qbittorrent.${SECRET_DOMAIN}
+            secretName: "qbittorrent-tls"
 
     resources:
       requests:
