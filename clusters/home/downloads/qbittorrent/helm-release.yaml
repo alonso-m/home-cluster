@@ -21,7 +21,7 @@ spec:
       tag: v4.3.9
       pullPolicy: Always
 
-    hostname: qbittorrent
+    # hostname: qbittorrent
 
     # podAnnotations:
     #   setGateway: "true"
