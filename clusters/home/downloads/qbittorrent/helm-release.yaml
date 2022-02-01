@@ -93,25 +93,25 @@ spec:
         enabled: true
         existingClaim: downloads
 
-    addons:
-      vpn:
-        enabled: true
-        type: openvpn
-        openvpn:
-          authSecret: openvpn-auth
-        env:
-          FIREWALL: 'on'
-          ROUTE_1: ${NETWORK_K8S_CLUSTER_CIDR}
-          ROUTE_2: ${NETWORK_K8S_SERVICE_CIDR}
-          ROUTE_3: ${NETWORK_SERVER_CIDR}
-          VPNPORT_1: "9091"
-        configFileSecret: openvpn-config
-        scripts:
-          up: |-
-            #!/bin/bash
-            /etc/openvpn/up.sh
-            echo "connected" > /shared/vpnstatus
-          down: |-
-            #!/bin/bash
-            /etc/openvpn/down.sh
-            echo "disconnected" > /shared/vpnstatus
+    # addons:
+    #   vpn:
+    #     enabled: true
+    #     type: openvpn
+    #     openvpn:
+    #       authSecret: openvpn-auth
+    #     env:
+    #       FIREWALL: 'on'
+    #       ROUTE_1: ${NETWORK_K8S_CLUSTER_CIDR}
+    #       ROUTE_2: ${NETWORK_K8S_SERVICE_CIDR}
+    #       ROUTE_3: ${NETWORK_SERVER_CIDR}
+    #       VPNPORT_1: "9091"
+    #     configFileSecret: openvpn-config
+    #     scripts:
+    #       up: |-
+    #         #!/bin/bash
+    #         /etc/openvpn/up.sh
+    #         echo "connected" > /shared/vpnstatus
+    #       down: |-
+    #         #!/bin/bash
+    #         /etc/openvpn/down.sh
+    #         echo "disconnected" > /shared/vpnstatus
