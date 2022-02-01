@@ -151,14 +151,6 @@ spec:
         enabled: true
         searchNamespace: ALL
 
-    # plugins:
-    #   - natel-discrete-panel
-    #   - pr0ps-trackmap-panel
-    #   - grafana-piechart-panel
-    #   - vonage-status-panel
-    #   - grafana-worldmap-panel
-    #   - grafana-clock-panel
-
     serviceMonitor:
       enabled: true
 
