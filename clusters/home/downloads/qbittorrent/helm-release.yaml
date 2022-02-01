@@ -26,7 +26,7 @@ spec:
 
     podSecurityContext:
       supplementalGroups:
-        - 65539
+        - 100
 
     service:
       main:
