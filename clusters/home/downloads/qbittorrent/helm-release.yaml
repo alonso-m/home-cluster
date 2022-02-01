@@ -49,7 +49,7 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: network-rfc1918-ips@kubernetescrd
         hosts:
-          - host: &host "qb.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "qbittorrent.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
