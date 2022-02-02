@@ -41,7 +41,7 @@ spec:
               volumeMounts:
                 - mountPath: /config
                   name: rclone-config
-              volumes:
-                - name: rclone-config
-                  secret:
-                    name: rclone-config
+          volumes:
+            - name: rclone-config
+              secret:
+                name: rclone-config
