@@ -22,7 +22,7 @@ spec:
                 - name: TARGET_DIR
                   value: "/target"
                 - name: MAX_AGE
-                  value: "3"
+                  value: "1"
               volumeMounts:
                 - name: source
                   mountPath: /source
