@@ -4,7 +4,7 @@ metadata:
   name: local-sync
   namespace: default
 spec:
-  schedule: "0 5 * * *"
+  schedule: "0 4 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
