@@ -12,6 +12,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
             - name: rclone
               image: rclone/rclone:1.57
