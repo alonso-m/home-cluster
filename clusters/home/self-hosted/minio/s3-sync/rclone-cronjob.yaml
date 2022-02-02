@@ -40,7 +40,6 @@ spec:
               volumeMounts:
                 - mountPath: /config
                   name: rclone-config
-              restartPolicy: OnFailure
               volumes:
                 - name: rclone-config
                   secret:
