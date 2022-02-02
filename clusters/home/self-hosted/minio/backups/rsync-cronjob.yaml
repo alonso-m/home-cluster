@@ -2,10 +2,9 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: local-sync
-  namespace: default
+  namespace: self-hosted
 spec:
   schedule: "0 4 * * *"
-  concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   jobTemplate:
