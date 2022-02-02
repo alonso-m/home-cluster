@@ -1,0 +1,47 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: self-hosted
+  name: rclone-minio
+spec:
+  schedule: "0 5 * * *"
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: rclone-sync-serenity
+              image: rclone/rclone:1.57
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: TZ
+                  value: "Europe/Amsterdam"
+              command:
+                - "rclone"
+                - "--config"
+                - "/config/rclone.conf"
+                - "--dry-run"
+                - "sync"
+                - "--progress"
+                - "--ignore-errors"
+                - "--transfers"
+                - "8"
+                - "--checkers"
+                - "8"
+                - "--bwlimit"
+                - "40M"
+                - "--max-duration"
+                - "6h"
+                - "minio-home:velero"
+                - "minio-pueblo:home-backup"
+              volumeMounts:
+                - mountPath: /config
+                  name: rclone-config
+              restartPolicy: OnFailure
+              volumes:
+                - name: rclone-config
+                  secret:
+                    name: rclone-config
