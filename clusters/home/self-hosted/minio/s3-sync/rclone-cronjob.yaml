@@ -3,7 +3,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   namespace: self-hosted
-  name: rclone-minio
+  name: s3-sync
 spec:
   schedule: "0 5 * * *"
   failedJobsHistoryLimit: 1
@@ -13,7 +13,7 @@ spec:
       template:
         spec:
           containers:
-            - name: rclone-sync-serenity
+            - name: rclone
               image: rclone/rclone:1.57
               imagePullPolicy: IfNotPresent
               env:
