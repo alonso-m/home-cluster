@@ -26,22 +26,25 @@
   // set up renovate managers
   "helmv3": {
     "fileMatch": [
-      "charts/.+/Chart\\.yaml$"
+      "charts/.+/Chart\\.yaml$",
       ]
   },
   "flux": {
     "fileMatch": [
-      "clusters/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$",
+      "clusters/pueblo/.+\\.yaml$"
    ]
   },
   "helm-values": {
     "fileMatch": [
-      "clusters/.+/helm-release\\.yaml$"
+      "clusters/home/.+\\.yaml$",
+      "clusters/pueblo/.+\\.yaml$"
     ]
   },
   "kubernetes": {
     "fileMatch": [
-      "clusters/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$",
+      "clusters/pueblo/.+\\.yaml$"
     ],
     "ignorePaths": [
       "clusters/home/flux-system/",
@@ -52,7 +55,8 @@
     // regexManager to read and process GitHub release artifacts
     {
       "fileMatch": [
-        "clusters/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$",
+      "clusters/pueblo/.+\\.yaml$"
       ],
       "matchStrings": [
         "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
@@ -63,7 +67,8 @@
     // Generic Regex Manager
     {
       "fileMatch": [
-        "clusters/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$",
+      "clusters/pueblo/.+\\.yaml$"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
@@ -74,7 +79,8 @@
     // Generic Docker image Regex manager
     {
       "fileMatch": [
-        "clusters/.+\\.yaml$"
+        "clusters/home/.+\\.yaml$",
+        "clusters/pueblo/.+\\.yaml$"
       ],
       "matchStrings": [
         "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
