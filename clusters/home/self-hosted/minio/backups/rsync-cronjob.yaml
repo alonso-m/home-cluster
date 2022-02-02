@@ -1,0 +1,39 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: local-sync
+  namespace: default
+spec:
+  schedule: "0 5 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: rsync
+              image: alonsomiguel/rsync-backup:latest
+              imagePullPolicy: Always
+              env:
+                - name: SOURCE_DIR
+                  value: "/source"
+                - name: TARGET_DIR
+                  value: "/target"
+                - name: MAX_AGE
+                  value: "3"
+              volumeMounts:
+                - name: source
+                  mountPath: /source
+                  readOnly: true
+                - name: target
+                  mountPath: /target
+          volumes:
+            - name: source
+              persistentVolumeClaim:
+                claimName: minio
+            - name: target
+              persistentVolumeClaim:
+                claimName: minio-backup

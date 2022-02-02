@@ -12,3 +12,17 @@ spec:
     requests:
       storage: 700Gi
   storageClassName: openebs-local
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-backup
+  namespace: self-hosted
+  labels:
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 700Gi
+  storageClassName: openebs-local

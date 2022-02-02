@@ -51,7 +51,7 @@ spec:
 
     schedules:
       daily-backup:
-        schedule: "0 4 * * *"
+        schedule: "0 3 * * *"
         template:
           ttl: "168h"
 
