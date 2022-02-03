@@ -31,8 +31,6 @@ spec:
                 - "8"
                 - "--checkers"
                 - "8"
-                - "--bwlimit"
-                - "40M"
                 - "--max-duration"
                 - "6h"
                 - "minio-home:velero"
