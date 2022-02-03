@@ -26,4 +26,5 @@ spec:
       - --delete-pending-pods-after=60m
       - --delete-evicted-pods-after=60m
       - --delete-orphaned-pods-after=60m
+      - --ignore-owned-by-cronjobs
       - --legacy-mode=false
