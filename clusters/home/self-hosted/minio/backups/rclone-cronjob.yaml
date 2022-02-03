@@ -24,7 +24,6 @@ spec:
                 - "rclone"
                 - "--config"
                 - "/config/rclone.conf"
-                - "--dry-run"
                 - "sync"
                 - "--progress"
                 - "--ignore-errors"
