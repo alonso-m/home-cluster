@@ -25,4 +25,4 @@ spec:
   resources:
     requests:
       storage: 700Gi
-  storageClassName: openebs-ssd
+  storageClassName: openebs-ssd-0
