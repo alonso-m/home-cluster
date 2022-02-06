@@ -55,8 +55,11 @@ spec:
         #   memory: 128Mi
 
     volumeClaim:
-      persistentVolumeClaim:
-        claimName: trow
+      storageClassName: openebs-nvme-0
+      resources:
+        requests:
+          storage: 10Gi
+
 
     podAnnotations:
       backup.velero.io/backup-volumes: "trow"
