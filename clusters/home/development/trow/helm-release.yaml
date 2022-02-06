@@ -35,7 +35,7 @@ spec:
         hajimari.io/icon: "file-code"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
-        - paths: /
+        - paths: ['/']
           host: registry.${SECRET_DOMAIN}
       tls:
         - secretName: trow-tls
