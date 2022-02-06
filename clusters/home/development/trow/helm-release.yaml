@@ -35,12 +35,12 @@ spec:
         hajimari.io/icon: "file-code"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
-        - paths: ['/']
-          host: trow.${SECRET_DOMAIN}
+        - paths: /
+          host: registry.${SECRET_DOMAIN}
       tls:
         - secretName: trow-tls
           hosts:
-            - trow.${SECRET_DOMAIN}
+            - registry.${SECRET_DOMAIN}
 
       # resources: {}
         # We usually recommend not to specify default resources and to leave this as a conscious
