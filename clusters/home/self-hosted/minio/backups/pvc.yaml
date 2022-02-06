@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio
+  name: minio-backup
   namespace: self-hosted
   labels:
 spec:
@@ -11,4 +11,4 @@ spec:
   resources:
     requests:
       storage: 700Gi
-  storageClassName: openebs-local
+  storageClassName: openebs-ssd-0
