@@ -16,10 +16,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    # image:
-    #   repository: atlassian/bitbucket
-    #   tag: 7.20.0
-
     trow:
       domain: registry.rfc826.com
 
@@ -62,7 +58,7 @@ spec:
 
 
     podAnnotations:
-      backup.velero.io/backup-volumes: "trow"
+      backup.velero.io/backup-volumes: "data-vol"
       secret.reloader.stakater.com/reload: "trow"
 
   valuesFrom:
