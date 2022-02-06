@@ -28,6 +28,7 @@ resources:
   - rook-ceph-charts.yaml
   - stakater-charts.yaml
   - traefik-charts.yaml
+  - trow-charts.yaml
   - vmware-tanzu-charts.yaml
   - weaveworks-kured-charts.yaml
   - utkuozdemir-charts.yaml
