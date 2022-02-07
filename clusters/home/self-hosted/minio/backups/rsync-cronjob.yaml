@@ -14,7 +14,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: rsync
-              image: alonsomiguel/rsync-backup:latest
+              image: registry.rfc826.com/rsync-backup:latest
               imagePullPolicy: Always
               env:
                 - name: SOURCE_DIR
