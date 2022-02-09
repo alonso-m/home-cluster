@@ -23,6 +23,7 @@ spec:
       - --metric-resolution=15s
     hostNetwork:
       enabled: trueQ
+    #Would this help?
     tolerations:
       - key: "node-role.kubernetes.io/master"
         operator: "Exists"
