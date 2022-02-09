@@ -1,17 +1,40 @@
 {
     "packageRules": [
       {
-        "matchDatasources": [
-          "helm"
-        ],
+        "matchDatasources": ["docker"],
         "automerge": true,
         "automergeType": "branch",
         "requiredStatusChecks": null,
-        "matchUpdateTypes": [
-          "patch"
-        ],
+        "matchUpdateTypes": ["minor", "patch"],
         "matchPackageNames": [
-          "kube-prometheus-stack",
+          "dgtlmoon/changedetection.io"
+        ]
+      },
+      {
+        "matchDatasources": ["docker"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["patch"],
+        "matchPackageNames": []
+      },
+      {
+        "matchDatasources": ["helm"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["minor", "patch"],
+        "matchPackageNames": [
+          "kube-prometheus-stack"
+        ]
+      },
+      {
+        "matchDatasources": ["helm"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["patch"],
+        "matchPackageNames": [
           "grafana",
           "thanos",
           "loki",
