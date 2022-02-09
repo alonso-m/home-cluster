@@ -8,7 +8,6 @@
         "automergeType": "branch",
         "requiredStatusChecks": null,
         "matchUpdateTypes": [
-          "minor",
           "patch"
         ],
         "matchPackageNames": [
@@ -16,7 +15,10 @@
           "grafana",
           "thanos",
           "loki",
-          "promtail"
+          "promtail",
+          "pihole",
+          "metrics-server",
+          "cert-manager"
         ]
       },
       {
