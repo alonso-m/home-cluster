@@ -9,13 +9,13 @@ _... managed with Flux, Renovate and GitHub Actions_
 
 ---
 
-## 📖 Overview
+## Overview
 
 This is a repository for the two Kubernetes clusters that I run at two different home locations. I try to adhere to Infrastructure as Code (IaC) and GitOps practices using the tools like [Ansible](https://www.ansible.com/), [Terraform](https://www.terraform.io/), [Kubernetes](https://kubernetes.io/), [Flux](https://github.com/fluxcd/flux2), [Renovate](https://github.com/renovatebot/renovate) and [GitHub Actions](https://github.com/features/actions).
 
 ---
 
-## ⛵ Kubernetes
+## Kubernetes
 
 ### Installation
 
