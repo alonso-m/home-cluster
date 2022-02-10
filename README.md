@@ -33,7 +33,7 @@ My cluster is [k3s](https://k3s.io/) provisioned overtop bare-metal Ubuntu 20.04
 
 [Flux](https://github.com/fluxcd/flux2) watches my two clusters and applies those changes to my cluster automatically based on the YAML manifests.
 
-[Renovate](https://github.com/renovatebot/renovate) watches my **entire** repository looking for dependency updates, when they are found a PR is automatically created. When PRs are merged [Flux](https://github.com/fluxcd/flux2) applies the changes to my cluster.
+[Renovate](https://github.com/renovatebot/renovate) watches my **entire** repository looking for dependency updates, when they are found a PR is automatically created. When PRs are merged [Flux](https://github.com/fluxcd/flux2) applies the changes to the two clusters.
 
 ### Clusters
 
