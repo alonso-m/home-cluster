@@ -37,7 +37,7 @@ My cluster is [k3s](https://k3s.io/) provisioned overtop bare-metal Ubuntu 20.04
 
 ### Clusters
 
-The Git repository contains the following two repositories which are sorted by namespaces under the folder [/clusters/](.clusters).
+The Git repository contains the following two repositories which are sorted by namespaces under the folder /clusters/.
 
 - **home**: Contains all the YAML manifests for the main home cluster. This cluster contains the majority of the services that I run.
 - **pueblo**: Contains all the YAML manifests for the pueblo cluster which is used mainly for storing back ups.
