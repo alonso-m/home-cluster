@@ -21,7 +21,7 @@ This is a repository for the two Kubernetes clusters that I run at two different
 
 My cluster is [k3s](https://k3s.io/) provisioned overtop bare-metal Ubuntu 20.04 using the [Ansible](https://www.ansible.com/) galaxy role [ansible-role-k3s](https://github.com/PyratLabs/ansible-role-k3s).
 
-🔸 _[Click here](./ansible/https://github.com/alonso-m/home-cluster-provision) to see my Ansible playbooks and roles which are stored on a separate repository._
+- _[Click here](https://github.com/alonso-m/home-cluster-provision) to see my Ansible playbooks and roles which are stored on a separate repository._
 
 ### Core Components
 
