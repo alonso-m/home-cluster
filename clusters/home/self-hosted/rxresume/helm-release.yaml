@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: amruthpillai/reactive-resume
-      tag: v3
+      tag: v1
 
     nameOverride: rxresume
 
