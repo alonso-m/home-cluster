@@ -84,7 +84,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "alert"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+          # traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
         hosts:
           - alertmanager.${SECRET_DOMAIN}
         tls:
@@ -175,7 +175,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "math-log"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+          # traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
         hosts:
           - prometheus.${SECRET_DOMAIN}
         tls:
