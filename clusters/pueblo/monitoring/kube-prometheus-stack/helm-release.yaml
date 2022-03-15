@@ -62,6 +62,9 @@ spec:
           routes:
             - receiver: "null"
               match:
+                alertname: InfoInhibitor
+            - receiver: "null"
+              match:
                 alertname: Watchdog
             - receiver: "discord"
               match_re:
@@ -131,8 +134,8 @@ spec:
     kubeStateMetrics:
       enabled: true
 
-    # prometheusOperator:
-    #   configReloaderCpu: 0
+    prometheusOperator:
+      configReloaderCpu: 0
 
     grafana:
       enabled: false
