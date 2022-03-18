@@ -41,7 +41,8 @@
           "promtail",
           "pihole",
           "metrics-server",
-          "cert-manager"
+          "cert-manager",
+          "nginx"
         ]
       },
       {
