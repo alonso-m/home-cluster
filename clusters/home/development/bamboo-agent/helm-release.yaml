@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: atlassian/bamboo-agent-base
-      tag: 8.1.4
+      tag: 8.1.5
 
     agent:
       securityToken:
