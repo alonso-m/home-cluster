@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: atlassian/bitbucket
-      tag: 7.21.1
+      tag: 8.0.0
 
     database:
       url: 'jdbc:postgresql://postgresql.databases.svc.cluster.local:5432/bitbucket'
