@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - rclone-cronjob.yaml
-  - rsync-cronjob.yaml
+  # - rsync-cronjob.yaml
   - secrets.sops.yaml
