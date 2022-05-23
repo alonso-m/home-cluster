@@ -42,7 +42,8 @@
           "pihole",
           "metrics-server",
           "cert-manager",
-          "nginx"
+          "nginx",
+          "velero"  
         ]
       },
       {
