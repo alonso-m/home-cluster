@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: atlassian/bamboo
-      tag: 8.2.4
+      tag: 8.2.5
 
     database:
       type: 'postgresql'
