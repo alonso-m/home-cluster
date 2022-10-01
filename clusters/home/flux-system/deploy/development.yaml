@@ -7,7 +7,6 @@ metadata:
 spec:
   dependsOn:
     - name: cert-manager
-    - name: databases
   interval: 30m0s
   path: ./clusters/home/development
   prune: true

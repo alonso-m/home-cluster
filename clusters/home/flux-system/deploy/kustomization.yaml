@@ -5,7 +5,6 @@ resources:
   - cert-manager.yaml
   - cluster-secrets.sops.yaml
   - cluster-settings.yaml
-  - databases.yaml
   - development.yaml
   - downloads.yaml
   - flux-system.yaml
