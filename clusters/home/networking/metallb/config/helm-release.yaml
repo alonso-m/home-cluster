@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: metallb-config
-  namespace: networking
+  namespace: kube-system
 spec:
   interval: 15m
   chart:
@@ -23,7 +23,7 @@ spec:
       retries: 5
   dependsOn:
     - name: metallb
-      namespace: networking
+      namespace: kube-system
   values:
     resources:
       - apiVersion: metallb.io/v1beta1
