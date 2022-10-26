@@ -4,5 +4,4 @@ resources:
   - _pvc
   - filebrowser
   - jellyfin
-  - qbittorrent
-  # - transmission
+#  - qbittorrent
