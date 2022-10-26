@@ -4,7 +4,7 @@ metadata:
     name: openvpn-auth
     namespace: downloads
 stringData:
-    VPN_AUTH: ENC[AES256_GCM,data:n/GSl2t/ikRDW8x44Jp8dtrwyMs9uVIGONSpbkys7ra3a9VsCrc=,iv:g/JjAweYhRDKHpQDeD9XcVbsvwZ6Ch2m9OMrgphbPYk=,tag:7z+ZZ2RKuj/7Y5Epk1g6CQ==,type:str]
+    VPN_AUTH: ENC[AES256_GCM,data:8+7vIdVyO6z7z8qx9WSWnKus+UPfBBh0l6YlW//jwl/tvL5Ue6o=,iv:a5PV/x/RLcXIoSUU6hl7jCWR3gJbTOUC4rTPOxZv0z0=,tag:1WLSPr5e/hfJMyYOdfHUnw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -14,14 +14,14 @@ sops:
         - recipient: age1gpkhe6ap5xgmnrgjsc0vcxldp6g33gag3ul8ar2l5dvn32ccdunqpwdcuj
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArdHRRbWFXVGhFMjhXQXRE
-            bm4yMFA0OUg3Qk1xSEFkL28zSTFrK2J6cndNClEyL092NG1MMzdNS0I3Q1BscThv
-            QjVESWF1V2I2SWNNSGRhdDdkMk5Ldm8KLS0tIE0rZ09NdjdTbG1BMVpFVW45TFpr
-            QTFJc3hFR0w3ZDlEVjE5Y2tVQ2dNL1EK25uF9rWOo3nac5A/I2dTqf1o8HWhZmz9
-            lMDbPyg0Oy5LGV9VhgJisrEZ0VKDsmB4Xorb0jW2hZCfNwSr8NhWcw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBUK1l0WWsrM05sWTFGQjV2
+            WVVTRHRTbHp6RXdlVEU4TGJOVS9aelZBalUwCmk4YTVrdGJUWnJqRTRwdDhCNWNG
+            L0NSMHhLckNzOXBmVkJIaHk2NzUvckUKLS0tIFhLdVVEVEZ3elNYMDFFMTVISHhJ
+            akwxbDBMYnlBRWIvQ0R6V2swVVRoNjAK9L1evvhXyRVAz+pPv4tcrcCMiFGUveJy
+            Hr13TVlNP8rC4xxb7VCQVwF4T2EySHc1cFcjqVeCSDPEiy5UvRPkmw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-02-06T18:50:25Z"
-    mac: ENC[AES256_GCM,data:kK1okIEj58cfSWpH0e8ZOvsUO5vnN+11lKXSz9dXzxy5W56/2tGjDPkIPtIxXEzDrMDltingjY5mRvWnkyOCqV01UvV9yY1zxvlFEEPQ8xzaYBCUj072de61CaRzJP9FAsP1JHGQaF6Foy4KACZSE1l+s1yeBSlT2XuIDtyHaag=,iv:cQ+R7cEYBf0UnLtfOQWjVOYwOMAcd8WOIqFOoppoPsI=,tag:Y40p0xeV2XzoUgAtwgvaaw==,type:str]
+    lastmodified: "2022-10-26T17:12:33Z"
+    mac: ENC[AES256_GCM,data:mlxSO7VEVGX7b5T6DmMOWNV3M6MHjJY+jawLS+Un/6cwvmWYCHnaDxkWxTAeVqy7w8kIWjWSOMavV6URAALNGw/s4jxGbeWEpA0QJKYMuQ1dCl9oRpZ+dwHiWncbI+1iIW2swW9v37V3vT5mk5W2klqhdvHKEFEI1FGAmKasKr8=,iv:06hq1IYC6Jyt1GqY+J3yj1c+zWBE8uOKzLUTZusN/4w=,tag:mFREl8uoLlIBaZ85JXPOPg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
-    version: 3.7.1
+    version: 3.7.3
