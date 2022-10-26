@@ -7,6 +7,6 @@ resources:
   - hajimari
   - littlelink
   - minio
-  - rxresume
+#  - rxresume
   - syncthing
   - vaultwarden
