@@ -8,6 +8,7 @@
     ":separatePatchReleases",
     "docker:enableMajor",
     ":enablePreCommit",
+    "github>alonso-m/home-cluster//.github/renovate/disabledDatasources.json5",
     "github>alonso-m/home-cluster//.github/renovate/autoMerge",
     "github>alonso-m/home-cluster//.github/renovate/labels"
   ],
