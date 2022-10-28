@@ -31,32 +31,27 @@
   },
   "flux": {
     "fileMatch": [
-      "clusters/home/.+\\.yaml$",
-      "clusters/pueblo/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$"
    ]
   },
   "helm-values": {
     "fileMatch": [
-      "clusters/home/.+\\.yaml$",
-      "clusters/pueblo/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$"
     ]
   },
   "kubernetes": {
     "fileMatch": [
-      "clusters/home/.+\\.yaml$",
-      "clusters/pueblo/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$"
     ],
     "ignorePaths": [
-      "clusters/home/flux-system/",
-      "clusters/pueblo/flux-system/"
+      "clusters/home/flux-system/"
     ]
   },
   "regexManagers": [
     // regexManager to read and process GitHub release artifacts
     {
       "fileMatch": [
-      "clusters/home/.+\\.yaml$",
-      "clusters/pueblo/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$"
       ],
       "matchStrings": [
         "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
@@ -67,8 +62,7 @@
     // Generic Regex Manager
     {
       "fileMatch": [
-      "clusters/home/.+\\.yaml$",
-      "clusters/pueblo/.+\\.yaml$"
+      "clusters/home/.+\\.yaml$"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
@@ -79,8 +73,7 @@
     // Generic Docker image Regex manager
     {
       "fileMatch": [
-        "clusters/home/.+\\.yaml$",
-        "clusters/pueblo/.+\\.yaml$"
+        "clusters/home/.+\\.yaml$"
       ],
       "matchStrings": [
         "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
