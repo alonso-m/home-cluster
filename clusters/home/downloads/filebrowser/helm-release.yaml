@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: filebrowser/filebrowser
-      tag: v2.22.4
+      tag: v2.23.0
 
     nameOverride: filebrowser
 
