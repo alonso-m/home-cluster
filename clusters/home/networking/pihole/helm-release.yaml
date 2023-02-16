@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: "pihole/pihole"
-      tag: "2023.01.10"
+      tag: "2023.02.2"
 
     replicaCount: 1
 
