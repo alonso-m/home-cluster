@@ -25,7 +25,7 @@ jobs:
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Lint
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter/slim@v5
         env:
           GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
           VALIDATE_ALL_CODEBASE: false
