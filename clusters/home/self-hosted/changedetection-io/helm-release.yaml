@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: dgtlmoon/changedetection.io
-      tag: "0.45.8"
+      tag: "0.45.9"
 
     nameOverride: changedetection-io
 
